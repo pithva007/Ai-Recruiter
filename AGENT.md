@@ -103,6 +103,13 @@ interview_q1, interview_q2, interview_q3, llm_rationale
 
 List fields (green_flags, yellow_flags, skill_gaps, transferable_skills_map) must be pipe-separated strings.
 
+## Environment Variables Required
+```
+GEMINI_API_KEY=         # Required — Gemini API key (from Google AI Studio)
+GEMINI_MODEL=           # Optional — defaults to "gemini-2.0-flash"
+LOG_LEVEL=              # "DEBUG" | "INFO" | "WARNING"
+```
+
 ## Hiring Decision Simulator Weight Schema
 The dashboard allows recruiter to override weights. Use this schema:
 ```json

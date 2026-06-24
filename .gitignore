@@ -1,0 +1,41 @@
+# Environment variables — never commit
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Pipeline outputs (generated, not source)
+outputs/
+data/processed/
+data/raw/candidates.csv
+data/raw/candidates.json
+
+# FAISS index files
+*.faiss
+*.index
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp

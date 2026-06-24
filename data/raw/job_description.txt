@@ -1,0 +1,3 @@
+# Paste your job description here.
+# This file is read by src/stage1_role_agent.py.
+# Replace the contents of this file with the raw JD text before running Stage 1.

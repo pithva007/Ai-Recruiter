@@ -1,7 +1,7 @@
 # CLAUDE.md — LLM Prompting Strategy and System Prompts
 
 ## Model Selection
-- Use `claude-3-5-sonnet-20241022` as the primary reasoning model for all agent stages.
+- Use `gemini-2.0-flash` as the primary reasoning model for all agent stages.
 - Use `sentence-transformers/all-mpnet-base-v2` (local) for all embedding operations.
 - Never use a smaller or faster model for scoring or evidence extraction — accuracy is non-negotiable.
 - Temperature: `0.0` for all scoring and extraction tasks. `0.3` for interview question generation. `0.0` for rationale generation.
@@ -11,37 +11,50 @@
 ```python
 # utils/llm_client.py
 import json
+import os
+from google import genai
+from google.genai import types
 from tenacity import retry, stop_after_attempt, wait_exponential
-import anthropic
 
-client = anthropic.Anthropic()
+# Client picks up GEMINI_API_KEY from the environment automatically.
+client = genai.Client()
+
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
 def call_llm(system_prompt: str, user_content: str, temperature: float = 0.0) -> dict:
-    response = client.messages.create(
-        model="claude-3-5-sonnet-20241022",
-        max_tokens=4096,
-        temperature=temperature,
-        system=system_prompt,
-        messages=[{"role": "user", "content": user_content}]
+    response = client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=user_content,
+        config=types.GenerateContentConfig(
+            system_instruction=system_prompt,
+            temperature=temperature,
+            max_output_tokens=4096,
+        ),
     )
-    raw = response.content[0].text.strip()
+    raw = response.text.strip()
     raw = raw.replace("```json", "").replace("```", "").strip()
     try:
         return json.loads(raw)
     except json.JSONDecodeError:
-        retry_response = client.messages.create(
-            model="claude-3-5-sonnet-20241022",
-            max_tokens=4096,
-            temperature=0.0,
-            system=system_prompt,
-            messages=[
-                {"role": "user", "content": user_content},
-                {"role": "assistant", "content": raw},
-                {"role": "user", "content": "Your response was not valid JSON. Respond only with valid JSON. No markdown. No explanation. No code blocks. Just the raw JSON object."}
-            ]
+        retry_response = client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=(
+                f"{user_content}\n\n"
+                "Your previous response was not valid JSON. "
+                "Respond only with valid JSON. "
+                "No markdown. No explanation. No code blocks. "
+                "Just the raw JSON object."
+            ),
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt,
+                temperature=0.0,
+                max_output_tokens=4096,
+            ),
         )
-        return json.loads(retry_response.content[0].text.strip())
+        cleaned = retry_response.text.strip()
+        cleaned = cleaned.replace("```json", "").replace("```", "").strip()
+        return json.loads(cleaned)
 ```
 
 ## Prompt Engineering Rules

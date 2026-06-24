@@ -46,8 +46,7 @@ ai-recruiter/
 
 ```
 # requirements.txt
-openai>=1.0.0
-anthropic>=0.20.0
+google-genai>=1.0.0
 sentence-transformers>=2.2.0
 faiss-cpu>=1.7.4
 networkx>=3.0
@@ -68,37 +67,50 @@ reportlab>=4.0.0
 ```python
 # utils/llm_client.py
 import json
+import os
+from google import genai
+from google.genai import types
 from tenacity import retry, stop_after_attempt, wait_exponential
-import anthropic
 
-client = anthropic.Anthropic()
+# Client picks up GEMINI_API_KEY from the environment automatically.
+client = genai.Client()
+
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
 def call_llm(system_prompt: str, user_content: str, temperature: float = 0.0) -> dict:
-    response = client.messages.create(
-        model="claude-3-5-sonnet-20241022",
-        max_tokens=4096,
-        temperature=temperature,
-        system=system_prompt,
-        messages=[{"role": "user", "content": user_content}]
+    response = client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=user_content,
+        config=types.GenerateContentConfig(
+            system_instruction=system_prompt,
+            temperature=temperature,
+            max_output_tokens=4096,
+        ),
     )
-    raw = response.content[0].text.strip()
+    raw = response.text.strip()
     raw = raw.replace("```json", "").replace("```", "").strip()
     try:
         return json.loads(raw)
     except json.JSONDecodeError:
-        retry_response = client.messages.create(
-            model="claude-3-5-sonnet-20241022",
-            max_tokens=4096,
-            temperature=0.0,
-            system=system_prompt,
-            messages=[
-                {"role": "user", "content": user_content},
-                {"role": "assistant", "content": raw},
-                {"role": "user", "content": "Your response was not valid JSON. Respond only with valid JSON. No markdown. No explanation. No code blocks. Just the raw JSON object."}
-            ]
+        retry_response = client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=(
+                f"{user_content}\n\n"
+                "Your previous response was not valid JSON. "
+                "Respond only with valid JSON. "
+                "No markdown. No explanation. No code blocks. "
+                "Just the raw JSON object."
+            ),
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt,
+                temperature=0.0,
+                max_output_tokens=4096,
+            ),
         )
-        return json.loads(retry_response.content[0].text.strip())
+        cleaned = retry_response.text.strip()
+        cleaned = cleaned.replace("```json", "").replace("```", "").strip()
+        return json.loads(cleaned)
 ```
 
 ---
@@ -354,8 +366,8 @@ DARK_HORSE_RANK_THRESHOLD = 15    # Candidates ranked > 15 are dark horse candid
 
 ```python
 # config.py
-PRIMARY_MODEL       = "claude-3-5-sonnet-20241022"
-EMBEDDING_MODEL     = "all-mpnet-base-v2"
+PRIMARY_MODEL            = "gemini-2.0-flash"   # override with GEMINI_MODEL env var
+EMBEDDING_MODEL          = "all-mpnet-base-v2"
 TEMPERATURE_SCORING      = 0.0
 TEMPERATURE_INTERVIEW_QS = 0.3
 TEMPERATURE_RATIONALE    = 0.0
@@ -368,7 +380,8 @@ JSON_RETRY_SUFFIX        = "Respond only with valid JSON. No markdown. No explan
 ## Environment Variables Required
 
 ```
-ANTHROPIC_API_KEY=      # Required — Claude API key
+GEMINI_API_KEY=         # Required — Gemini API key (from Google AI Studio)
+GEMINI_MODEL=           # Optional — defaults to "gemini-2.0-flash"
 LOG_LEVEL=              # "DEBUG" | "INFO" | "WARNING"
 ```
 
