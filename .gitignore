@@ -29,7 +29,7 @@ data/raw/candidates.jsonl
 # Pipeline outputs (generated — not source, commit only final submission)
 # ============================================================
 outputs/*.csv          # DO commit: your final {team_id}.csv before submitting
-outputs/*.pdf
+# outputs/*.pdf  — PDF is generated artifact, not committed
 data/processed/features.pkl
 data/processed/embeddings/
 data/processed/scores/
