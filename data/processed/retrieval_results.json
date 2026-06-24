@@ -1,0 +1,812 @@
+{
+  "retrieval_timestamp": "2026-06-24T17:16:44.054129Z",
+  "jd_role": "Senior AI Engineer",
+  "faiss_top_k": 30,
+  "graph_top_k": 30,
+  "hybrid_weights": {
+    "faiss": 0.6,
+    "graph": 0.4
+  },
+  "candidates": [
+    {
+      "candidate_id": "CAND_0041568",
+      "faiss_rank": 1,
+      "faiss_similarity": 0.812118,
+      "graph_score": 0.0,
+      "hybrid_score": 0.6,
+      "hybrid_rank": 1
+    },
+    {
+      "candidate_id": "CAND_0051615",
+      "faiss_rank": 2,
+      "faiss_similarity": 0.79043,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.487573,
+      "hybrid_rank": 2
+    },
+    {
+      "candidate_id": "CAND_0061339",
+      "faiss_rank": 3,
+      "faiss_similarity": 0.784735,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.458052,
+      "hybrid_rank": 3
+    },
+    {
+      "candidate_id": "CAND_0004402",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.47619,
+      "hybrid_score": 0.4,
+      "hybrid_rank": 4
+    },
+    {
+      "candidate_id": "CAND_0040887",
+      "faiss_rank": 4,
+      "faiss_similarity": 0.771997,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.392025,
+      "hybrid_rank": 5
+    },
+    {
+      "candidate_id": "CAND_0084819",
+      "faiss_rank": 5,
+      "faiss_similarity": 0.768933,
+      "graph_score": 0.0,
+      "hybrid_score": 0.376141,
+      "hybrid_rank": 6
+    },
+    {
+      "candidate_id": "CAND_0006567",
+      "faiss_rank": 6,
+      "faiss_similarity": 0.764803,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.354729,
+      "hybrid_rank": 7
+    },
+    {
+      "candidate_id": "CAND_0093193",
+      "faiss_rank": 7,
+      "faiss_similarity": 0.764414,
+      "graph_score": 0.0,
+      "hybrid_score": 0.352714,
+      "hybrid_rank": 8
+    },
+    {
+      "candidate_id": "CAND_0065195",
+      "faiss_rank": 18,
+      "faiss_similarity": 0.724913,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.319379,
+      "hybrid_rank": 9
+    },
+    {
+      "candidate_id": "CAND_0070398",
+      "faiss_rank": 8,
+      "faiss_similarity": 0.756589,
+      "graph_score": 0.0,
+      "hybrid_score": 0.312151,
+      "hybrid_rank": 10
+    },
+    {
+      "candidate_id": "CAND_0030827",
+      "faiss_rank": 9,
+      "faiss_similarity": 0.75341,
+      "graph_score": 0.0,
+      "hybrid_score": 0.295673,
+      "hybrid_rank": 11
+    },
+    {
+      "candidate_id": "CAND_0050876",
+      "faiss_rank": 20,
+      "faiss_similarity": 0.714913,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.267543,
+      "hybrid_rank": 12
+    },
+    {
+      "candidate_id": "CAND_0055905",
+      "faiss_rank": 21,
+      "faiss_similarity": 0.714692,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.266398,
+      "hybrid_rank": 13
+    },
+    {
+      "candidate_id": "CAND_0074735",
+      "faiss_rank": 10,
+      "faiss_similarity": 0.747476,
+      "graph_score": 0.0,
+      "hybrid_score": 0.264911,
+      "hybrid_rank": 14
+    },
+    {
+      "candidate_id": "CAND_0010685",
+      "faiss_rank": 11,
+      "faiss_similarity": 0.74747,
+      "graph_score": 0.0,
+      "hybrid_score": 0.264879,
+      "hybrid_rank": 15
+    },
+    {
+      "candidate_id": "CAND_0019480",
+      "faiss_rank": 12,
+      "faiss_similarity": 0.746994,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.262414,
+      "hybrid_rank": 16
+    },
+    {
+      "candidate_id": "CAND_0075249",
+      "faiss_rank": 13,
+      "faiss_similarity": 0.734339,
+      "graph_score": 0.0,
+      "hybrid_score": 0.196815,
+      "hybrid_rank": 17
+    },
+    {
+      "candidate_id": "CAND_0026942",
+      "faiss_rank": 14,
+      "faiss_similarity": 0.732166,
+      "graph_score": 0.0,
+      "hybrid_score": 0.18555,
+      "hybrid_rank": 18
+    },
+    {
+      "candidate_id": "CAND_0058575",
+      "faiss_rank": 15,
+      "faiss_similarity": 0.731245,
+      "graph_score": 0.0,
+      "hybrid_score": 0.180775,
+      "hybrid_rank": 19
+    },
+    {
+      "candidate_id": "CAND_0002025",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.171429,
+      "hybrid_rank": 20
+    },
+    {
+      "candidate_id": "CAND_0005260",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.171429,
+      "hybrid_rank": 21
+    },
+    {
+      "candidate_id": "CAND_0030348",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.171429,
+      "hybrid_rank": 22
+    },
+    {
+      "candidate_id": "CAND_0049540",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.171429,
+      "hybrid_rank": 23
+    },
+    {
+      "candidate_id": "CAND_0054100",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.171429,
+      "hybrid_rank": 24
+    },
+    {
+      "candidate_id": "CAND_0069905",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.171429,
+      "hybrid_rank": 25
+    },
+    {
+      "candidate_id": "CAND_0077337",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.171429,
+      "hybrid_rank": 26
+    },
+    {
+      "candidate_id": "CAND_0081686",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.171429,
+      "hybrid_rank": 27
+    },
+    {
+      "candidate_id": "CAND_0096172",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.285714,
+      "hybrid_score": 0.171429,
+      "hybrid_rank": 28
+    },
+    {
+      "candidate_id": "CAND_0007412",
+      "faiss_rank": 16,
+      "faiss_similarity": 0.729394,
+      "graph_score": 0.0,
+      "hybrid_score": 0.17118,
+      "hybrid_rank": 29
+    },
+    {
+      "candidate_id": "CAND_0072660",
+      "faiss_rank": 17,
+      "faiss_similarity": 0.728401,
+      "graph_score": 0.0,
+      "hybrid_score": 0.166031,
+      "hybrid_rank": 30
+    },
+    {
+      "candidate_id": "CAND_0096142",
+      "faiss_rank": 19,
+      "faiss_similarity": 0.716622,
+      "graph_score": 0.0,
+      "hybrid_score": 0.104971,
+      "hybrid_rank": 31
+    },
+    {
+      "candidate_id": "CAND_0001610",
+      "faiss_rank": 22,
+      "faiss_similarity": 0.708825,
+      "graph_score": 0.0,
+      "hybrid_score": 0.064555,
+      "hybrid_rank": 32
+    },
+    {
+      "candidate_id": "CAND_0007460",
+      "faiss_rank": 23,
+      "faiss_similarity": 0.706251,
+      "graph_score": 0.0,
+      "hybrid_score": 0.051211,
+      "hybrid_rank": 33
+    },
+    {
+      "candidate_id": "CAND_0030468",
+      "faiss_rank": 24,
+      "faiss_similarity": 0.705649,
+      "graph_score": 0.0,
+      "hybrid_score": 0.048091,
+      "hybrid_rank": 34
+    },
+    {
+      "candidate_id": "CAND_0068811",
+      "faiss_rank": 25,
+      "faiss_similarity": 0.704093,
+      "graph_score": 0.0,
+      "hybrid_score": 0.040025,
+      "hybrid_rank": 35
+    },
+    {
+      "candidate_id": "CAND_0062247",
+      "faiss_rank": 26,
+      "faiss_similarity": 0.703078,
+      "graph_score": 0.0,
+      "hybrid_score": 0.034763,
+      "hybrid_rank": 36
+    },
+    {
+      "candidate_id": "CAND_0068351",
+      "faiss_rank": 27,
+      "faiss_similarity": 0.7021,
+      "graph_score": 0.0,
+      "hybrid_score": 0.029691,
+      "hybrid_rank": 37
+    },
+    {
+      "candidate_id": "CAND_0098846",
+      "faiss_rank": 28,
+      "faiss_similarity": 0.698877,
+      "graph_score": 0.0,
+      "hybrid_score": 0.012987,
+      "hybrid_rank": 38
+    },
+    {
+      "candidate_id": "CAND_0083879",
+      "faiss_rank": 29,
+      "faiss_similarity": 0.696625,
+      "graph_score": 0.0,
+      "hybrid_score": 0.00131,
+      "hybrid_rank": 39
+    },
+    {
+      "candidate_id": "CAND_0005538",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 40
+    },
+    {
+      "candidate_id": "CAND_0006418",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 41
+    },
+    {
+      "candidate_id": "CAND_0006557",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 42
+    },
+    {
+      "candidate_id": "CAND_0008239",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 43
+    },
+    {
+      "candidate_id": "CAND_0008425",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 44
+    },
+    {
+      "candidate_id": "CAND_0011687",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 45
+    },
+    {
+      "candidate_id": "CAND_0015578",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 46
+    },
+    {
+      "candidate_id": "CAND_0016163",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 47
+    },
+    {
+      "candidate_id": "CAND_0018499",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 48
+    },
+    {
+      "candidate_id": "CAND_0020708",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 49
+    },
+    {
+      "candidate_id": "CAND_0020877",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 50
+    },
+    {
+      "candidate_id": "CAND_0022812",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 51
+    },
+    {
+      "candidate_id": "CAND_0027691",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 52
+    },
+    {
+      "candidate_id": "CAND_0028793",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 53
+    },
+    {
+      "candidate_id": "CAND_0029367",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 54
+    },
+    {
+      "candidate_id": "CAND_0032515",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 55
+    },
+    {
+      "candidate_id": "CAND_0036437",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 56
+    },
+    {
+      "candidate_id": "CAND_0037566",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 57
+    },
+    {
+      "candidate_id": "CAND_0037980",
+      "faiss_rank": 30,
+      "faiss_similarity": 0.696372,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 58
+    },
+    {
+      "candidate_id": "CAND_0039383",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 59
+    },
+    {
+      "candidate_id": "CAND_0042029",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 60
+    },
+    {
+      "candidate_id": "CAND_0042100",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 61
+    },
+    {
+      "candidate_id": "CAND_0042506",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 62
+    },
+    {
+      "candidate_id": "CAND_0044222",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 63
+    },
+    {
+      "candidate_id": "CAND_0045250",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 64
+    },
+    {
+      "candidate_id": "CAND_0046064",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 65
+    },
+    {
+      "candidate_id": "CAND_0046525",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 66
+    },
+    {
+      "candidate_id": "CAND_0047721",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 67
+    },
+    {
+      "candidate_id": "CAND_0049538",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 68
+    },
+    {
+      "candidate_id": "CAND_0050454",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 69
+    },
+    {
+      "candidate_id": "CAND_0051004",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 70
+    },
+    {
+      "candidate_id": "CAND_0051292",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 71
+    },
+    {
+      "candidate_id": "CAND_0051630",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 72
+    },
+    {
+      "candidate_id": "CAND_0052335",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 73
+    },
+    {
+      "candidate_id": "CAND_0052682",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 74
+    },
+    {
+      "candidate_id": "CAND_0053591",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 75
+    },
+    {
+      "candidate_id": "CAND_0054123",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 76
+    },
+    {
+      "candidate_id": "CAND_0060054",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 77
+    },
+    {
+      "candidate_id": "CAND_0061257",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.142857,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 78
+    },
+    {
+      "candidate_id": "CAND_0061655",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 79
+    },
+    {
+      "candidate_id": "CAND_0064326",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 80
+    },
+    {
+      "candidate_id": "CAND_0064904",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 81
+    },
+    {
+      "candidate_id": "CAND_0066376",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 82
+    },
+    {
+      "candidate_id": "CAND_0071974",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 83
+    },
+    {
+      "candidate_id": "CAND_0074225",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 84
+    },
+    {
+      "candidate_id": "CAND_0075439",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 85
+    },
+    {
+      "candidate_id": "CAND_0075574",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 86
+    },
+    {
+      "candidate_id": "CAND_0076163",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 87
+    },
+    {
+      "candidate_id": "CAND_0078002",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 88
+    },
+    {
+      "candidate_id": "CAND_0079064",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 89
+    },
+    {
+      "candidate_id": "CAND_0079284",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 90
+    },
+    {
+      "candidate_id": "CAND_0079387",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 91
+    },
+    {
+      "candidate_id": "CAND_0080766",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 92
+    },
+    {
+      "candidate_id": "CAND_0081053",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 93
+    },
+    {
+      "candidate_id": "CAND_0081846",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 94
+    },
+    {
+      "candidate_id": "CAND_0081852",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 95
+    },
+    {
+      "candidate_id": "CAND_0083307",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 96
+    },
+    {
+      "candidate_id": "CAND_0086022",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 97
+    },
+    {
+      "candidate_id": "CAND_0088025",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 98
+    },
+    {
+      "candidate_id": "CAND_0093912",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 99
+    },
+    {
+      "candidate_id": "CAND_0099806",
+      "faiss_rank": null,
+      "faiss_similarity": 0.0,
+      "graph_score": 0.0,
+      "hybrid_score": 0.0,
+      "hybrid_rank": 100
+    }
+  ]
+}

@@ -99,8 +99,52 @@ class JDFeatures(BaseModel):
 
 
 # ---------------------------------------------------------------------------
-# Submission row validation
+# Candidate Score (Stage 6 output — LLM scoring assessment)
 # ---------------------------------------------------------------------------
+
+class CandidateScore(BaseModel):
+    candidate_id:        str
+    fit_score:           Optional[int]      = 50
+    impact_score:        Optional[int]      = 50
+    potential_score:     Optional[int]      = 50
+    risk_score:          Optional[int]      = 50
+    fit_reasoning:       Optional[str]      = None
+    impact_reasoning:    Optional[str]      = None
+    potential_reasoning: Optional[str]      = None
+    risk_reasoning:      Optional[str]      = None
+    green_flags:         list[str]          = []
+    yellow_flags:        list[str]          = []
+    skill_gaps:          list[str]          = []
+    confidence_level:    str                = "medium"
+    composite_score:     Optional[float]    = None
+
+    @field_validator("fit_score", "impact_score", "potential_score", "risk_score", mode="before")
+    @classmethod
+    def score_in_range(cls, v) -> int:
+        if v is None:
+            return 50   # default per CLAUDE.md: "set it to 50" if unknown
+        try:
+            v = int(v)
+        except (TypeError, ValueError):
+            return 50
+        return max(0, min(100, v))   # clamp to [0, 100]
+
+    @field_validator("confidence_level")
+    @classmethod
+    def valid_confidence_level(cls, v: str) -> str:
+        v = str(v).strip().lower() if v else "medium"
+        return v if v in ("high", "medium", "low") else "medium"
+
+    def compute_composite(self) -> float:
+        """Canonical formula from SKILLS.md — do not change."""
+        self.composite_score = round(
+            (self.fit_score    * 0.35) +
+            (self.impact_score * 0.30) +
+            (self.potential_score * 0.20) +
+            ((100 - self.risk_score) * 0.15),
+            2,
+        )
+        return self.composite_score
 class SubmissionRow(BaseModel):
     candidate_id: str
     rank: int

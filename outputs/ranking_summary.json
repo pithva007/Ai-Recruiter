@@ -1,0 +1,33 @@
+{
+  "total_candidates_scored": 30,
+  "top_10_candidate_ids": [
+    "CAND_0002025",
+    "CAND_0005260",
+    "CAND_0075249",
+    "CAND_0050876",
+    "CAND_0077337",
+    "CAND_0081686",
+    "CAND_0010685",
+    "CAND_0058575",
+    "CAND_0096172",
+    "CAND_0055905"
+  ],
+  "dark_horse_count": 12,
+  "dark_horse_candidate_ids": [
+    "CAND_0002025",
+    "CAND_0005260",
+    "CAND_0075249",
+    "CAND_0077337",
+    "CAND_0081686",
+    "CAND_0058575",
+    "CAND_0096172",
+    "CAND_0030348",
+    "CAND_0007412",
+    "CAND_0069905",
+    "CAND_0019480",
+    "CAND_0072660"
+  ],
+  "highest_composite_score": 92.25,
+  "lowest_composite_score": 37.4,
+  "average_composite_score": 78.04
+}
