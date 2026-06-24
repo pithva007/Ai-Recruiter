@@ -1,0 +1,118 @@
+{
+  "candidate_id": "CAND_0049538",
+  "evidence": [
+    {
+      "claim": "Used LlamaIndex, Feature Engineering, MLflow, Computer Vision, TTS, Learning to Rank, OpenSearch, Vector Search, Milvus, QLoRA, Embeddings, CNN, LLMs, Deep Learning, Recommendation Systems, Elasticsearch, PyTorch",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: LlamaIndex, Feature Engineering, MLflow, Computer Vision, TTS, Learning to Rank, OpenSearch, Vector Search, Milvus, QLoRA, Embeddings, CNN, LLMs, Deep Learning, Recommendation Systems, Elasticsearch, PyTorch",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Migrated keyword-search-based product to embedding-based retrieval",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built and operated production ML pipelines using MLflow, Kubeflow, and internal feature store",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow for experiment tracking, Kubeflow for orchestration, and our internal feature store.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed model monitoring stack including data drift detection and prediction distribution checks",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the model monitoring stack: data drift detection, prediction distribution checks, and alerting.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via ranking model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built churn prediction model used by customer success team",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "My main project was a churn prediction model that's now used by the customer success team to prioritize outreach.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led the team that migrated keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Mentored a junior engineer through their first end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes learning through shipping real systems and production experience",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Pragmatic approach to debugging and system design",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Applied ML Engineer",
+    "CNN",
+    "Computer Vision",
+    "Deep Learning",
+    "Elasticsearch",
+    "Embeddings",
+    "Feature Engineering",
+    "LLMs",
+    "Learning to Rank",
+    "LlamaIndex",
+    "MLflow",
+    "Milvus",
+    "OpenSearch",
+    "PolicyBazaar",
+    "PyTorch",
+    "QLoRA",
+    "Recommendation Systems",
+    "Recommendation Systems Engineer",
+    "Saarthi.ai",
+    "TTS",
+    "Vector Search",
+    "Zoho"
+  ]
+}

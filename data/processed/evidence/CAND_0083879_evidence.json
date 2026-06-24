@@ -1,0 +1,115 @@
+{
+  "candidate_id": "CAND_0083879",
+  "evidence": [
+    {
+      "claim": "Built semantic search infrastructure from scratch using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I built our semantic search infrastructure from scratch — sentence-transformers, FAISS, the works.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built and operated production ML pipelines using MLflow, Kubeflow, and internal feature store",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow for experiment tracking, Kubeflow for orchestration, and our internal feature store.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed model monitoring stack including data drift detection, prediction distribution checks, and alerting",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the model monitoring stack: data drift detection, prediction distribution checks, and alerting.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Trained and shipped multiple ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed churn prediction model used by customer success team",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "My main project was a churn prediction model that's now used by the customer success team to prioritize outreach.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Mentored a junior engineer through their first end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets for ranking models",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned AWS Certified Machine Learning Specialty certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "AWS Certified Machine Learning Specialty (AWS, 2021)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes learning through shipping real systems and production experience",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values cross-functional collaboration and business alignment over pure modeling",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experienced in debugging production ranking issues",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AWS",
+    "Data Science",
+    "FAISS",
+    "Fine-tuning LLMs",
+    "Hugging Face Transformers",
+    "Image Classification",
+    "MLOps",
+    "MLflow",
+    "Machine Learning",
+    "Machine Learning Engineer",
+    "Milvus",
+    "Ola",
+    "PhonePe",
+    "Prompt Engineering",
+    "Search Engineer",
+    "Senior Data Scientist",
+    "Sentence Transformers",
+    "Swiggy",
+    "XGBoost",
+    "scikit-learn"
+  ]
+}

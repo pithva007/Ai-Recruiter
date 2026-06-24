@@ -1,0 +1,107 @@
+{
+  "candidate_id": "CAND_0077337",
+  "evidence": [
+    {
+      "claim": "Designed hybrid retrieval system (BM25 + dense vector) serving 50M+ queries/month",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "designed the company's first hybrid retrieval system combining BM25 with dense vector recall, serving 50M+ queries per month",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Proficiency in GANs, Semantic Search, QLoRA, pgvector, Pinecone, BM25, LLMs, RAG, Qdrant, Sentence Transformers, LlamaIndex, Python, OpenSearch",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: GANs, Semantic Search, QLoRA, pgvector, Pinecone, BM25, LLMs, RAG, Qdrant, Sentence Transformers, LlamaIndex, Python, OpenSearch",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed exploration-exploitation policy using Thompson sampling improving new-user retention by 11%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "I designed an exploration-exploitation policy using Thompson sampling that improved new-user retention by 11% in the first month.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led a team of 4 engineers across a semantic search rollout",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Led a team of 4 engineers across the rollout.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Reduced p95 retrieval latency by 60% and improved NDCG@10 by 18%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The new system reduced p95 retrieval latency by 60% while improving NDCG@10 by 18% on our held-out eval set.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved recruiter engagement by 24% and reduced time-to-shortlist by 38%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The final embedding ranker improved recruiter engagement metrics by 24% and reduced the average time-to-shortlist by 38%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Mentored junior engineers",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored two junior engineers through this rollout.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Completed Deep Learning and NLP Specializations",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: Deep Learning Specialization (Coursera/DeepLearning.AI, 2018); NLP Specialization (Coursera/DeepLearning.AI, 2023)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes shipping working systems in 6 weeks over theoretical perfection",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care more about shipping a working system in 6 weeks than a theoretically perfect one in 6 months.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Aganitha",
+    "BM25",
+    "Data Science",
+    "Excel",
+    "Feature Engineering",
+    "Forecasting",
+    "GANs",
+    "Glance",
+    "Information Retrieval",
+    "LLMs",
+    "LlamaIndex",
+    "NLP",
+    "OpenCV",
+    "OpenSearch",
+    "Paytm",
+    "Pinecone",
+    "Python",
+    "QLoRA",
+    "Qdrant",
+    "RAG",
+    "Razorpay",
+    "Recommendation Systems",
+    "Semantic Search",
+    "Senior AI Engineer",
+    "Senior NLP Engineer",
+    "Sentence Transformers",
+    "Staff Machine Learning Engineer",
+    "pgvector"
+  ]
+}

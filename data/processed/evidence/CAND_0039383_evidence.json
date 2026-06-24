@@ -1,0 +1,118 @@
+{
+  "candidate_id": "CAND_0039383",
+  "evidence": [
+    {
+      "claim": "Built semantic search infrastructure using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I built our semantic search infrastructure from scratch — sentence-transformers, FAISS, the works.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Trained and shipped ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed semantic search for 500K documents using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers... with FAISS",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets and metrics",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owned offline-online correlation analysis for A/B test metrics",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Owned the offline-online correlation analysis that determined which offline metrics actually predicted A/B test outcomes.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Self-directed learning through shipping real systems",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned Google Cloud Professional ML Engineer certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Google Cloud Professional ML Engineer (Google Cloud, 2024)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned Deep Learning Specialization certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Deep Learning Specialization (Coursera/DeepLearning.AI, 2022)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Views retrieval problems as evaluation problems",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've learned that most retrieval problems are actually evaluation problems in disguise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes business alignment over pure modeling",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target... that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "Applied ML Engineer",
+    "CNN",
+    "Elasticsearch",
+    "FAISS",
+    "Feature Engineering",
+    "GANs",
+    "Hugging Face Transformers",
+    "Kubeflow",
+    "LoRA",
+    "MLflow",
+    "Machine Learning Engineer",
+    "Meesho",
+    "NLP",
+    "NLP Engineer",
+    "Paytm",
+    "Prompt Engineering",
+    "QLoRA",
+    "Recommendation Systems",
+    "Swiggy",
+    "Vector Search",
+    "XGBoost",
+    "pgvector"
+  ]
+}

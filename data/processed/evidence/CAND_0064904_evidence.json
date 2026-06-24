@@ -1,0 +1,108 @@
+{
+  "candidate_id": "CAND_0064904",
+  "evidence": [
+    {
+      "claim": "Built and operated production ML pipelines using MLflow, Kubeflow, and internal feature store",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow for experiment tracking, Kubeflow for orchestration, and our internal feature store.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed churn prediction model used by customer success team",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "My main project was a churn prediction model that's now used by the customer success team to prioritize outreach.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed model monitoring stack including data drift and distribution checks",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the model monitoring stack: data drift detection, prediction distribution checks, and alerting.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Mentored a junior engineer through an end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built content recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Managed feature pipeline with ~200 features",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Most of my time went into the feature pipeline (~200 features)",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led team migration from keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over theoretical learning",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficient in wide range of ML tools including Transformers, Elasticsearch, Diffusion Models, FastAPI, TensorFlow, Weaviate",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Embeddings, Hugging Face Transformers, Elasticsearch, Diffusion Models, Forecasting, FastAPI, Prompt Engineering, LLMs, Python, MLOps, TensorFlow, Weaviate, Vector Search, Recommendation Systems, OpenSearch, Computer Vision",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Applied ML Engineer",
+    "Computer Vision",
+    "Diffusion Models",
+    "Elasticsearch",
+    "Embeddings",
+    "FastAPI",
+    "Forecasting",
+    "Freshworks",
+    "Hugging Face Transformers",
+    "LLMs",
+    "LinkedIn",
+    "MLOps",
+    "MLflow",
+    "OpenSearch",
+    "Prompt Engineering",
+    "Python",
+    "Recommendation Systems",
+    "TensorFlow",
+    "Vector Search",
+    "Weaviate"
+  ]
+}

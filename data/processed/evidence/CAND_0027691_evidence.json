@@ -1,0 +1,104 @@
+{
+  "candidate_id": "CAND_0027691",
+  "evidence": [
+    {
+      "claim": "Built and operated production ML pipelines using MLflow, Kubeflow, and internal feature store",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow for experiment tracking, Kubeflow for orchestration, and our internal feature store.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed model monitoring stack including data drift detection, prediction distribution checks, and alerting",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the model monitoring stack: data drift detection, prediction distribution checks, and alerting.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed semantic search feature for ~500K documents using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via ranking model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Mentored a junior engineer through their first end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Comfortable with operational ML lifecycle including A/B testing and retraining schedules",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Along the way I've gotten comfortable with the operational side — A/B testing, drift monitoring, retraining schedules.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Applied ML Engineer",
+    "Computer Vision",
+    "Elasticsearch",
+    "Embeddings",
+    "FAISS",
+    "Haptik",
+    "Learning to Rank",
+    "LoRA",
+    "MLflow",
+    "Marketing",
+    "Meta",
+    "NLP Engineer",
+    "PEFT",
+    "Python",
+    "QLoRA",
+    "Recommendation Systems",
+    "SAP",
+    "Semantic Search",
+    "Statistical Modeling",
+    "TTS",
+    "TensorFlow",
+    "Vedantu",
+    "Weaviate",
+    "scikit-learn"
+  ]
+}

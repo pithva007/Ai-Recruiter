@@ -1,0 +1,100 @@
+{
+  "candidate_id": "CAND_0096142",
+  "evidence": [
+    {
+      "claim": "Used Kubeflow, LoRA, Weaviate, Pinecone, Python, BentoML, Weights & Biases, RAG, CNN, NLP, BM25, OpenCV, Hugging Face Transformers, and dbt",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Kubeflow, LoRA, Weaviate, Pinecone, Python, BentoML, Weights & Biases, RAG, CNN, NLP, BM25, OpenCV, Hugging Face Transformers, dbt",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Trained and shipped ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built a content recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned AWS Certified Machine Learning Specialty certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: AWS Certified Machine Learning Specialty (AWS, 2024)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experienced in operational ML including A/B testing, drift monitoring, and retraining schedules",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Along the way I've gotten comfortable with the operational side — A/B testing, drift monitoring, retraining schedules.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values cross-functional alignment on business metrics",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target... that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AWS",
+    "Applied ML Engineer",
+    "BM25",
+    "BYJU'S",
+    "BentoML",
+    "CNN",
+    "CSS",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "Kubeflow",
+    "LoRA",
+    "NLP",
+    "OpenCV",
+    "Pinecone",
+    "Python",
+    "RAG",
+    "Weaviate",
+    "Weights & Biases",
+    "XGBoost",
+    "dbt",
+    "upGrad"
+  ]
+}

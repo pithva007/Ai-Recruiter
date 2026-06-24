@@ -1,0 +1,106 @@
+{
+  "candidate_id": "CAND_0041568",
+  "evidence": [
+    {
+      "claim": "Built semantic search infrastructure using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I built our semantic search infrastructure from scratch — sentence-transformers, FAISS, the works.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with operational ML including A/B testing, drift monitoring, and retraining schedules",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Along the way I've gotten comfortable with the operational side — A/B testing, drift monitoring, retraining schedules.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% by evolving ranking layer to a learning-to-rank model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Implemented RAG-based chatbot, reducing ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built content recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% via recommendation system launch",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Learned through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prefers senior IC roles where they own a meaningful piece of the ML stack",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Open to senior IC roles in applied ML or AI engineering, ideally at product companies where I'd own a meaningful piece of the ML stack.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Technical expertise in PEFT, Weaviate, TensorFlow, Vector Search, BM25, Semantic Search, Recommendation Systems, Hugging Face Transformers, Qdrant, Pinecone",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: PEFT (expert), Weaviate (expert), TensorFlow (expert), Vector Search (advanced), BM25 (expert), Semantic Search (expert), Recommendation Systems (expert), Hugging Face Transformers (advanced), Qdrant (expert), Pinecone (expert)",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Angular",
+    "Applied ML Engineer",
+    "BM25",
+    "CNN",
+    "Computer Vision",
+    "Deep Learning",
+    "FAISS",
+    "Feature Engineering",
+    "Flipkart",
+    "GANs",
+    "Haptik",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "PEFT",
+    "Pinecone",
+    "Qdrant",
+    "RAG",
+    "Recommendation Systems",
+    "Reinforcement Learning",
+    "Salesforce",
+    "Search Engineer",
+    "Semantic Search",
+    "Senior Data Scientist",
+    "Spring Boot",
+    "TensorFlow",
+    "Vector Search",
+    "Weaviate"
+  ]
+}

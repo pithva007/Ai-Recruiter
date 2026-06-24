@@ -1,0 +1,90 @@
+{
+  "candidate_id": "CAND_0006567",
+  "evidence": [
+    {
+      "claim": "Expertise in Speech Recognition, scikit-learn, Search Backend, Model Adaptation, Vector Representations, BM25, Workflow Orchestration, GANs, NLP, Kubernetes, Python, Ranking Systems, Text Encoders, Data Science, Feature Engineering, Search & Discovery, Prompt Engineering, Haystack, Content Matching, and Recommendation Systems.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Speech Recognition... Recommendation Systems",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led a team growth from 1 to 6 engineers during a matching layer overhaul project.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "The team grew from just me to 6 engineers over the course of that work.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Overhauled matching layer from hand-tuned heuristics to explicit modeling and evaluation.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recent project was a complete overhaul of the matching layer; took it from a hand-tuned heuristic system to one with explicit modeling and evaluation.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Shipped personalization infrastructure including offline experimentation and online A/B testing frameworks.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Shipped the personalization infrastructure... Designed the offline experimentation environment, the online A/B testing framework, and the feature-engineering pipeline",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prefers shipping v1 in 6 weeks over perfect v2 in 6 months.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Strong preference for shipping real systems over research-only work; I'd rather have a working v1 in 6 weeks than a perfect v2 in 6 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Learned from past mistakes including over-engineering and optimizing metrics that didn't correlate with online performance.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've made the standard mistakes — over-engineering early, optimizing offline metrics that didn't move online numbers, building beautiful infrastructure for features that users didn't actually want — so I notice them faster now.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned AWS Certified Machine Learning Specialty certification.",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: AWS Certified Machine Learning Specialty (AWS, 2019)",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AWS",
+    "BM25",
+    "Content Matching",
+    "Data Science",
+    "Feature Engineering",
+    "GANs",
+    "Glance",
+    "Haystack",
+    "Kubernetes",
+    "Meta",
+    "Model Adaptation",
+    "NLP",
+    "Prompt Engineering",
+    "Python",
+    "Ranking Systems",
+    "Razorpay",
+    "Recommendation Systems",
+    "Search & Discovery",
+    "Search Backend",
+    "Senior AI Engineer",
+    "Senior Applied Scientist",
+    "Senior ML Engineer — Search & Ranking",
+    "Speech Recognition",
+    "Text Encoders",
+    "Vector Representations",
+    "Workflow Orchestration",
+    "scikit-learn"
+  ]
+}

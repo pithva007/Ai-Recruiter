@@ -1,0 +1,115 @@
+{
+  "candidate_id": "CAND_0080766",
+  "evidence": [
+    {
+      "claim": "Shipped personalization infrastructure including offline experimentation, A/B testing framework, and feature-engineering pipeline.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Shipped the personalization infrastructure: the system that learns from user behavior and improves relevance over time. Designed the offline experimentation environment, the online A/B testing framework, and the feature-engineering pipeline that connected them.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owned search and discovery experience end-to-end including data infrastructure and ranking algorithms.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the search and discovery experience end-to-end at a consumer product, from how content is represented internally through to how the most relevant results appear for each user's intent. The work spanned data infrastructure, ranking algorithms, evaluation methodology",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed ranking layer for flagship product serving millions of items to millions of users.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Designed the ranking layer for the company's flagship product: how do we surface the right thing at the right time, across millions of items, for millions of users.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Owned ranking layer, data pipeline, and evaluation framework for 14 months.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "I owned all three [data pipeline, evaluation framework, operational discipline] across roughly 14 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Designed and rolled out large-scale semantic search system for 35M+ items.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Owned the design and rollout of a large-scale semantic search system serving an internal corpus of 35M+ items.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Migrated BM25 to hybrid sparse/dense vector search using sentence-transformers, MPNet-base, and BGE-large.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Migrated the existing BM25-only retrieval to a hybrid setup combining sparse and dense vectors (sentence-transformers, MPNet-base initially, later fine-tuned BGE-large for our domain).",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced p95 retrieval latency by 60% and improved NDCG@10 by 18%.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The new system reduced p95 retrieval latency by 60% while improving NDCG@10 by 18% on our held-out eval set.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led a team of 4 engineers during a search system rollout.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Led a team of 4 engineers across the rollout.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Prefers shipping real systems over research-only work; prioritizes v1 in 6 weeks over perfect v2 in 6 months.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Strong preference for shipping real systems over research-only work; I'd rather have a working v1 in 6 weeks than a perfect v2 in 6 months.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned from past mistakes including over-engineering and optimizing metrics that don't correlate with online performance.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've made the standard mistakes — over-engineering early, optimizing offline metrics that didn't move online numbers, building beautiful infrastructure for features that users didn't actually want — so I notice them faster now.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "Aganitha",
+    "Computer Vision",
+    "Deep Learning",
+    "Elasticsearch",
+    "Haptik",
+    "Information Retrieval Systems",
+    "Lead AI Engineer",
+    "LoRA",
+    "MLOps",
+    "MLflow",
+    "Milvus",
+    "Natural Language Processing",
+    "Open-source ML libraries",
+    "OpenSearch",
+    "Python",
+    "QLoRA",
+    "Salesforce",
+    "Search & Discovery",
+    "Search Backend",
+    "Search Infrastructure",
+    "Senior Machine Learning Engineer",
+    "Staff Machine Learning Engineer",
+    "Swiggy",
+    "Tally",
+    "TensorFlow",
+    "Vue.js",
+    "YOLO"
+  ]
+}

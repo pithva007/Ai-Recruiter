@@ -1,231 +1,239 @@
-# CLAUDE.md — LLM Prompting Strategy and System Prompts
-
-## Model Selection
-- Use `gemini-2.0-flash` as the primary reasoning model for all agent stages.
-- Use `sentence-transformers/all-mpnet-base-v2` (local) for all embedding operations.
-- Never use a smaller or faster model for scoring or evidence extraction — accuracy is non-negotiable.
-- Temperature: `0.0` for all scoring and extraction tasks. `0.3` for interview question generation. `0.0` for rationale generation.
-
-## LLM Client Pattern (use this exact pattern in every stage)
-
-```python
-# utils/llm_client.py
-import json
-import os
-from google import genai
-from google.genai import types
-from tenacity import retry, stop_after_attempt, wait_exponential
-
-# Client picks up GEMINI_API_KEY from the environment automatically.
-client = genai.Client()
-
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
-
-@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
-def call_llm(system_prompt: str, user_content: str, temperature: float = 0.0) -> dict:
-    response = client.models.generate_content(
-        model=GEMINI_MODEL,
-        contents=user_content,
-        config=types.GenerateContentConfig(
-            system_instruction=system_prompt,
-            temperature=temperature,
-            max_output_tokens=4096,
-        ),
-    )
-    raw = response.text.strip()
-    raw = raw.replace("```json", "").replace("```", "").strip()
-    try:
-        return json.loads(raw)
-    except json.JSONDecodeError:
-        retry_response = client.models.generate_content(
-            model=GEMINI_MODEL,
-            contents=(
-                f"{user_content}\n\n"
-                "Your previous response was not valid JSON. "
-                "Respond only with valid JSON. "
-                "No markdown. No explanation. No code blocks. "
-                "Just the raw JSON object."
-            ),
-            config=types.GenerateContentConfig(
-                system_instruction=system_prompt,
-                temperature=0.0,
-                max_output_tokens=4096,
-            ),
-        )
-        cleaned = retry_response.text.strip()
-        cleaned = cleaned.replace("```json", "").replace("```", "").strip()
-        return json.loads(cleaned)
-```
-
-## Prompt Engineering Rules
-1. Every LLM call must include a system prompt that states the model's role, the exact output format required, and the anti-hallucination constraint.
-2. Every LLM call must end with: "If you cannot find evidence for a field, output null. Do not invent or infer beyond what is stated."
-3. All structured outputs must be valid JSON. Wrap every LLM call in a try/except that catches JSON parse errors and retries once with an explicit "respond only with valid JSON, no markdown, no explanation" suffix.
-4. Never send the full candidate dataset in one call. Process one candidate at a time through the evidence extraction and scoring stages.
-5. Use few-shot examples in the evidence extraction prompt. Include one example of high-confidence evidence and one example where confidence should be "low" and the field should be null.
+# CLAUDE.md — LLM Prompting Strategy
+# Challenge: Redrob Intelligent Candidate Discovery & Ranking
 
 ---
 
-## System Prompt: Stage 1 — Role Understanding Agent
+## LLM Use Policy — Read First
+
+**LLM calls are permitted ONLY in two phases:**
+
+1. **Phase A (offline pre-computation):** JD analysis — runs ONCE
+2. **Phase C (post-ranking reasoning):** Generate reasoning for top 100 candidates only
+
+**LLM is STRICTLY FORBIDDEN during Phase B (ranking of 100K candidates).**
+
+The ranking step must complete in <5 minutes on CPU with no network access.
+100,000 candidates × any LLM latency = impossible in 5 minutes.
+
+---
+
+## Model Selection
+
+- **Primary reasoning model:** `gemini-2.5-flash`
+- **Embeddings (optional offline pre-compute):** `sentence-transformers/all-mpnet-base-v2` (local)
+- **Temperature:** `0.0` for JD analysis and reasoning. Never use temperature > 0.1 for structured output.
+- **Never** use a model that requires a network call during the ranking step.
+
+---
+
+## LLM Client Pattern (use exactly — from utils/llm_client.py)
+
+```python
+from utils.llm_client import call_llm
+
+# All LLM calls go through call_llm().
+# Returns a parsed dict. Handles JSON retry automatically.
+# Raises after 3 tenacity retries on network/rate errors.
+result = call_llm(
+    system_prompt=SYSTEM_PROMPT,
+    user_content=user_message,
+    temperature=0.0
+)
+```
+
+---
+
+## Prompt Engineering Rules
+
+1. Every prompt must state: the model's role, exact output format, and the anti-hallucination constraint.
+2. Every prompt must end with: `"If you cannot determine a field from the provided text, output null. Do not invent or infer beyond what is stated."`
+3. All structured outputs must be valid JSON. `call_llm()` handles retry on parse failure.
+4. Never send more than one candidate per LLM call.
+5. For reasoning generation: reference only actual candidate fields — never invent claims.
+
+---
+
+## Challenge Alignment Rules
+
+These rules override all general prompt engineering practices:
+
+- **Rule C1:** No LLM call may process more than one candidate at a time.
+- **Rule C2:** The ranking scoring formula is deterministic (rule-based). LLM is never used to assign scores.
+- **Rule C3:** Reasoning must reference actual `profile.current_title`, `profile.years_of_experience`, actual skill names from `skills[]`, and actual `redrob_signals.recruiter_response_rate`.
+- **Rule C4:** Reasoning must NOT hallucinate skills, companies, or impact numbers not present in the candidate's actual data.
+- **Rule C5:** Reasoning for two different candidates must not be identical.
+
+---
+
+## System Prompt: Phase A — JD Analysis Agent
+
+This prompt runs ONCE against the actual JD text to produce a structured requirements document.
 
 ```
-You are a Role Understanding Agent. Your job is to deeply analyze a job description and produce a structured requirement schema. You are NOT extracting keywords. You are reasoning about what a great recruiter would understand this role to actually need.
+You are a Senior Technical Recruiter with deep expertise in AI/ML hiring.
+
+Your job is to analyze the provided job description and produce a structured requirements
+schema that will be used by an automated ranking system.
 
 Output exactly this JSON structure:
+
 {
   "role_title": "",
+  "company": "",
   "seniority_level": "<junior | mid | senior | lead | principal>",
-  "explicit_requirements": [
-    {"skill": "", "importance": "<must_have | nice_to_have>", "context": ""}
+  "experience_range": {"min_years": <int>, "max_years": <int>, "ideal_years": <int>},
+  "location": {"primary_cities": [], "country": "", "work_mode": "<hybrid | onsite | remote>"},
+  "must_have_skills": [
+    {"skill": "", "context": "", "importance": "must_have"}
   ],
+  "nice_to_have_skills": [
+    {"skill": "", "context": "", "importance": "nice_to_have"}
+  ],
+  "explicit_disqualifiers": [
+    {"pattern": "", "reason": ""}
+  ],
+  "services_company_names": [],
   "implicit_requirements": [
     {"requirement": "", "reasoning": ""}
   ],
-  "domain_context": "",
   "culture_signals": [],
-  "red_flags_for_candidates": [],
-  "ideal_candidate_summary": ""
+  "ideal_candidate_summary": "",
+  "jd_trap_warning": ""
 }
 
-Implicit requirements are things the JD does not say directly but that a smart recruiter would know this role needs. Example: a JD for a 'founding engineer' implicitly requires comfort with ambiguity, ability to work without process, and willingness to do non-engineering tasks.
+The jd_trap_warning field should describe any intentional traps or anti-patterns the JD warns about
+(e.g., keyword-only matching without career history validation).
+
+Extract the services company blacklist from any explicit company names mentioned as disqualifiers in the JD.
 
 If you cannot determine a field from the JD, output null. Do not invent or infer beyond what is stated.
 ```
 
 ---
 
-## System Prompt: Stage 2 — Candidate Understanding Agent
+## System Prompt: Phase C — Reasoning Generation for Top 100
+
+This prompt generates the `reasoning` column for the final submission CSV.
+Run per candidate. References ACTUAL candidate data fields — no hallucination.
 
 ```
-You are a Candidate Understanding Agent. Your job is to analyze a single candidate profile and produce a normalized structured profile. You are NOT summarizing their resume. You are reasoning about what their career history actually signals to a great recruiter.
+You are a technical recruiter writing a candidate assessment summary for a Senior AI Engineer role.
 
-Output exactly this JSON structure:
+The ranking system has already scored and ranked this candidate. Your job is to write a concise,
+honest 1-2 sentence reasoning that explains WHY this candidate ranked where they did.
+
+Rules for your reasoning:
+1. Reference only information that actually exists in the candidate data provided.
+2. Do NOT invent skills, companies, or achievements not in the data.
+3. Do NOT write the same reasoning for every candidate — be specific to this individual.
+4. Reference at least one of: their actual current_title, their actual years_of_experience,
+   their actual relevant skills (by name), their recruiter_response_rate, or their notice_period_days.
+5. If the candidate ranks in the top 20, the reasoning should highlight their strongest signal.
+6. If the candidate ranks 50-100, the reasoning should acknowledge the limiting factors.
+7. Maximum 30 words. No bullet points. Plain sentence format.
+
+Output a single JSON object:
 {
-  "candidate_id": "",
-  "candidate_name": "",
-  "career_arc": "<early-career | growing | established | senior | pivot>",
-  "career_velocity": <float: average promotions or role level increases per year>,
-  "total_years_experience": <int>,
-  "domain_expertise": [],
-  "technical_depth": "<specialist | generalist | hybrid>",
-  "collaboration_signals": [],
-  "communication_quality": "<from writing style in profile: poor | average | good | excellent>",
-  "risk_signals": [],
-  "standout_signal": ""
+  "candidate_id": "<exact candidate_id from input>",
+  "reasoning": "<1-2 sentences, max 30 words>"
 }
 
-career_velocity: Count distinct upward moves (promotion, title increase, scope increase) divided by total years. If no upward moves detected, output 0.0.
+If you cannot write honest, specific reasoning from the provided data, output:
+{
+  "candidate_id": "<id>",
+  "reasoning": "Adjacent background with some relevant skills; included based on behavioral engagement signals."
+}
 
-standout_signal: One sentence describing what makes this candidate memorable or unusual. If nothing stands out, output null.
-
-If you cannot determine a field, output null. Do not invent or infer beyond what is stated.
+Do not invent or infer beyond what is stated.
 ```
 
 ---
 
-## System Prompt: Stage 3 — Evidence Extraction
+## Prompt: Validation Check (use before submitting)
+
+This is NOT a prompt to send to an LLM. It is a checklist to run before generating the final CSV.
 
 ```
-You are an Evidence Extraction Agent. Given a candidate profile, extract all pieces of evidence and classify them by type. Evidence types:
-- technical: tools, languages, frameworks, architectures the candidate demonstrably used
-- impact: measurable outcomes the candidate produced (numbers, scale, revenue, users)
-- leadership: evidence of leading people, mentoring, managing, or influencing without authority
-- learning: evidence of self-directed growth (new certifications, OSS, side projects, hackathons, technology pivots)
-- behavioral: writing style, how they describe collaboration, how they handle failure or ambiguity
-
-For EACH piece of evidence output:
-{
-  "claim": "",
-  "evidence_type": "",
-  "confidence": "<high | medium | low>",
-  "source_text": "",
-  "quantified": <true | false>
-}
-
-Few-shot examples:
-
-Example 1 (high confidence, quantified):
-Source text: "Built a recommendation engine that increased user retention by 23%"
-Output: {"claim": "Built recommendation engine improving retention by 23%", "evidence_type": "impact", "confidence": "high", "source_text": "Built a recommendation engine that increased user retention by 23%", "quantified": true}
-
-Example 2 (low confidence, null source):
-Source text: "Worked on various ML projects at a leading tech company"
-Output: {"claim": "ML project experience", "evidence_type": "technical", "confidence": "low", "source_text": null, "quantified": false}
-
-Output a JSON array of all evidence items. If you cannot find evidence for a type, output an empty array for that type. Do not invent or infer beyond what is stated.
+Pre-submission validation checklist:
+[ ] Exactly 100 data rows in output CSV
+[ ] Header is exactly: candidate_id,rank,score,reasoning
+[ ] All ranks 1-100 present exactly once, no duplicates
+[ ] All candidate_ids match CAND_[0-9]{7}
+[ ] All candidate_ids exist in candidates.jsonl
+[ ] Scores are non-increasing (score[i] >= score[i+1] for all i)
+[ ] No identical reasoning strings across rows
+[ ] No reasoning references skills not in the candidate's skills[] list
+[ ] run: python India_runs_data_and_ai_challenge/validate_submission.py {file}.csv
+[ ] Zero validation errors before submitting
 ```
 
 ---
 
-## System Prompt: Stage 6 — Hiring Intelligence Engine (Scoring)
+## Output Validation Rules
 
-```
-You are a Hiring Intelligence Engine. Given a job requirement schema (from Stage 1), a candidate structured profile (from Stage 2), and a list of evidence items (from Stage 3), produce a scoring assessment for this candidate.
+Every row in the submission CSV must satisfy:
 
-Scoring rules:
-- fit_score (0-100): How well does the candidate's evidence match the JD's explicit and implicit requirements? Only score on evidence you can see. Missing evidence = lower score, not assumed score.
-- impact_score (0-100): Sum of quantified impact signals. A candidate with zero quantified impact signals scores maximum 40 on this dimension.
-- potential_score (0-100): Apply this formula — (career_velocity * 0.4) + (complexity_growth * 0.3) + (self_learning_signals * 0.3). Normalize each sub-factor to 0-100 before weighting. complexity_growth = your assessment (0-100) of whether project complexity increased across the candidate's career chronologically.
-- risk_score (0-100): Higher = more risk. Score based on: skill gaps vs JD must-haves, very short tenures, no collaboration evidence, domain mismatch, overqualification signals.
-
-Output exactly:
-{
-  "candidate_id": "",
-  "fit_score": <int>,
-  "impact_score": <int>,
-  "potential_score": <int>,
-  "risk_score": <int>,
-  "fit_reasoning": "",
-  "impact_reasoning": "",
-  "potential_reasoning": "",
-  "risk_reasoning": "",
-  "green_flags": [],
-  "yellow_flags": [],
-  "skill_gaps": [],
-  "confidence_level": "<high | medium | low>"
-}
-
-If you cannot determine a score from available evidence, set it to 50 and set confidence_level to low. Do not invent evidence. Do not infer beyond what is stated.
+```python
+# Validated by validate_submission.py — these are the actual checks:
+assert len(data_rows) == 100
+assert header == ['candidate_id', 'rank', 'score', 'reasoning']
+assert all(re.match(r'^CAND_[0-9]{7}$', row['candidate_id']) for row in data_rows)
+assert len(set(row['candidate_id'] for row in data_rows)) == 100  # no duplicates
+assert len(set(row['rank'] for row in data_rows)) == 100          # no duplicate ranks
+assert set(row['rank'] for row in data_rows) == set(range(1, 101))  # ranks 1-100
+assert all(data_rows[i]['score'] >= data_rows[i+1]['score']
+           for i in range(99))  # non-increasing scores
+# Tie-break: equal scores → candidate_id ascending
 ```
 
 ---
 
-## System Prompt: Stage 7b — Dark Horse Discovery
+## Field-Level Confidence Rules
 
-```
-You are a Dark Horse Discovery Agent. Given a candidate who ranked below position 15 in vector similarity search but has high impact or potential scores, determine if they are a true dark horse.
+When generating reasoning, apply these confidence levels:
 
-A dark horse is a candidate who would be missed by a traditional ATS but who a great recruiter would shortlist.
-
-Analyze:
-1. Does this candidate have transferable skills that map to JD requirements even if they never used the exact terminology?
-2. Is there a non-obvious connection between their domain and the target role?
-3. Does their growth trajectory suggest they would ramp quickly in this role?
-
-Output:
-{
-  "is_dark_horse": <true | false>,
-  "dark_horse_reason": "",
-  "transferable_skills_map": [
-    {"candidate_skill": "", "maps_to_jd_requirement": "", "mapping_reasoning": ""}
-  ],
-  "confidence": "<high | medium | low>"
-}
-
-If not a dark horse, set is_dark_horse to false and all other fields to null. Do not invent or infer beyond what is stated.
-```
+| Field source | Confidence | Use in reasoning |
+|---|---|---|
+| `redrob_signals.skill_assessment_scores[skill]` | Highest — platform-verified | Yes, cite as "verified [skill] score" |
+| `career_history[].description` contains exact text | High | Yes, cite directly |
+| `skills[].name` with `duration_months > 6` | High | Yes, cite as demonstrated skill |
+| `profile.current_title` | High | Always cite |
+| `skills[].name` with `duration_months == 0` | Low — possible stuffer | Omit from reasoning |
+| `profile.summary` only (no career corroboration) | Low | Qualify with "self-reported" |
+| Inferred from company popularity | Zero — do not use | Never cite |
 
 ---
 
-## System Prompt: Interview Question Generation
+## Reasoning Quality Anti-Patterns (Stage 4 Penalty Triggers)
+
+The challenge manual review samples 10 random rows and penalizes these:
+
+| Anti-pattern | Example (bad) | Fix |
+|---|---|---|
+| Empty reasoning | `""` | Always write something specific |
+| All-identical reasoning | Same sentence for 100 rows | Must be candidate-specific |
+| Templated name-only | `"John is a good fit."` | Reference actual skills/experience |
+| Hallucinated skills | "Expert in RAG" (not in their skills[]) | Only cite skills that exist |
+| Contradicts rank | Top-10 reasoning says "limited ML experience" | Reasoning must match rank direction |
+| Too long | > 2 sentences | Keep to 1-2 sentences, max 30 words |
+
+---
+
+## Sample Good Reasoning Strings
 
 ```
-You are a Technical Recruiter preparing interview questions. Given a candidate's profile, their evidence items, their skill gaps, and the job requirements, generate exactly 3 interview questions tailored to THIS specific candidate.
+# Rank 1 (strong fit):
+"ML Engineer at product company with 7 years; ships retrieval systems; response rate 0.82, notice period 15 days."
 
-Rules:
-- Question 1: Probe their strongest evidence claim. Ask them to go deeper on their most impressive achievement.
-- Question 2: Probe their biggest skill gap identified in scoring. Design a question that reveals whether the gap is real or just missing from their resume.
-- Question 3: Probe a behavioral signal — how they handle a situation relevant to this role's implicit requirements.
+# Rank 5 (strong fit, minor concern):
+"6 years applied ML with FAISS and embedding deployment; strong engagement signals; notice period 60 days is the main friction."
 
-Output as a JSON array of 3 strings. No preamble. No explanation. Just the 3 questions.
+# Rank 30 (mid-tier):
+"Data engineer with adjacent ML skills (Spark, Airflow, some NLP); career transition in progress; moderate recruiter responsiveness."
+
+# Rank 80 (borderline):
+"Marketing background with AI keywords in skills; no ML career history found; included on engagement signals and recent activity."
+
+# Rank 100 (bottom of top 100):
+"Adjacent skills only; non-ML career history; included as final filler given experience and platform engagement."
 ```

@@ -1,0 +1,94 @@
+{
+  "candidate_id": "CAND_0070398",
+  "evidence": [
+    {
+      "claim": "Developed semantic search for 500K documents using sentence-transformers, FAISS, and query expansion",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval. Designed the query expansion module",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Trained and shipped ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owned offline-online correlation analysis for A/B test outcomes",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Owned the offline-online correlation analysis that determined which offline metrics actually predicted A/B test outcomes.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "De-facto ML lead on a small team",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I've been the de-facto ML lead on a small team, shipping models across NLP and recsys.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficiency in various ML tools and frameworks",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Image Classification, Data Science, BM25, RAG, FAISS, Object Detection, Embeddings, PyTorch, LoRA, Python, Information Retrieval, pgvector, Learning to Rank, Fine-tuning LLMs, Recommendation Systems, Reinforcement Learning",
+      "quantified": true,
+      "weight": 1.5
+    }
+  ],
+  "entities": [
+    "Applied ML Engineer",
+    "BM25",
+    "Data Science",
+    "Elasticsearch",
+    "Embeddings",
+    "FAISS",
+    "Fine-tuning LLMs",
+    "Genpact AI",
+    "Image Classification",
+    "Information Retrieval",
+    "Learning to Rank",
+    "LoRA",
+    "Machine Learning Engineer",
+    "Mad Street Den",
+    "Object Detection",
+    "PyTorch",
+    "Python",
+    "RAG",
+    "Recommendation Systems",
+    "Reinforcement Learning",
+    "Uber",
+    "XGBoost",
+    "pgvector"
+  ]
+}

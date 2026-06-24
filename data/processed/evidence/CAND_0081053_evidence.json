@@ -1,0 +1,104 @@
+{
+  "candidate_id": "CAND_0081053",
+  "evidence": [
+    {
+      "claim": "Built semantic search infrastructure using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I built our semantic search infrastructure from scratch — sentence-transformers, FAISS, the works.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built and operated production ML pipelines using MLflow, Kubeflow, and internal feature store",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow for experiment tracking, Kubeflow for orchestration, and our internal feature store.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed model monitoring stack including data drift detection, prediction distribution checks, and alerting",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the model monitoring stack: data drift detection, prediction distribution checks, and alerting.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built content recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% via recommendation system launch",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Mentored a junior engineer through their first end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Obtained AWS Certified Machine Learning Specialty and LangChain for LLM Application Development certifications",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "AWS Certified Machine Learning Specialty (AWS, 2022); LangChain for LLM Application Development (DeepLearning.AI, 2023)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values learning through shipping real systems and production load testing",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experienced in debugging production ranking issues",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AWS",
+    "Diffusion Models",
+    "FAISS",
+    "Glance",
+    "Haystack",
+    "Image Classification",
+    "LLM",
+    "Learning to Rank",
+    "LoRA",
+    "MLflow",
+    "Machine Learning",
+    "Machine Learning Engineer",
+    "NLP Engineer",
+    "Object Detection",
+    "OpenCV",
+    "OpenSearch",
+    "QLoRA",
+    "Qdrant",
+    "Salesforce",
+    "Semantic Search",
+    "Speech Recognition",
+    "Weaviate",
+    "Webpack",
+    "pgvector",
+    "scikit-learn"
+  ]
+}

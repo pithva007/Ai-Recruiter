@@ -1,0 +1,84 @@
+{
+  "candidate_id": "CAND_0050454",
+  "evidence": [
+    {
+      "claim": "Expertise in PyTorch, LangChain, QLoRA, Fine-tuning LLMs, FAISS, Qdrant, Image Classification, scikit-learn, Feature Engineering, LoRA, BM25, NLP, LLMs, Weights & Biases, and Kubeflow",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: PyTorch (expert, 56mo, 44 endorsements); LangChain (expert, 36mo, 7 endorsements); QLoRA (expert, 87mo, 39 endorsements); Fine-tuning LLMs (expert, 74mo, 41 endorsements); FAISS (expert, 62mo, 33 endorsements); Qdrant (advanced, 51mo, 59 endorsements); Image Classification (advanced, 43mo, 2 endorsements); scikit-learn (expert, 88mo, 36 endorsements); Feature Engineering (intermediate, 30mo, 9 endorsements); LoRA (expert, 73mo, 2 endorsements); BM25 (expert, 55mo, 51 endorsements); NLP (expert, 50mo, 29 endorsements); LLMs (expert, 53mo, 40 endorsements); Weights & Biases (advanced, 45mo, 29 endorsements); Kubeflow (advanced, 41mo, 17 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed semantic search for 500K documents using sentence-transformers and FAISS, improving relevance by 35%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers... with FAISS... Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% by evolving ranking layer from hand-tuned to learning-to-rank model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product... Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led team migration from keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "AWS Certified Machine Learning Specialty",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: AWS Certified Machine Learning Specialty (AWS, 2019)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks for model deployment",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over purely academic background",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "AWS",
+    "Adobe",
+    "BM25",
+    "FAISS",
+    "Feature Engineering",
+    "Fine-tuning LLMs",
+    "Image Classification",
+    "Kubeflow",
+    "LLMs",
+    "LangChain",
+    "LoRA",
+    "Machine Learning Engineer",
+    "NLP",
+    "PyTorch",
+    "QLoRA",
+    "Qdrant",
+    "Rephrase.ai",
+    "Uber",
+    "Weights & Biases",
+    "scikit-learn"
+  ]
+}

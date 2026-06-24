@@ -1,0 +1,112 @@
+{
+  "candidate_id": "CAND_0016163",
+  "evidence": [
+    {
+      "claim": "Built and operated production ML pipelines using MLflow, Kubeflow, and internal feature stores",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow for experiment tracking, Kubeflow for orchestration, and our internal feature store.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed churn prediction model used by customer success team",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "My main project was a churn prediction model that's now used by the customer success team to prioritize outreach.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed model monitoring stack including data drift and prediction distribution checks",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the model monitoring stack: data drift detection, prediction distribution checks, and alerting.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Mentored a junior engineer through an end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed semantic search for 500K documents using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led migration from keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learns primarily through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experienced in debugging production ranking issues",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Technical proficiency in various ML frameworks and tools",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Hugging Face Transformers, Computer Vision, gRPC, Time Series, Weaviate, CNN, Deep Learning, TensorFlow, ASR, Embeddings, Tailwind, Reinforcement Learning, LoRA, pgvector, Statistical Modeling, Machine Learning",
+      "quantified": true,
+      "weight": 1.5
+    }
+  ],
+  "entities": [
+    "ASR",
+    "Amazon",
+    "Applied ML Engineer",
+    "CNN",
+    "Computer Vision",
+    "Deep Learning",
+    "Dream11",
+    "Elasticsearch",
+    "Embeddings",
+    "FAISS",
+    "Hugging Face Transformers",
+    "LoRA",
+    "MLflow",
+    "Machine Learning",
+    "NLP Engineer",
+    "Pinecone",
+    "Reinforcement Learning",
+    "Statistical Modeling",
+    "Tailwind",
+    "TensorFlow",
+    "Time Series",
+    "Verloop.io",
+    "Weaviate",
+    "gRPC",
+    "pgvector"
+  ]
+}

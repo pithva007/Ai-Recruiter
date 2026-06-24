@@ -1,0 +1,104 @@
+{
+  "candidate_id": "CAND_0088025",
+  "evidence": [
+    {
+      "claim": "Designed hybrid retrieval system (BM25 + dense vector) serving 50M+ queries/month",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "designed the company's first hybrid retrieval system combining BM25 with dense vector recall, serving 50M+ queries per month.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Used Pinecone, BGE-large, XGBoost, and behavioral-signal integration for ranking pipelines",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "candidate sourcing → embedding generation (using a fine-tuned BGE-large) → Pinecone retrieval → learning-to-rank re-scoring (XGBoost) → behavioral-signal integration.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed calibration approach using simulated A/B tests stable for 18 months",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "we landed on a calibration approach using simulated A/B tests that has held up over the last 18 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led migration from keyword to embedding-based search for 30M+ corpus",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Led the migration from keyword-based to embedding-based search across a 30M+ candidate corpus over 8 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved recruiter engagement by 24% and reduced time-to-shortlist by 38%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The final embedding ranker improved recruiter engagement metrics by 24% and reduced the average time-to-shortlist by 38%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Mentored two junior engineers through search migration rollout",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored two junior engineers through this rollout.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Prioritizes evaluation metrics and infrastructure reliability (index/embedding versioning, rollback paths)",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Most of the engineering effort went into the boring infrastructure: index versioning, embedding versioning, rollback paths, and the dashboards that let recruiters trust the new system.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficient in Python, TensorFlow, Elasticsearch, pgvector, and NLP",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Python (expert), TensorFlow (expert), Elasticsearch (expert), pgvector (expert), NLP (expert)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with LoRA, QLoRA, and Prompt Engineering",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "QLoRA (expert), LoRA (advanced), Prompt Engineering (advanced)",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "BM25",
+    "Deep Learning",
+    "Elasticsearch",
+    "Flask",
+    "Genpact AI",
+    "Hugging Face Transformers",
+    "LLMs",
+    "Learning to Rank",
+    "LoRA",
+    "MLOps",
+    "NLP",
+    "Niramai",
+    "Pinecone",
+    "Prompt Engineering",
+    "Python",
+    "QLoRA",
+    "RAG",
+    "SAP",
+    "Senior Machine Learning Engineer",
+    "Staff Machine Learning Engineer",
+    "TensorFlow",
+    "XGBoost",
+    "YOLO",
+    "Yellow.ai",
+    "pgvector"
+  ]
+}

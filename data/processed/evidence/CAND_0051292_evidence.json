@@ -1,0 +1,97 @@
+{
+  "candidate_id": "CAND_0051292",
+  "evidence": [
+    {
+      "claim": "Used Vue.js, pgvector, FAISS, BentoML, LLMs, Time Series, Vector Search, PEFT, Fine-tuning LLMs, JavaScript, NLP, RAG, and Elasticsearch",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Vue.js (beginner, 15mo, 10 endorsements); pgvector (expert, 64mo, 41 endorsements); FAISS (advanced, 21mo, 50 endorsements); BentoML (advanced, 32mo, 54 endorsements); LLMs (advanced, 28mo, 31 endorsements); Time Series (advanced, 39mo, 57 endorsements); Vector Search (expert, 43mo, 36 endorsements); PEFT (advanced, 32mo, 44 endorsements); TTS (advanced, 39mo, 51 endorsements); Fine-tuning LLMs (expert, 48mo, 44 endorsements); JavaScript (beginner, 12mo, 13 endorsements); NLP (expert, 55mo, 41 endorsements); RAG (expert, 86mo, 59 endorsements); Elasticsearch (expert, 39mo, 26 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% at Freshworks",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% at Vedantu",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31% at Vedantu",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Owned the ranking layer for an e-commerce search product",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed relevance labeling pipeline, feature pipeline, and training/eval workflow",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Designed the relevance labeling pipeline (mix of click-through data and explicit human judgments), the feature pipeline, and the training/eval workflow.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned through shipping real systems rather than just academic study",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes infrastructure and data quality over modeling",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Most of the work was infrastructure and data quality — the modeling part was almost the easy bit.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experienced in debugging production ranking issues",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Applied ML Engineer",
+    "BentoML",
+    "Elasticsearch",
+    "FAISS",
+    "Fine-tuning LLMs",
+    "Freshworks",
+    "JavaScript",
+    "LLMs",
+    "NLP",
+    "PEFT",
+    "RAG",
+    "Search Engineer",
+    "TTS",
+    "Time Series",
+    "Vector Search",
+    "Vedantu",
+    "Vue.js",
+    "pgvector"
+  ]
+}

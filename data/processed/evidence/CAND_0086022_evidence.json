@@ -1,0 +1,122 @@
+{
+  "candidate_id": "CAND_0086022",
+  "evidence": [
+    {
+      "claim": "Led migration from keyword-based to learning-to-rank model with embedded behavioral signals",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "led the migration from keyword-based ranking to a learning-to-rank model with embedded behavioral signals",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Handled peak QPS of 8K with sub-200ms p95 latency",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "handling peak QPS of 8K with sub-200ms p95",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built RAG-based ranking pipeline serving 50M+ queries per month",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a RAG-based ranking pipeline serving 50M+ queries per month",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Used BM25, BGE embeddings, FAISS HNSW, and LLM-based re-rankers",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "The architecture combined BM25 + dense retrieval (BGE embeddings, FAISS HNSW) with an LLM-based re-ranker",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed offline evaluation framework (NDCG, MRR, recall@K) calibrated against online A/B metrics",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the offline evaluation framework from scratch — NDCG, MRR, recall@K calibrated against online A/B engagement metrics.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led migration of 30M+ candidate corpus search system",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Led the migration from keyword-based to embedding-based search across a 30M+ candidate corpus",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved recruiter engagement by 24% and reduced time-to-shortlist by 38%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The final embedding ranker improved recruiter engagement metrics by 24% and reduced the average time-to-shortlist by 38%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Mentored two junior engineers",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored two junior engineers through this rollout.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Proficient in a wide range of ML/AI tools including PyTorch, LangChain, Pinecone, and pgvector",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Vector Search, MLflow, Recommendation Systems, Databricks, Deep Learning, pgvector, Fine-tuning LLMs, Elasticsearch, QLoRA, Pinecone, Embeddings, Kubeflow, PyTorch, ETL, TensorFlow, NLP, Sentence Transformers, LoRA, LangChain",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Holds AWS Certified Machine Learning Specialty and LangChain certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: LangChain for LLM Application Development (DeepLearning.AI, 2018); AWS Certified Machine Learning Specialty (AWS, 2018)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reflective on past technical mistakes to improve future decision-making",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've made all the standard mistakes — embedding everything before defining the metric, over-investing in fine-tuning, optimizing offline metrics that don't move online — so I notice them faster now.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AWS",
+    "Databricks",
+    "Deep Learning",
+    "ETL",
+    "Elasticsearch",
+    "Embeddings",
+    "FAISS",
+    "Fine-tuning LLMs",
+    "Kubeflow",
+    "LLM",
+    "LangChain",
+    "LoRA",
+    "MLflow",
+    "NLP",
+    "Pinecone",
+    "PyTorch",
+    "QLoRA",
+    "RAG",
+    "Recommendation Systems",
+    "Sarvam AI",
+    "Senior Applied Scientist",
+    "Senior ML Engineer — Search & Ranking",
+    "Sentence Transformers",
+    "TensorFlow",
+    "Uber",
+    "Vector Search",
+    "pgvector"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "candidate_id": "CAND_0096172",
+  "evidence": [
+    {
+      "claim": "Expertise in OpenSearch, Haystack, Forecasting, Elasticsearch, Semantic Search, CNN, LangChain, Time Series, Python, RAG, Fine-tuning LLMs, Hugging Face Transformers, GraphQL, Sentence Transformers, and Qdrant.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: OpenSearch (expert, 44mo, 38 endorsements); Haystack (advanced, 32mo, 38 endorsements); Forecasting (advanced, 25mo, 1 endorsements); Elasticsearch (expert, 71mo, 39 endorsements); Semantic Search (expert, 63mo, 3 endorsements); CNN (intermediate, 23mo, 0 endorsements); LangChain (expert, 79mo, 13 endorsements); Time Series (advanced, 42mo, 52 endorsements); Python (advanced, 43mo, 60 endorsements); RAG (expert, 58mo, 52 endorsements); Fine-tuning LLMs (expert, 43mo, 22 endorsements); Hugging Face Transformers (expert, 52mo, 19 endorsements); GraphQL (beginner, 14mo, 13 endorsements); Sentence Transformers (advanced, 24mo, 14 endorsements); Qdrant (expert, 76mo, 32 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed semantic search for 500K documents using sentence-transformers and FAISS.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built content recommendation system for 10M+ users using collaborative filtering, content-based ranking, and gradient-boosted models.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users that combined collaborative filtering with content-based ranking. The system uses item-item similarity (via sentence-transformer embeddings) for cold starts and a gradient-boosted model trained on engagement signals for warm users.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% via recommendation system launch.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Acted as de-facto ML lead on a small team.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I've been the de-facto ML lead on a small team, shipping models across NLP and recsys.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned AWS Certified Machine Learning Specialty and NLP Specialization.",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: AWS Certified Machine Learning Specialty (AWS, 2018); NLP Specialization (Coursera/DeepLearning.AI, 2022)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Believes most retrieval problems are evaluation problems in disguise.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've learned that most retrieval problems are actually evaluation problems in disguise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes learning from shipping real systems over academic theory.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AWS",
+    "CNN",
+    "Dream11",
+    "Elasticsearch",
+    "FAISS",
+    "Fine-tuning LLMs",
+    "Forecasting",
+    "GraphQL",
+    "Haystack",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "Krutrim",
+    "LangChain",
+    "Machine Learning Engineer",
+    "NLP",
+    "NLP Engineer",
+    "OpenSearch",
+    "Python",
+    "Qdrant",
+    "RAG",
+    "Semantic Search",
+    "Sentence Transformers",
+    "Time Series"
+  ]
+}

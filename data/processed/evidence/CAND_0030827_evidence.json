@@ -1,0 +1,101 @@
+{
+  "candidate_id": "CAND_0030827",
+  "evidence": [
+    {
+      "claim": "Used Hugging Face Transformers, NLP, Recommendation Systems, FAISS, Reinforcement Learning, CSS, LlamaIndex, TTS, Qdrant, BM25, Sentence Transformers, Semantic Search, Object Detection, Learning to Rank, LangChain, and Prompt Engineering.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Hugging Face Transformers... NLP... Recommendation Systems... FAISS... Reinforcement Learning... CSS... LlamaIndex... TTS... Qdrant... BM25... Sentence Transformers... Semantic Search... Object Detection... Learning to Rank... LangChain... Prompt Engineering",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned scoring to learning-to-rank model.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed semantic search for ~500K documents using sentence-transformers and FAISS.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers... with FAISS",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via learning-to-rank model.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led the team that migrated keyword-search-based product to embedding-based retrieval.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned Google Cloud Professional ML Engineer certification.",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: Google Cloud Professional ML Engineer (Google Cloud, 2022)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes practical experience over academic theory for system reliability.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Focuses on infrastructure and data quality over modeling.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Most of the work was infrastructure and data quality — the modeling part was almost the easy bit.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "BM25",
+    "CSS",
+    "Elasticsearch",
+    "FAISS",
+    "Freshworks",
+    "Glance",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "LangChain",
+    "Learning to Rank",
+    "LlamaIndex",
+    "NLP",
+    "NLP Engineer",
+    "Object Detection",
+    "Prompt Engineering",
+    "Qdrant",
+    "Recommendation Systems",
+    "Reinforcement Learning",
+    "Semantic Search",
+    "Senior Data Scientist",
+    "Sentence Transformers",
+    "TTS"
+  ]
+}

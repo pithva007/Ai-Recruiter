@@ -1,0 +1,118 @@
+{
+  "candidate_id": "CAND_0015578",
+  "evidence": [
+    {
+      "claim": "Implemented RAG-based customer support chatbot",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built document ingestion pipeline using chunking, OpenAI embeddings, and Pinecone",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Implemented answer-generation layer using GPT-4 and fine-tuned smaller models",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "the answer-generation layer (initially GPT-4, then a fine-tuned smaller model for cost control).",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed evaluation framework using BLEU, ROUGE, and human-in-the-loop scores",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the evaluation framework with both automatic metrics (BLEU, ROUGE) and human-in-the-loop quality scores.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Deployment cut average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "5.4 years of experience building ML-powered features in production",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Machine learning engineer with 5.4 years of experience building ML-powered features in production.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Maintained recommendation system for discovery feed for 18 months",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, my main project for the last 18 months has been the recommendation system that powers our discovery feed.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Self-directed learning through shipping real systems",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience debugging production ranking issues",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Technical proficiency in Diffusion Models, Embeddings, NLP, Kafka, Speech Recognition, MLflow, BM25, Sentence Transformers, Go, CNN, Pinecone, scikit-learn, FAISS, BentoML, RAG, QLoRA",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Diffusion Models... Embeddings... NLP... Kafka... Speech Recognition... MLflow... BM25... Machine Learning... Sentence Transformers... Go... CNN... Pinecone... scikit-learn... FAISS... BentoML... RAG... QLoRA",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Academic background in CS/ML",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "BM25",
+    "BentoML",
+    "CNN",
+    "Data Science",
+    "Diffusion Models",
+    "Embeddings",
+    "FAISS",
+    "GPT",
+    "Glance",
+    "Go",
+    "Kafka",
+    "MLflow",
+    "Machine Learning",
+    "NLP",
+    "Pinecone",
+    "QLoRA",
+    "RAG",
+    "Search Engineer",
+    "Sentence Transformers",
+    "Speech Recognition",
+    "Zoho",
+    "scikit-learn"
+  ]
+}

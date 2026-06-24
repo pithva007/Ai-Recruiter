@@ -1,0 +1,93 @@
+{
+  "candidate_id": "CAND_0079064",
+  "evidence": [
+    {
+      "claim": "Developed semantic search feature for 500K documents using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Implemented RAG-based customer support chatbot using OpenAI embeddings, Pinecone, and GPT-4",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system. Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone) and the answer-generation layer (initially GPT-4, then a fine-tuned smaller model for cost control).",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Designed evaluation framework for RAG systems using BLEU, ROUGE, and human-in-the-loop scores",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the evaluation framework with both automatic metrics (BLEU, ROUGE) and human-in-the-loop quality scores.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owns the evaluation framework for RAG-based features",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learns primarily through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experienced in debugging production ranking issues",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "Angular",
+    "Elasticsearch",
+    "FAISS",
+    "Fine-tuning LLMs",
+    "GPT",
+    "Illustrator",
+    "LlamaIndex",
+    "NLP",
+    "NLP Engineer",
+    "Niramai",
+    "Node.js",
+    "OpenCV",
+    "OpenSearch",
+    "Pinecone",
+    "QLoRA",
+    "RAG",
+    "Razorpay",
+    "Recommendation Systems",
+    "Reinforcement Learning",
+    "Semantic Search",
+    "Senior Data Scientist"
+  ]
+}

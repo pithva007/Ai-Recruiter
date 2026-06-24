@@ -1,0 +1,57 @@
+{
+  "nodes": 868,
+  "edges": 3297,
+  "candidates": 100,
+  "unique_entities": 748,
+  "jd_requirements": 20,
+  "node_type_counts": {
+    "JD_REQUIREMENT": 20,
+    "CANDIDATE": 100,
+    "TOOL": 180,
+    "IMPACT_KEYWORD": 154,
+    "SKILL": 407,
+    "DOMAIN": 7
+  },
+  "top10_graph_matches": [
+    {
+      "candidate_id": "CAND_0004402",
+      "graph_score": 0.4762
+    },
+    {
+      "candidate_id": "CAND_0002025",
+      "graph_score": 0.2857
+    },
+    {
+      "candidate_id": "CAND_0005260",
+      "graph_score": 0.2857
+    },
+    {
+      "candidate_id": "CAND_0030348",
+      "graph_score": 0.2857
+    },
+    {
+      "candidate_id": "CAND_0049540",
+      "graph_score": 0.2857
+    },
+    {
+      "candidate_id": "CAND_0050876",
+      "graph_score": 0.2857
+    },
+    {
+      "candidate_id": "CAND_0054100",
+      "graph_score": 0.2857
+    },
+    {
+      "candidate_id": "CAND_0055905",
+      "graph_score": 0.2857
+    },
+    {
+      "candidate_id": "CAND_0065195",
+      "graph_score": 0.2857
+    },
+    {
+      "candidate_id": "CAND_0069905",
+      "graph_score": 0.2857
+    }
+  ]
+}

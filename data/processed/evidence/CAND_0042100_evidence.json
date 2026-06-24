@@ -1,0 +1,98 @@
+{
+  "candidate_id": "CAND_0042100",
+  "evidence": [
+    {
+      "claim": "Built ML-powered features in production",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "building ML-powered features in production",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Shipped RAG-based feature and owns the evaluation framework",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with ML operational tasks including A/B testing, drift monitoring, and retraining schedules",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "comfortable with the operational side — A/B testing, drift monitoring, retraining schedules.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via ranking model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Trained and shipped ranking models for discovery feed using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Technical proficiency in Elasticsearch, Statistical Modeling, Learning to Rank, Recommendation Systems, Semantic Search, Fine-tuning LLMs, Image Classification, Pinecone, LLMs, QLoRA, Reinforcement Learning, PyTorch, and Next.js",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Elasticsearch... Next.js (beginner, 9mo, 2 endorsements)",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Learns primarily through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Elasticsearch",
+    "Fine-tuning LLMs",
+    "Freshworks",
+    "Image Classification",
+    "LLMs",
+    "Learning to Rank",
+    "Machine Learning Engineer",
+    "Netflix",
+    "Next.js",
+    "Pinecone",
+    "PyTorch",
+    "QLoRA",
+    "RAG",
+    "Recommendation Systems",
+    "Reinforcement Learning",
+    "Semantic Search",
+    "Senior Data Scientist",
+    "Statistical Modeling",
+    "XGBoost"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "candidate_id": "CAND_0030468",
+  "evidence": [
+    {
+      "claim": "Experience with Information Retrieval Systems, Content Matching, Text Encoders, TensorFlow, Search & Discovery, CNN, Model Adaptation, Machine Learning, Ranking Systems, Diffusion Models, OpenSearch, Computer Vision, Milvus, and Recommendation Systems.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Information Retrieval Systems (advanced, 24mo, 39 endorsements); Content Matching (expert, 82mo, 46 endorsements); Text Encoders (expert, 77mo, 53 endorsements); TensorFlow (advanced, 38mo, 21 endorsements); Search & Discovery (expert, 45mo, 57 endorsements); CNN (intermediate, 9mo, 3 endorsements); Model Adaptation (expert, 43mo, 45 endorsements); Machine Learning (expert, 67mo, 38 endorsements); Ranking Systems (expert, 72mo, 42 endorsements); Diffusion Models (intermediate, 23mo, 4 endorsements); OpenSearch (expert, 95mo, 43 endorsements); Computer Vision (advanced, 48mo, 32 endorsements); Milvus (expert, 85mo, 15 endorsements); Recommendation Systems (expert, 79mo, 9 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built infrastructure processing billions of documents and serving millions of queries with low latency.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The system processed billions of documents and served millions of queries with low latency.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led a team of 4 engineers at Swiggy.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "I had a small team of 4 across this work.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Designed offline experimentation environments, online A/B testing frameworks, and feature-engineering pipelines.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the offline experimentation environment, the online A/B testing framework, and the feature-engineering pipeline that connected them.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prefers shipping real systems over research-only work; prioritizes v1 in 6 weeks over perfect v2 in 6 months.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Strong preference for shipping real systems over research-only work; I'd rather have a working v1 in 6 weeks than a perfect v2 in 6 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Learned from past mistakes including over-engineering and optimizing metrics that didn't impact online performance.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've made the standard mistakes — over-engineering early, optimizing offline metrics that didn't move online numbers, building beautiful infrastructure for features that users didn't actually want — so I notice them faster now.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned Google Cloud Professional ML Engineer certification and Deep Learning Specialization.",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: Google Cloud Professional ML Engineer (Google Cloud, 2019); Deep Learning Specialization (Coursera/DeepLearning.AI, 2018)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated closely with product and growth teams.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with the product and growth teams.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "CNN",
+    "CRED",
+    "Computer Vision",
+    "Content Matching",
+    "Diffusion Models",
+    "Information Retrieval Systems",
+    "Machine Learning",
+    "Milvus",
+    "Model Adaptation",
+    "OpenSearch",
+    "Ranking Systems",
+    "Recommendation Systems",
+    "Search & Discovery",
+    "Senior Applied Scientist",
+    "Senior Machine Learning Engineer",
+    "Swiggy",
+    "TensorFlow",
+    "Text Encoders",
+    "Wysa"
+  ]
+}

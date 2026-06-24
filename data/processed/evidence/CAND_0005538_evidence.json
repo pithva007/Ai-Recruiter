@@ -1,0 +1,121 @@
+{
+  "candidate_id": "CAND_0005538",
+  "evidence": [
+    {
+      "claim": "Built infrastructure processing billions of documents and millions of queries with low latency",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The system processed billions of documents and served millions of queries with low latency.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led a team of 4 engineers at Adobe",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "I had a small team of 4 across this work.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Grew team from 1 to 6 engineers at Locobuzz",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "The team grew from just me to 6 engineers over the course of that work.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Grew team from 1 to 6 engineers at Google",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "The team grew from just me to 6 engineers over the course of that work.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved new-user retention by 11% using Thompson sampling",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "I designed an exploration-exploitation policy using Thompson sampling that improved new-user retention by 11% in the first month.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Shipped production recommendation system from offline to A/B test in 5 months",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built and shipped a production recommendation system at a marketplace product, going from offline experimentation to live A/B test in 5 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Technical stack includes Apache Flink, Vector Representations, Deep Learning, Content Matching, Python, PyTorch, QLoRA, LoRA, pgvector, Haystack",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Project Management... Vector Representations... Deep Learning... Content Matching... Apache Flink... Feature Engineering... Statistical Modeling... QLoRA... Python... PyTorch... ASR... Data Science... LoRA... Information Retrieval Systems... pgvector... Haystack... Workflow Orchestration... TTS... Natural Language Processing",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Used collaborative filtering, TF-IDF, sentence-transformer embeddings, and behavioral re-ranking",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "The system combined collaborative filtering (matrix factorization), content-based features (TF-IDF + sentence-transformer embeddings), and a behavioral re-ranking layer.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed Deep Learning Specialization",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: Deep Learning Specialization (Coursera/DeepLearning.AI, 2023)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prefers shipping v1 in 6 weeks over perfect v2 in 6 months",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Strong preference for shipping real systems over research-only work; I'd rather have a working v1 in 6 weeks than a perfect v2 in 6 months.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned from past mistakes including over-engineering and optimizing irrelevant metrics",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've made the standard mistakes — over-engineering early, optimizing offline metrics that didn't move online numbers, building beautiful infrastructure for features that users didn't actually want — so I notice them faster now.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "Adobe",
+    "Apache Flink",
+    "Content Matching",
+    "Data Science",
+    "Deep Learning",
+    "Feature Engineering",
+    "Glance",
+    "Google",
+    "Haystack",
+    "Information Retrieval Systems",
+    "Lead AI Engineer",
+    "LoRA",
+    "Locobuzz",
+    "Natural Language Processing",
+    "Project Management",
+    "PyTorch",
+    "Python",
+    "QLoRA",
+    "Senior AI Engineer",
+    "Senior Machine Learning Engineer",
+    "Statistical Modeling",
+    "TTS",
+    "Vector Representations",
+    "Workflow Orchestration",
+    "pgvector"
+  ]
+}

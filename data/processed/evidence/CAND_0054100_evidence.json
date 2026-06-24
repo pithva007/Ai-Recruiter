@@ -1,0 +1,92 @@
+{
+  "candidate_id": "CAND_0054100",
+  "evidence": [
+    {
+      "claim": "Built computer vision models for image moderation using PyTorch",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built computer vision models for our product's image moderation feature using PyTorch",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Fine-tuned ResNet variants on a dataset of ~200K images",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "fine-tuned ResNet variants on a labeled dataset of ~200K images",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built NLP pipelines for sentiment analysis and document classification using sklearn and DistilBERT",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built NLP pipelines for sentiment analysis and document classification — primarily for an internal feedback-analytics dashboard. Started with sklearn-based bag-of-words models, then moved to transformer-based classifiers (DistilBERT)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficient in Python, scikit-learn, pandas, PyTorch, and Hugging Face",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "comfortable with Python, scikit-learn, pandas, and standard MLOps tooling... Comfortable with PyTorch and Hugging Face",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Self-directed learning via NLP Specialization certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "NLP Specialization (Coursera/DeepLearning.AI, 2020)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Transparent about current skill gaps in engineering and infra",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I'm still building depth on the engineering and infra side of production ML.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with Vector Search, Reinforcement Learning, Time Series, Prompt Engineering, Snowflake, Hadoop, GANs, YOLO, Semantic Search, QLoRA, Deep Learning, Pinecone, GCP, Image Classification, Computer Vision, Weaviate, and Fine-tuning LLMs",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Vector Search... Reinforcement Learning... Time Series... Prompt Engineering... Snowflake... Hadoop... GANs... YOLO... Semantic Search... QLoRA... Deep Learning... Pinecone... GCP... Image Classification... Computer Vision... Weaviate... Fine-tuning LLMs",
+      "quantified": true,
+      "weight": 1.5
+    }
+  ],
+  "entities": [
+    "Computer Vision",
+    "Computer Vision Engineer",
+    "Deep Learning",
+    "Fine-tuning LLMs",
+    "Freshworks",
+    "GANs",
+    "GCP",
+    "Hadoop",
+    "Hugging Face",
+    "Image Classification",
+    "Junior ML Engineer",
+    "ML Engineer",
+    "Marketing",
+    "NLP",
+    "Pinecone",
+    "Prompt Engineering",
+    "PyTorch",
+    "Python",
+    "QLoRA",
+    "Reinforcement Learning",
+    "Semantic Search",
+    "Snowflake",
+    "Time Series",
+    "Unacademy",
+    "Vector Search",
+    "Weaviate",
+    "YOLO",
+    "Zoho",
+    "scikit-learn"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "candidate_id": "CAND_0081846",
+  "evidence": [
+    {
+      "claim": "Rebuilt candidate-JD matching pipeline, improving NDCG@10 from 0.72 to 0.91",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "rebuilt the candidate-JD matching pipeline from scratch, taking it from 0.72 to 0.91 NDCG@10",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built RAG-based ranking pipeline serving 50M+ queries per month",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a RAG-based ranking pipeline serving 50M+ queries per month",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Used BM25, BGE embeddings, FAISS HNSW, and LLM-based re-rankers",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "The architecture combined BM25 + dense retrieval (BGE embeddings, FAISS HNSW) with an LLM-based re-ranker",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed offline evaluation framework (NDCG, MRR, recall@K)",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the offline evaluation framework from scratch — NDCG, MRR, recall@K calibrated against online A/B engagement metrics.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led a team of 4 engineers across a system rollout",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Led a team of 4 engineers across the rollout.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Reduced p95 retrieval latency by 60% and improved NDCG@10 by 18%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The new system reduced p95 retrieval latency by 60% while improving NDCG@10 by 18% on our held-out eval set.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Migrated semantic search system for 35M+ items",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Owned the design and rollout of a large-scale semantic search system serving an internal corpus of 35M+ items.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Holds Google Cloud Professional ML Engineer certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Google Cloud Professional ML Engineer (Google Cloud, 2021)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Strong opinions on trade-offs between LLMs and classical IR",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I have strong opinions about when LLMs are the right hammer and when classical IR is — usually it's both.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with incremental index refresh and embedding drift monitoring",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Spent substantial time on the boring-but-critical parts: incremental index refresh, embedding drift monitoring, online/offline metric correlation.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "BM25",
+    "Data Science",
+    "Deep Learning",
+    "Elasticsearch",
+    "Embeddings",
+    "FAISS",
+    "Forecasting",
+    "Information Retrieval",
+    "LLM",
+    "Lead AI Engineer",
+    "Learning to Rank",
+    "LlamaIndex",
+    "Machine Learning",
+    "Paytm",
+    "PyTorch",
+    "Python",
+    "Qdrant",
+    "RAG",
+    "Razorpay",
+    "Recommendation Systems",
+    "Semantic Search",
+    "Senior Machine Learning Engineer",
+    "Vector Search",
+    "pgvector",
+    "scikit-learn"
+  ]
+}

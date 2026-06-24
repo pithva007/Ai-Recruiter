@@ -1,0 +1,100 @@
+{
+  "candidate_id": "CAND_0045250",
+  "evidence": [
+    {
+      "claim": "Expertise in Sentence Transformers, Milvus, LoRA, Embeddings, NLP, Time Series, Image Classification, LangChain, ASR, Vector Search, BM25, MLflow, TensorFlow, PEFT, LLMs, Qdrant",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Sentence Transformers (expert, 57mo, 60 endorsements); Milvus (advanced, 51mo, 50 endorsements); LoRA (advanced, 24mo, 42 endorsements); Embeddings (expert, 74mo, 16 endorsements); NLP (expert, 79mo, 51 endorsements); Time Series (advanced, 28mo, 14 endorsements); Image Classification (intermediate, 35mo, 15 endorsements); LangChain (expert, 85mo, 15 endorsements); ASR (intermediate, 29mo, 1 endorsements); Vector Search (expert, 82mo, 30 endorsements); BM25 (expert, 87mo, 14 endorsements); MLflow (advanced, 52mo, 33 endorsements); LLMs (advanced, 34mo, 34 endorsements); Qdrant (expert, 76mo, 40 endorsements); PEFT (expert, 74mo, 50 endorsements); TensorFlow (expert, 85mo, 7 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Trained and shipped multiple ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built and operated production ML pipelines using MLflow, Kubeflow, and internal feature store",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow for experiment tracking, Kubeflow for orchestration, and our internal feature store.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led team migration from keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Mentored a junior engineer through their first end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owned offline-online correlation analysis for A/B test metrics",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Owned the offline-online correlation analysis that determined which offline metrics actually predicted A/B test outcomes.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built churn prediction model used by customer success team",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "My main project was a churn prediction model that's now used by the customer success team to prioritize outreach.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborates closely with PMs to define optimization targets",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "Applied ML Engineer",
+    "BM25",
+    "Embeddings",
+    "Image Classification",
+    "LLMs",
+    "LangChain",
+    "LoRA",
+    "MLflow",
+    "Milvus",
+    "NLP",
+    "PEFT",
+    "Paytm",
+    "Qdrant",
+    "Rephrase.ai",
+    "Sentence Transformers",
+    "TTS",
+    "TensorFlow",
+    "Time Series",
+    "Vector Search",
+    "XGBoost"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "candidate_id": "CAND_0054123",
+  "evidence": [
+    {
+      "claim": "Used LangChain, pgvector, Python, Weaviate, Qdrant, sentence-transformers, FAISS, gradient-boosted models, Elasticsearch, Hugging Face Transformers, Weights & Biases, Tailwind",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: LangChain, pgvector, Python, Weaviate, Qdrant, Hugging Face Transformers, Weights & Biases, Tailwind; Role: sentence-transformers, FAISS, gradient-boosted model, Elasticsearch",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built content recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% via recommendation system launch",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Developed semantic search for internal knowledge base of ~500K documents",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Acted as de-facto ML lead on a small team",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I've been the de-facto ML lead on a small team",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed NLP Specialization (2024) and Google Cloud Professional ML Engineer certification (2022)",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: NLP Specialization (Coursera/DeepLearning.AI, 2024); Google Cloud Professional ML Engineer (Google Cloud, 2022)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes learning through shipping real systems and production load testing",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Comfortable with operational ML tasks including A/B testing, drift monitoring, and retraining schedules",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Along the way I've gotten comfortable with the operational side — A/B testing, drift monitoring, retraining schedules.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Applied ML Engineer",
+    "CRED",
+    "Elasticsearch",
+    "FAISS",
+    "Fine-tuning LLMs",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "LLMs",
+    "LangChain",
+    "Meta",
+    "NLP",
+    "Python",
+    "Qdrant",
+    "Reinforcement Learning",
+    "SEO",
+    "Semantic Search",
+    "Speech Recognition",
+    "Tailwind",
+    "Vector Search",
+    "Weaviate",
+    "Weights & Biases",
+    "pgvector"
+  ]
+}

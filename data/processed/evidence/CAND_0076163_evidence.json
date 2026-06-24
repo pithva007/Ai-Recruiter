@@ -1,0 +1,93 @@
+{
+  "candidate_id": "CAND_0076163",
+  "evidence": [
+    {
+      "claim": "Shipped RAG-based feature and owns the evaluation framework",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via learning-to-rank model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Designed relevance labeling pipeline, feature pipeline, and training/eval workflow",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the relevance labeling pipeline (mix of click-through data and explicit human judgments), the feature pipeline, and the training/eval workflow.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficient in a wide range of ML/NLP tools including Weaviate, LangChain, YOLO, PyTorch, Elasticsearch, and LlamaIndex",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Weaviate (advanced), LangChain (expert), YOLO (intermediate), PyTorch (advanced), Elasticsearch (expert), LlamaIndex (expert), etc.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Self-directed learning through certifications",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Deep Learning Specialization (Coursera/DeepLearning.AI, 2019); AWS Certified Machine Learning Specialty (AWS, 2021)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over theoretical knowledge",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experienced in debugging production ranking issues",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "BM25",
+    "Elasticsearch",
+    "LangChain",
+    "LlamaIndex",
+    "MLOps",
+    "NLP",
+    "NLP Engineer",
+    "Ola",
+    "OpenCV",
+    "OpenSearch",
+    "Prompt Engineering",
+    "PyTorch",
+    "Python",
+    "RAG",
+    "Reinforcement Learning",
+    "Semantic Search",
+    "Sentence Transformers",
+    "Statistical Modeling",
+    "Weaviate",
+    "YOLO",
+    "Zoho"
+  ]
+}

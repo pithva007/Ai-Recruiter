@@ -1,0 +1,92 @@
+{
+  "candidate_id": "CAND_0061655",
+  "evidence": [
+    {
+      "claim": "Used Haystack, PEFT, Pinecone, Time Series, Machine Learning, PyTorch, Flask, Qdrant, Kubeflow, LangChain, Deep Learning, NLP, GANs, BM25, OpenSearch, Elasticsearch, and REST APIs",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Haystack (advanced, 25mo, 54 endorsements); PEFT (expert, 84mo, 15 endorsements); Pinecone (expert, 65mo, 46 endorsements); Time Series (advanced, 33mo, 35 endorsements); Machine Learning (expert, 78mo, 41 endorsements); PyTorch (advanced, 28mo, 49 endorsements); Flask (intermediate, 30mo, 7 endorsements); Qdrant (advanced, 46mo, 14 endorsements); Kubeflow (intermediate, 17mo, 14 endorsements); LangChain (advanced, 40mo, 50 endorsements); Deep Learning (advanced, 34mo, 40 endorsements); NLP (expert, 58mo, 34 endorsements); GANs (intermediate, 33mo, 0 endorsements); BM25 (advanced, 47mo, 0 endorsements); OpenSearch (expert, 36mo, 34 endorsements); Elasticsearch (expert, 42mo, 52 endorsements); REST APIs (intermediate, 15mo, 5 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% at Krutrim",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built content recommendation system serving 10M+ users at Google",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% at Google",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Evolved ranking layer from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Completed NLP Specialization in 2025",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: NLP Specialization (Coursera/DeepLearning.AI, 2025)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over academic theory",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "BM25",
+    "Deep Learning",
+    "Elasticsearch",
+    "Flask",
+    "GANs",
+    "Google",
+    "Haystack",
+    "Krutrim",
+    "Kubeflow",
+    "LangChain",
+    "Machine Learning",
+    "Machine Learning Engineer",
+    "NLP",
+    "OpenSearch",
+    "PEFT",
+    "Pinecone",
+    "PyTorch",
+    "Qdrant",
+    "REST APIs",
+    "Recommendation Systems Engineer",
+    "Time Series"
+  ]
+}

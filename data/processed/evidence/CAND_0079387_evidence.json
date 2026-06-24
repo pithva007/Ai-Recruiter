@@ -1,0 +1,119 @@
+{
+  "candidate_id": "CAND_0079387",
+  "evidence": [
+    {
+      "claim": "Built content recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% via recommendation system",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Cut average ticket resolution time by 31% using RAG-based chatbot",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Used scikit-learn, Python, sentence-transformers, gradient-boosted models, OpenAI embeddings, Pinecone, MLflow, Kubeflow, FAISS, QLoRA, LoRA, Haystack, BentoML",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "scikit-learn, Python, sentence-transformer embeddings, gradient-boosted model, OpenAI embeddings, Pinecone, MLflow, Kubeflow, FAISS, QLoRA, LoRA, Haystack, BentoML",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "De-facto ML lead on a small team",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I've been the de-facto ML lead on a small team",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Mentored a junior engineer through their first end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned that most retrieval problems are evaluation problems in disguise",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "I've learned that most retrieval problems are actually evaluation problems in disguise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes shipping real systems to understand production load",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed evaluation framework with human-in-the-loop quality scores",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Designed the evaluation framework with both automatic metrics (BLEU, ROUGE) and human-in-the-loop quality scores.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "ASR",
+    "Applied ML Engineer",
+    "BM25",
+    "BYJU'S",
+    "BentoML",
+    "Elasticsearch",
+    "FAISS",
+    "Haystack",
+    "Illustrator",
+    "JavaScript",
+    "Kubeflow",
+    "Learning to Rank",
+    "LoRA",
+    "MLflow",
+    "Microsoft",
+    "NLP Engineer",
+    "Next.js",
+    "Ola",
+    "OpenSearch",
+    "Pinecone",
+    "Python",
+    "QLoRA",
+    "RAG",
+    "Recommendation Systems",
+    "Reinforcement Learning",
+    "Sentence Transformers",
+    "Time Series",
+    "Vector Search",
+    "YOLO",
+    "scikit-learn",
+    "upGrad"
+  ]
+}

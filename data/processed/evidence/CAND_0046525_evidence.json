@@ -1,0 +1,109 @@
+{
+  "candidate_id": "CAND_0046525",
+  "evidence": [
+    {
+      "claim": "Designed hybrid retrieval system (BM25 + dense vector) handling 8K QPS with sub-200ms p95",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "designed the company's first hybrid retrieval system combining BM25 with dense vector recall, handling peak QPS of 8K with sub-200ms p95",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led migration from keyword to embedding-based search for 30M+ corpus",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Led the migration from keyword-based to embedding-based search across a 30M+ candidate corpus over 8 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved recruiter engagement by 24% and reduced time-to-shortlist by 38%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The final embedding ranker improved recruiter engagement metrics by 24% and reduced the average time-to-shortlist by 38%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Mentored two junior engineers",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored two junior engineers through this rollout.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built RAG-based ranking pipeline serving 50M+ queries/month",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a RAG-based ranking pipeline serving 50M+ queries per month for an internal recruiter-facing search product.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Technical stack: Elasticsearch, LangChain, TensorFlow, FAISS, HNSW, pgvector, Qdrant, Weights & Biases",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Elasticsearch... LangChain... TensorFlow... FAISS HNSW... pgvector... Weights & Biases... Qdrant",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed offline evaluation framework (NDCG, MRR, recall@K)",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the offline evaluation framework from scratch — NDCG, MRR, recall@K calibrated against online A/B engagement metrics.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed NLP Specialization certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: NLP Specialization (Coursera/DeepLearning.AI, 2023)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes shipping working systems over theoretical perfection",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care more about shipping a working system in 6 weeks than a theoretically perfect one in 6 months.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Focuses on infrastructure and system reliability",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Most of the engineering effort went into the boring infrastructure: index versioning, embedding versioning, rollback paths, and the dashboards that let recruiters trust the new system.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Elasticsearch",
+    "FAISS",
+    "Forecasting",
+    "Genpact AI",
+    "Image Classification",
+    "Information Retrieval",
+    "LLMs",
+    "LangChain",
+    "LinkedIn",
+    "LlamaIndex",
+    "Machine Learning",
+    "NLP",
+    "Qdrant",
+    "RAG",
+    "Redux",
+    "Senior Machine Learning Engineer",
+    "Sentence Transformers",
+    "TTS",
+    "TensorFlow",
+    "Weights & Biases",
+    "YOLO",
+    "pgvector"
+  ]
+}

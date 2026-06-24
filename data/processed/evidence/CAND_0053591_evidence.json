@@ -1,0 +1,108 @@
+{
+  "candidate_id": "CAND_0053591",
+  "evidence": [
+    {
+      "claim": "Built semantic search infrastructure using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I built our semantic search infrastructure from scratch — sentence-transformers, FAISS, the works.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with A/B testing, drift monitoring, and retraining schedules",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Along the way I've gotten comfortable with the operational side — A/B testing, drift monitoring, retraining schedules.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Trained and shipped ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Implemented RAG-based customer support chatbot",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built document ingestion pipeline using OpenAI embeddings and Pinecone",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Holds Google Cloud Professional ML Engineer certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Google Cloud Professional ML Engineer (Google Cloud, 2018)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Holds AWS Certified Machine Learning Specialty certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "AWS Certified Machine Learning Specialty (AWS, 2021)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes learning through shipping real systems",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "AWS",
+    "BM25",
+    "Data Pipelines",
+    "Embeddings",
+    "FAISS",
+    "LangChain",
+    "Milvus",
+    "Object Detection",
+    "Ola",
+    "OpenSearch",
+    "Pinecone",
+    "Qdrant",
+    "RAG",
+    "Redux",
+    "Reinforcement Learning",
+    "Sentence Transformers",
+    "Six Sigma",
+    "Statistical Modeling",
+    "Swiggy",
+    "XGBoost"
+  ]
+}

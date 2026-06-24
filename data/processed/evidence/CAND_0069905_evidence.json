@@ -1,0 +1,109 @@
+{
+  "candidate_id": "CAND_0069905",
+  "evidence": [
+    {
+      "claim": "Used Flask, Redux, LoRA, Computer Vision, Speech Recognition, Image Classification, Recommendation Systems, Sentence Transformers, LangChain, TensorFlow, Hugging Face Transformers, MLOps, Forecasting, Python, Object Detection, Weaviate, Learning to Rank",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Flask, Redux, LoRA, Computer Vision, Speech Recognition, Image Classification, Recommendation Systems, Sentence Transformers, LangChain, TensorFlow, Hugging Face Transformers, MLOps, Forecasting, Python, Object Detection, Weaviate, Learning to Rank",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Used sentence-transformers (all-MiniLM-L6-v2, bge-base) with FAISS for semantic search",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built RAG-based chatbot using OpenAI embeddings, Pinecone, and GPT-4/fine-tuned models",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone) and the answer-generation layer (initially GPT-4, then a fine-tuned smaller model for cost control).",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led team migrating keyword-search-based product to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned AWS Certified Machine Learning Specialty",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: AWS Certified Machine Learning Specialty (AWS, 2020)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes learning through shipping real systems in production",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Comfortable with operational ML tasks including A/B testing, drift monitoring, and retraining schedules",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Along the way I've gotten comfortable with the operational side — A/B testing, drift monitoring, retraining schedules.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AWS",
+    "Applied ML Engineer",
+    "Computer Vision",
+    "Elasticsearch",
+    "FAISS",
+    "Flask",
+    "Forecasting",
+    "GPT",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "Image Classification",
+    "LangChain",
+    "Learning to Rank",
+    "LoRA",
+    "MLOps",
+    "Machine Learning Engineer",
+    "Nykaa",
+    "Object Detection",
+    "Observe.AI",
+    "Pinecone",
+    "Python",
+    "RAG",
+    "Recommendation Systems",
+    "Recommendation Systems Engineer",
+    "Redux",
+    "Sarvam AI",
+    "Sentence Transformers",
+    "Speech Recognition",
+    "TensorFlow",
+    "Weaviate"
+  ]
+}

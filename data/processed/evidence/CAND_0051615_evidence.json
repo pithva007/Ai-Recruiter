@@ -1,0 +1,97 @@
+{
+  "candidate_id": "CAND_0051615",
+  "evidence": [
+    {
+      "claim": "Experience with NLP, recommendation systems, applied AI, feature engineering, and model deployment",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Strong background in NLP, recommendation systems, and applied AI; comfortable across the ML stack from feature engineering through deployment.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built recommendation system for discovery feed",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, my main project for the last 18 months has been the recommendation system that powers our discovery feed.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via learning-to-rank model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Evolved search ranking from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Designed relevance labeling, feature, and training/eval pipelines",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the relevance labeling pipeline (mix of click-through data and explicit human judgments), the feature pipeline, and the training/eval workflow.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over academic theory",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficiency in RAG, Milvus, TTS, Sentence Transformers, Fine-tuning LLMs, Prompt Engineering, Vector Search, Haystack, Computer Vision, REST APIs, Webpack, LLMs, NLP",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: RAG... Milvus... TTS... Sentence Transformers... Fine-tuning LLMs... Prompt Engineering... Vector Search... Haystack... Computer Vision... REST APIs... Webpack... LLMs... NLP",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Google Cloud Professional ML Engineer certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: Google Cloud Professional ML Engineer (Google Cloud, 2022)",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Computer Vision",
+    "Data Science",
+    "Fine-tuning LLMs",
+    "HTML",
+    "Haystack",
+    "Krutrim",
+    "LLMs",
+    "Meta",
+    "Milvus",
+    "NLP",
+    "Prompt Engineering",
+    "RAG",
+    "REST APIs",
+    "Search Engineer",
+    "Sentence Transformers",
+    "TTS",
+    "Vector Search",
+    "Webpack"
+  ]
+}

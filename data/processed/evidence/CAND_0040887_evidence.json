@@ -1,0 +1,99 @@
+{
+  "candidate_id": "CAND_0040887",
+  "evidence": [
+    {
+      "claim": "Developed semantic search feature using sentence-transformers, FAISS, and query expansion",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval. Designed the query expansion module",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Implemented RAG-based chatbot using OpenAI embeddings, Pinecone, and GPT-4",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot... Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone) and the answer-generation layer (initially GPT-4, then a fine-tuned smaller model for cost control).",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "De-facto ML lead on a small team",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I've been the de-facto ML lead on a small team, shipping models across NLP and recsys.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned through shipping real systems and production load",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Certified in LangChain and Google Cloud Professional ML Engineering",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "LangChain for LLM Application Development (DeepLearning.AI, 2019); Google Cloud Professional ML Engineer (Google Cloud, 2022)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experienced in debugging production ranking issues",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficient in Reinforcement Learning, Computer Vision, FAISS, MLflow, LoRA, LangChain, Python, PEFT, Milvus, Deep Learning, and Recommendation Systems",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Reinforcement Learning... Computer Vision... FAISS... MLflow... LoRA... LangChain... Python... PEFT... Milvus... Deep Learning... Recommendation Systems",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Computer Vision",
+    "Deep Learning",
+    "Elasticsearch",
+    "FAISS",
+    "GPT",
+    "LangChain",
+    "LoRA",
+    "MLflow",
+    "Machine Learning Engineer",
+    "Milvus",
+    "Netflix",
+    "PEFT",
+    "Pinecone",
+    "Python",
+    "RAG",
+    "Recommendation Systems",
+    "Reinforcement Learning",
+    "SEO",
+    "Unacademy"
+  ]
+}

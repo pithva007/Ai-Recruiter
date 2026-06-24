@@ -1,0 +1,95 @@
+{
+  "candidate_id": "CAND_0099806",
+  "evidence": [
+    {
+      "claim": "Used XGBoost and LightGBM to train and ship ranking models",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led team in migrating keyword-search-based product to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owned offline-online correlation analysis for A/B test metrics",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Owned the offline-online correlation analysis that determined which offline metrics actually predicted A/B test outcomes.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed LangChain for LLM Application Development certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "LangChain for LLM Application Development (DeepLearning.AI, 2022)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed Deep Learning Specialization certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Deep Learning Specialization (Coursera/DeepLearning.AI, 2021)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborates with PMs to define optimization targets",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficient in LoRA, OpenCV, RAG, pgvector, FAISS, Embeddings, Sentence Transformers, Weaviate, Qdrant, Elasticsearch, and BM25",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: LoRA, OpenCV, RAG, pgvector, FAISS, Embeddings, Sentence Transformers, Weaviate, Qdrant, Elasticsearch, BM25",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience in feature engineering across content metadata, user behavior, and engagement history",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed features across three families: content metadata, user behavior signals, and item engagement history.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Agile",
+    "BM25",
+    "Elasticsearch",
+    "Embeddings",
+    "FAISS",
+    "LLM",
+    "LoRA",
+    "Machine Learning Engineer",
+    "Mad Street Den",
+    "OpenCV",
+    "Prompt Engineering",
+    "Qdrant",
+    "RAG",
+    "Reinforcement Learning",
+    "Sentence Transformers",
+    "Speech Recognition",
+    "Statistical Modeling",
+    "Time Series",
+    "Weaviate",
+    "XGBoost",
+    "dbt",
+    "pgvector",
+    "upGrad"
+  ]
+}

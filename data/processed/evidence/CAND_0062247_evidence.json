@@ -1,0 +1,103 @@
+{
+  "candidate_id": "CAND_0062247",
+  "evidence": [
+    {
+      "claim": "Developed semantic search feature for internal knowledge base of ~500K documents",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Used sentence-transformers (all-MiniLM-L6-v2, bge-base) and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via ranking model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led team migrating keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes practical experience over academic theory",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficient in Image Classification, OpenCV, Reinforcement Learning, ASR, Pinecone, Vector Search, Qdrant, RAG, Computer Vision, PEFT, Speech Recognition, Hugging Face Transformers, Learning to Rank, Information Retrieval, Deep Learning, BM25",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Image Classification... BM25 (expert, 66mo, 27 endorsements)",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Self-directed learning through shipping real systems",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "ASR",
+    "BM25",
+    "Computer Vision",
+    "Deep Learning",
+    "Dream11",
+    "Elasticsearch",
+    "FAISS",
+    "Google",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "Illustrator",
+    "Image Classification",
+    "Information Retrieval",
+    "Learning to Rank",
+    "NLP Engineer",
+    "OpenCV",
+    "PEFT",
+    "Pinecone",
+    "Qdrant",
+    "RAG",
+    "Reinforcement Learning",
+    "Speech Recognition",
+    "Vector Search"
+  ]
+}

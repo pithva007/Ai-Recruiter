@@ -1,0 +1,97 @@
+{
+  "candidate_id": "CAND_0037980",
+  "evidence": [
+    {
+      "claim": "Expertise in LoRA, Search Infrastructure, PyTorch, NLP, Indexing Algorithms, BM25, Text Encoders, Document Processing, pgvector, Haystack, BentoML, scikit-learn, and Information Retrieval Systems.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: LoRA (expert), Search Infrastructure (expert), PyTorch (expert), NLP (expert), Indexing Algorithms (expert), BM25 (expert), Text Encoders (expert), Document Processing (expert), pgvector (expert), Haystack (expert), BentoML (advanced), scikit-learn (expert), Information Retrieval Systems (expert)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed ranking layer for flagship product serving millions of items to millions of users.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Designed the ranking layer for the company's flagship product: how do we surface the right thing at the right time, across millions of items, for millions of users.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Owned data pipeline, evaluation framework, and operational discipline for ranking systems for 14 months.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "I owned all three [data pipeline, evaluation framework, operational discipline] across roughly 14 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Shipped personalization infrastructure, offline experimentation environment, and online A/B testing framework at Salesforce.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Shipped the personalization infrastructure... Designed the offline experimentation environment, the online A/B testing framework, and the feature-engineering pipeline",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated with product and growth teams.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Worked closely with the product and growth teams.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed NLP Specialization (2022) and Deep Learning Specialization (2025).",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: NLP Specialization (Coursera/DeepLearning.AI, 2022); Deep Learning Specialization (Coursera/DeepLearning.AI, 2025)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Strong preference for shipping real systems over research-only work; prioritizes v1 in 6 weeks over perfect v2 in 6 months.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Strong preference for shipping real systems over research-only work; I'd rather have a working v1 in 6 weeks than a perfect v2 in 6 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Learned from past mistakes including over-engineering and optimizing metrics that did not impact online performance.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've made the standard mistakes — over-engineering early, optimizing offline metrics that didn't move online numbers, building beautiful infrastructure for features that users didn't actually want — so I notice them faster now.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "BM25",
+    "BentoML",
+    "Document Processing",
+    "Feature Engineering",
+    "Haystack",
+    "Indexing Algorithms",
+    "Information Retrieval Systems",
+    "LoRA",
+    "Model Adaptation",
+    "NLP",
+    "Niramai",
+    "OpenCV",
+    "Prompt Engineering",
+    "PyTorch",
+    "QLoRA",
+    "Recommendation Systems",
+    "Salesforce",
+    "Search Infrastructure",
+    "Senior Applied Scientist",
+    "Senior ML Engineer — Search & Ranking",
+    "TTS",
+    "Text Encoders",
+    "Verloop.io",
+    "Weights & Biases",
+    "pgvector",
+    "scikit-learn"
+  ]
+}

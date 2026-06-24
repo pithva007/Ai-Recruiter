@@ -1,0 +1,104 @@
+{
+  "candidate_id": "CAND_0002025",
+  "evidence": [
+    {
+      "claim": "Designed hybrid retrieval system (BM25 + dense vector) for 30M+ profiles",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "designed the company's first hybrid retrieval system combining BM25 with dense vector recall, across a corpus of 30M+ candidate profiles",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Shipped recommendation system from offline to A/B test in 5 months",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built and shipped a production recommendation system at a marketplace product, going from offline experimentation to live A/B test in 5 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved new-user retention by 11% using Thompson sampling",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "I designed an exploration-exploitation policy using Thompson sampling that improved new-user retention by 11% in the first month.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Fine-tuned LLaMA-2-7B and Mistral-7B using LoRA/QLoRA",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Fine-tuned LLaMA-2-7B and Mistral-7B variants using LoRA and QLoRA",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced inference cost from $0.04 to under $0.001",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Cost per inference dropped from $0.04 with GPT-3.5-fallback to under $0.001.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Achieved sub-200ms p95 latency via INT8 quantization and batching",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Deployed the model via BentoML on Kubernetes with sub-200ms p95 latency by quantizing to INT8 and batching at the request level.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Prioritizes shipping working systems in 6 weeks over theoretical perfection",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care more about shipping a working system in 6 weeks than a theoretically perfect one in 6 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Completed NLP Specialization certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "NLP Specialization (Coursera/DeepLearning.AI, 2021)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with Diffusion Models, FAISS, TensorFlow, scikit-learn, OpenSearch, Haystack, Weaviate, Sentence Transformers, QLoRA, NLP, Pinecone, Recommendation Systems, Python, LangChain, Weights & Biases, OpenCV, Prompt Engineering, Fine-tuning LLMs, YOLO",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Diffusion Models... YOLO",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Aganitha",
+    "Apple",
+    "Deep Learning",
+    "Diffusion Models",
+    "FAISS",
+    "Fine-tuning LLMs",
+    "Haystack",
+    "LangChain",
+    "Lead AI Engineer",
+    "LoRA",
+    "NLP",
+    "OpenCV",
+    "OpenSearch",
+    "Pinecone",
+    "Prompt Engineering",
+    "Python",
+    "QLoRA",
+    "Recommendation Systems",
+    "Senior AI Engineer",
+    "Sentence Transformers",
+    "TensorFlow",
+    "Weaviate",
+    "Weights & Biases",
+    "YOLO",
+    "scikit-learn"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "candidate_id": "CAND_0093193",
+  "evidence": [
+    {
+      "claim": "Expertise in Ranking Systems, Text Encoders, Indexing Algorithms, Forecasting, Vector Representations, Qdrant, OpenSearch, TensorFlow, Content Matching, Information Retrieval Systems, Haystack, Machine Learning, Search & Discovery, Search Backend, scikit-learn, and ASR.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Ranking Systems (expert, 77mo, 3 endorsements); Text Encoders (expert, 92mo, 25 endorsements); Indexing Algorithms (expert, 37mo, 34 endorsements); Forecasting (advanced, 44mo, 29 endorsements); Vector Representations (expert, 46mo, 46 endorsements); Qdrant (advanced, 20mo, 57 endorsements); OpenSearch (expert, 88mo, 41 endorsements); Open-source ML libraries (advanced, 37mo, 13 endorsements); TensorFlow (expert, 54mo, 12 endorsements); Content Matching (advanced, 43mo, 54 endorsements); Information Retrieval Systems (expert, 76mo, 7 endorsements); Haystack (expert, 58mo, 30 endorsements); Statistical Modeling (intermediate, 8mo, 11 endorsements); Machine Learning (advanced, 52mo, 14 endorsements); Search & Discovery (expert, 66mo, 34 endorsements); GANs (advanced, 45mo, 6 endorsements); Search Backend (advanced, 56mo, 42 endorsements); scikit-learn (expert, 84mo, 11 endorsements); ASR (advanced, 38mo, 22 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led team growth from 1 to 6 engineers during a matching layer overhaul project.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "The team grew from just me to 6 engineers over the course of that work.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Overhauled matching layer from hand-tuned heuristics to explicit modeling and evaluation.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Recent project was a complete overhaul of the matching layer; took it from a hand-tuned heuristic system to one with explicit modeling and evaluation.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prefers shipping v1 in 6 weeks over perfect v2 in 6 months.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Strong preference for shipping real systems over research-only work; I'd rather have a working v1 in 6 weeks than a perfect v2 in 6 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Learned from past mistakes including over-engineering and optimizing metrics that do not impact online performance.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've made the standard mistakes — over-engineering early, optimizing offline metrics that didn't move online numbers, building beautiful infrastructure for features that users didn't actually want — so I notice them faster now.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Holds a Ph.D in Information Technology.",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Education: Ph.D in Information Technology at Jadavpur University (2010)",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "Content Matching",
+    "Forecasting",
+    "GANs",
+    "Haystack",
+    "Indexing Algorithms",
+    "Information Retrieval Systems",
+    "Lead AI Engineer",
+    "Machine Learning",
+    "Netflix",
+    "Niramai",
+    "Open-source ML libraries",
+    "OpenSearch",
+    "Qdrant",
+    "Ranking Systems",
+    "Search & Discovery",
+    "Search Backend",
+    "Senior Machine Learning Engineer",
+    "Statistical Modeling",
+    "TensorFlow",
+    "Text Encoders",
+    "Vector Representations",
+    "scikit-learn"
+  ]
+}

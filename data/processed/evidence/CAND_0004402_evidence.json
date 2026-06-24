@@ -1,0 +1,101 @@
+{
+  "candidate_id": "CAND_0004402",
+  "evidence": [
+    {
+      "claim": "Used Python, scikit-learn, pandas, and standard MLOps tooling",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "comfortable with Python, scikit-learn, pandas, and standard MLOps tooling",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built recommendation-style features using collaborative filtering and gradient-boosted re-ranking",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built recommendation-style features... Used a combination of collaborative filtering (matrix factorization in implicit-feedback library) and gradient-boosted re-ranking over engagement signals.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built computer vision models for image moderation using PyTorch",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built computer vision models for our product's image moderation feature using PyTorch",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Fine-tuned ResNet variants on a dataset of ~200K images",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "fine-tuned ResNet variants on a labeled dataset of ~200K images.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Set up training pipeline and inference service for CV models",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Set up the training pipeline (data loading, augmentation, evaluation) and the inference service.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficient in TypeScript, TTS, OpenSearch, Speech Recognition, Object Detection, Kubeflow, PEFT, PyTorch, BentoML, REST APIs, Learning to Rank, Data Pipelines, Qdrant, Computer Vision, Sentence Transformers, and Fine-tuning LLMs",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: TypeScript... TTS... OpenSearch... Speech Recognition... Object Detection... Kubeflow... PEFT... PyTorch... BentoML... REST APIs... Learning to Rank... Data Pipelines... Qdrant... Computer Vision... Sentence Transformers... Fine-tuning LLMs",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Desires to grow into senior AI engineering and gain depth in LLMs and retrieval",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "I want to grow into senior AI engineering — get serious about LLMs and retrieval beyond the surface level.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Self-aware regarding current engineering and infrastructure skill gaps",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I'm still building depth on the engineering and infra side of production ML.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated with platform team for production deployment",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Pure ML side of the work; production deployment was handled by the platform team.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Research Engineer",
+    "BentoML",
+    "Computer Vision",
+    "Data Pipelines",
+    "Data Scientist",
+    "Fine-tuning LLMs",
+    "Kubeflow",
+    "Learning to Rank",
+    "Object Detection",
+    "OpenSearch",
+    "PEFT",
+    "PyTorch",
+    "Python",
+    "Qdrant",
+    "REST APIs",
+    "Sentence Transformers",
+    "Speech Recognition",
+    "TTS",
+    "TypeScript",
+    "Yellow.ai",
+    "Zomato",
+    "scikit-learn"
+  ]
+}

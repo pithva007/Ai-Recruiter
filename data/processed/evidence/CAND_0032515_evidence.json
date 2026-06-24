@@ -1,0 +1,102 @@
+{
+  "candidate_id": "CAND_0032515",
+  "evidence": [
+    {
+      "claim": "Shipped RAG-based feature and owns the evaluation framework",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via learning-to-rank model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built churn prediction model used by customer success team",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "My main project was a churn prediction model that's now used by the customer success team to prioritize outreach.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Mentored a junior engineer through their first end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed NLP and Deep Learning Specializations",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "NLP Specialization (Coursera/DeepLearning.AI, 2022); Deep Learning Specialization (Coursera/DeepLearning.AI, 2022)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborates with PMs to define optimization targets",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Technical stack includes MLflow, Kubeflow, XGBoost, LightGBM, PyTorch, Elasticsearch, Milvus",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow... Kubeflow... XGBoost and LightGBM... PyTorch... Elasticsearch... Milvus",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Evolved search ranking from hand-tuned to learning-to-rank",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": true,
+      "weight": 1.5
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "BentoML",
+    "Deep Learning",
+    "ETL",
+    "Elasticsearch",
+    "Fine-tuning LLMs",
+    "MLflow",
+    "Machine Learning",
+    "Machine Learning Engineer",
+    "Milvus",
+    "NLP",
+    "OpenCV",
+    "PharmEasy",
+    "PyTorch",
+    "QLoRA",
+    "RAG",
+    "Razorpay",
+    "Salesforce CRM",
+    "Search Engineer",
+    "Semantic Search",
+    "Vector Search",
+    "XGBoost",
+    "Zoho"
+  ]
+}

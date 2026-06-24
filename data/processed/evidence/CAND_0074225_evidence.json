@@ -1,0 +1,102 @@
+{
+  "candidate_id": "CAND_0074225",
+  "evidence": [
+    {
+      "claim": "Built and shipped ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Implemented RAG-based customer support chatbot",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built document ingestion pipeline using OpenAI embeddings and Pinecone",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned that retrieval problems are evaluation problems",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "I've learned that most retrieval problems are actually evaluation problems in disguise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Gained primary learning from shipping real systems under production load",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed evaluation framework with automatic and human-in-the-loop metrics",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the evaluation framework with both automatic metrics (BLEU, ROUGE) and human-in-the-loop quality scores.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owned offline-online correlation analysis for model metrics",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Owned the offline-online correlation analysis that determined which offline metrics actually predicted A/B test outcomes.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "Apache Beam",
+    "CI/CD",
+    "Elasticsearch",
+    "Haystack",
+    "Hugging Face Transformers",
+    "Machine Learning",
+    "Machine Learning Engineer",
+    "Mad Street Den",
+    "Milvus",
+    "Pinecone",
+    "Python",
+    "QLoRA",
+    "Qdrant",
+    "RAG",
+    "Recommendation Systems",
+    "Semantic Search",
+    "Statistical Modeling",
+    "Time Series",
+    "Unacademy",
+    "Vector Search",
+    "XGBoost",
+    "scikit-learn"
+  ]
+}

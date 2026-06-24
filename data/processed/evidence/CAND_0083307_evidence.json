@@ -1,0 +1,124 @@
+{
+  "candidate_id": "CAND_0083307",
+  "evidence": [
+    {
+      "claim": "Implemented RAG-based customer support chatbot using OpenAI embeddings, Pinecone, and GPT-4/fine-tuned models",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system. Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone) and the answer-generation layer (initially GPT-4, then a fine-tuned smaller model for cost control).",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed evaluation framework for RAG using BLEU, ROUGE, and human-in-the-loop scores",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the evaluation framework with both automatic metrics (BLEU, ROUGE) and human-in-the-loop quality scores.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "RAG deployment reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via ranking model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Developed semantic search for ~500K documents using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Proficient in a wide range of ML tools including Python, OpenCV, scikit-learn, QLoRA, PEFT, Pinecone, Weaviate, MLflow, and pgvector",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: OpenCV... scikit-learn... QLoRA... PEFT... Pinecone... Weaviate... Python... MLflow... pgvector",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with operational ML including A/B testing, drift monitoring, and retraining schedules",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Along the way I've gotten comfortable with the operational side — A/B testing, drift monitoring, retraining schedules.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values learning through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Focuses on infrastructure and data quality as critical components of ML engineering",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Most of the work was infrastructure and data quality — the modeling part was almost the easy bit.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "CRED",
+    "Data Science",
+    "Deep Learning",
+    "Elasticsearch",
+    "Embeddings",
+    "FAISS",
+    "GCP",
+    "GPT",
+    "Image Classification",
+    "Learning to Rank",
+    "MLflow",
+    "Machine Learning Engineer",
+    "NLP Engineer",
+    "Netflix",
+    "Ola",
+    "OpenCV",
+    "PEFT",
+    "Pinecone",
+    "Python",
+    "QLoRA",
+    "RAG",
+    "Saarthi.ai",
+    "Search Engineer",
+    "Semantic Search",
+    "Vector Search",
+    "Weaviate",
+    "Weights & Biases",
+    "pgvector",
+    "scikit-learn"
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "candidate_id": "CAND_0058575",
+  "evidence": [
+    {
+      "claim": "Developed semantic search feature for 500K documents using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Implemented RAG-based chatbot using OpenAI embeddings, Pinecone, and GPT-4",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system. Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone) and the answer-generation layer (initially GPT-4, then a fine-tuned smaller model for cost control).",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built production ML pipelines using MLflow, Kubeflow, and internal feature stores",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow for experiment tracking, Kubeflow for orchestration, and our internal feature store.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Mentored a junior engineer through their first end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learns through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Holds Google Cloud Professional ML Engineer certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Google Cloud Professional ML Engineer (Google Cloud, 2024)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Comfortable with operational ML tasks including A/B testing and drift monitoring",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Along the way I've gotten comfortable with the operational side — A/B testing, drift monitoring, retraining schedules.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Aganitha",
+    "Elasticsearch",
+    "FAISS",
+    "GPT",
+    "Hugging Face Transformers",
+    "Krutrim",
+    "LlamaIndex",
+    "MLOps",
+    "MLflow",
+    "Machine Learning",
+    "Pinecone",
+    "PyTorch",
+    "RAG",
+    "Recommendation Systems",
+    "Reinforcement Learning",
+    "Search Engineer",
+    "Sentence Transformers",
+    "Statistical Modeling",
+    "Time Series",
+    "Uber",
+    "YOLO"
+  ]
+}

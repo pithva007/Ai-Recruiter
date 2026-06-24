@@ -1,0 +1,88 @@
+{
+  "candidate_id": "CAND_0019480",
+  "evidence": [
+    {
+      "claim": "Used Terraform, LLMs, Forecasting, TensorFlow, TTS, Weights & Biases, GANs, Feature Engineering, Milvus, LangChain, Image Classification, BM25, OpenSearch, Prompt Engineering, XGBoost, LightGBM, OpenAI embeddings, Pinecone, GPT-4",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills section and role descriptions",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led the team that migrated keyword-search-based product to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Deployment of RAG-based chatbot cut average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborates with PMs to define optimization targets",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learns primarily through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "7.4 years of experience building ML-powered features in production",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Machine learning engineer with 7.4 years of experience building ML-powered features in production.",
+      "quantified": true,
+      "weight": 1.5
+    }
+  ],
+  "entities": [
+    "BM25",
+    "Feature Engineering",
+    "Forecasting",
+    "Freshworks",
+    "GANs",
+    "GPT",
+    "Image Classification",
+    "InMobi",
+    "LLMs",
+    "LangChain",
+    "Meesho",
+    "Milvus",
+    "NLP Engineer",
+    "OpenSearch",
+    "Pinecone",
+    "Prompt Engineering",
+    "RAG",
+    "Search Engineer",
+    "Senior Data Scientist",
+    "TTS",
+    "TensorFlow",
+    "Terraform",
+    "Vedantu",
+    "Weights & Biases",
+    "XGBoost"
+  ]
+}

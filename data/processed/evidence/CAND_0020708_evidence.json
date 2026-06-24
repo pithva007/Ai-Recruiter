@@ -1,0 +1,87 @@
+{
+  "candidate_id": "CAND_0020708",
+  "evidence": [
+    {
+      "claim": "Built semantic search feature for internal knowledge base of ~500K documents",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Technical stack: sentence-transformers (all-MiniLM-L6-v2, bge-base), FAISS, Elasticsearch, Kubeflow, Python, OpenCV, LangChain, Milvus, TensorFlow, Weights & Biases",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS... Skills: Kubeflow, Python, Elasticsearch, OpenCV, LangChain, Milvus, Weights & Biases, TensorFlow",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Shipped first RAG-based feature and owns the evaluation framework",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed LangChain for LLM Application Development (2022) and NLP Specialization (2018)",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: LangChain for LLM Application Development (DeepLearning.AI, 2022); NLP Specialization (Coursera/DeepLearning.AI, 2018)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks for model deployment",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over theoretical background",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Data Science",
+    "Elasticsearch",
+    "FAISS",
+    "Fine-tuning LLMs",
+    "Kubeflow",
+    "LLM",
+    "LLMs",
+    "LangChain",
+    "Learning to Rank",
+    "Milvus",
+    "NLP",
+    "OpenCV",
+    "PolicyBazaar",
+    "Prompt Engineering",
+    "Python",
+    "RAG",
+    "Search Engineer",
+    "Sentence Transformers",
+    "Statistical Modeling",
+    "Tally",
+    "TensorFlow",
+    "Weights & Biases",
+    "YOLO",
+    "scikit-learn"
+  ]
+}

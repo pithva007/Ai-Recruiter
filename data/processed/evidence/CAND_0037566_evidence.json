@@ -1,0 +1,85 @@
+{
+  "candidate_id": "CAND_0037566",
+  "evidence": [
+    {
+      "claim": "Used Pinecone, OpenAI embeddings, GPT-4, fine-tuned models, BLEU, ROUGE, LlamaIndex, LoRA, QLoRA, BM25, MLflow, Spring Boot, TensorFlow, YOLO, LangChain, Elasticsearch",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Pinecone... LlamaIndex... LoRA... QLoRA... BM25... MLflow... Spring Boot... TensorFlow... YOLO... LangChain... Elasticsearch",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Implemented RAG-based customer support chatbot reducing ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Designed evaluation framework for RAG systems using automatic metrics and human-in-the-loop scores",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the evaluation framework with both automatic metrics (BLEU, ROUGE) and human-in-the-loop quality scores.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built document ingestion pipelines including chunking and embedding",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learns primarily through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Believes retrieval problems are evaluation problems in disguise",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've learned that most retrieval problems are actually evaluation problems in disguise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience optimizing model costs by transitioning from GPT-4 to fine-tuned smaller models",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "answer-generation layer (initially GPT-4, then a fine-tuned smaller model for cost control)",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "BM25",
+    "Elasticsearch",
+    "Feature Engineering",
+    "Forecasting",
+    "GPT",
+    "LLMs",
+    "LangChain",
+    "LinkedIn",
+    "LlamaIndex",
+    "LoRA",
+    "MLflow",
+    "Machine Learning Engineer",
+    "NLP",
+    "Paytm",
+    "Pinecone",
+    "QLoRA",
+    "RAG",
+    "Reinforcement Learning",
+    "Spring Boot",
+    "TensorFlow",
+    "Time Series",
+    "YOLO"
+  ]
+}

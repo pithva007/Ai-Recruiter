@@ -1,0 +1,105 @@
+{
+  "candidate_id": "CAND_0020877",
+  "evidence": [
+    {
+      "claim": "Used QLoRA, Kubeflow, YOLO, Elasticsearch, PyTorch, OpenSearch, LlamaIndex, Weaviate, Milvus, Qdrant, scikit-learn, and Java",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: QLoRA... Kubeflow... YOLO... Elasticsearch... PyTorch... OpenSearch... LlamaIndex... Weaviate... Milvus... Qdrant... scikit-learn... Java",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed semantic search feature for 500K documents using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Implemented RAG-based chatbot with document ingestion pipeline, Pinecone, and GPT-4/fine-tuned models",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot... Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone) and the answer-generation layer (initially GPT-4, then a fine-tuned smaller model for cost control).",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Owns the evaluation framework for RAG features",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed evaluation framework with automatic metrics and human-in-the-loop scores",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Designed the evaluation framework with both automatic metrics (BLEU, ROUGE) and human-in-the-loop quality scores.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over theoretical background",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Applied ML Engineer",
+    "BYJU'S",
+    "CRED",
+    "Deep Learning",
+    "Elasticsearch",
+    "FAISS",
+    "Forecasting",
+    "GPT",
+    "Illustrator",
+    "Information Retrieval",
+    "Java",
+    "Kubeflow",
+    "LlamaIndex",
+    "Milvus",
+    "OpenSearch",
+    "PEFT",
+    "Pinecone",
+    "PyTorch",
+    "QLoRA",
+    "Qdrant",
+    "RAG",
+    "Senior Data Scientist",
+    "Statistical Modeling",
+    "Weaviate",
+    "YOLO",
+    "scikit-learn"
+  ]
+}

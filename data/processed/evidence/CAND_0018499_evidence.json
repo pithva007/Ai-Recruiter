@@ -1,0 +1,123 @@
+{
+  "candidate_id": "CAND_0018499",
+  "evidence": [
+    {
+      "claim": "Designed hybrid retrieval system (BM25 + dense vector recall) serving 50M+ queries/month",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the company's first hybrid retrieval system combining BM25 with dense vector recall, serving 50M+ queries per month.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built RAG-based ranking pipeline with BM25, BGE embeddings, FAISS HNSW, and LLM re-ranker",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built a RAG-based ranking pipeline... The architecture combined BM25 + dense retrieval (BGE embeddings, FAISS HNSW) with an LLM-based re-ranker",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed offline evaluation framework (NDCG, MRR, recall@K) calibrated against online A/B metrics",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the offline evaluation framework from scratch — NDCG, MRR, recall@K calibrated against online A/B engagement metrics.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Drove 4-month migration and recruiter-feedback loop",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Drove the migration over 4 months including the recruiter-feedback loop that surfaced reranking edge cases.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Fine-tuned LLaMA-2-7B and Mistral-7B using LoRA and QLoRA",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Fine-tuned LLaMA-2-7B and Mistral-7B variants using LoRA and QLoRA for domain-specific candidate-JD matching.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Curated 200K high-quality preference pairs for model training",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built the data curation pipeline that generated 200K high-quality preference pairs from recruiter labels",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Deployed model via BentoML on Kubernetes with sub-200ms p95 latency",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Deployed the model via BentoML on Kubernetes with sub-200ms p95 latency by quantizing to INT8 and batching at the request level.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Reduced inference cost from $0.04 to under $0.001",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Cost per inference dropped from $0.04 with GPT-3.5-fallback to under $0.001.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Holds Google Cloud Professional ML Engineer certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Google Cloud Professional ML Engineer (Google Cloud, 2019)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Holds NLP Specialization from Coursera/DeepLearning.AI",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "NLP Specialization (Coursera/DeepLearning.AI, 2018)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Strong opinions on LLM vs. classical IR trade-offs",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I have strong opinions about when LLMs are the right hammer and when classical IR is — usually it's both.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "BM25",
+    "BentoML",
+    "CNN",
+    "Deep Learning",
+    "Diffusion Models",
+    "Embeddings",
+    "FAISS",
+    "Flipkart",
+    "Go",
+    "Google",
+    "Information Retrieval",
+    "Kubernetes",
+    "LLM",
+    "LangChain",
+    "Learning to Rank",
+    "LoRA",
+    "Milvus",
+    "NLP",
+    "Pinecone",
+    "QLoRA",
+    "RAG",
+    "Recommendation Systems",
+    "Senior Machine Learning Engineer",
+    "Staff Machine Learning Engineer",
+    "Weaviate",
+    "Weights & Biases",
+    "Zomato",
+    "scikit-learn"
+  ]
+}

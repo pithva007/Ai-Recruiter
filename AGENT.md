@@ -1,128 +1,545 @@
 # AGENT.md — AI Recruiter Agent Specification
+# Challenge: Redrob Intelligent Candidate Discovery & Ranking
+# Ground truth: India_runs_data_and_ai_challenge/ files
+
+---
 
 ## Agent Identity
-You are an AI Recruiter Agent. Your purpose is to rank candidates the way a great human recruiter would — not by matching keywords, but by understanding who genuinely fits a role. You reason about evidence, not surface signals.
 
-## Core Reasoning Contract
-- Never score a candidate on a claim you cannot trace back to a specific piece of text in their profile.
-- Every score dimension must include a confidence level: "high" (direct text evidence), "medium" (strong inference from context), or "low" (weak inference, flag it).
-- When evidence is absent, output null for that field. Never fill gaps with assumptions.
-- If a resume is ambiguous, surface the ambiguity as a yellow_flag, do not resolve it silently.
-- A candidate with 2 years of experience and a shipped product used by 50,000 users outranks a candidate with 8 years of experience and no measurable impact. Impact always outweighs tenure.
+You are a Candidate Ranking Agent built for the Redrob Hackathon. Your job is to rank
+the top 100 candidates from a 100,000-candidate pool for the role of **Senior AI Engineer
+— Founding Team at Redrob AI (Series A)**. You reason about genuine fit, not keyword density.
 
-## Agent Pipeline Stages
-The agent operates in exactly 8 stages. Each stage has a strict input contract and a strict output contract. Never skip a stage. Never merge stages.
+**The central trap:** A candidate whose skills list contains every AI keyword but whose
+career history shows Marketing Manager → Operations Manager → HR Manager is NOT a fit.
+Career history and actual role titles dominate over skills keywords.
 
-Stage 1: Role Understanding Agent
-Stage 2: Candidate Understanding Agent  
-Stage 3: Evidence Extraction Layer
-Stage 4: GraphRAG Knowledge Graph Builder
-Stage 5: Hybrid Retrieval (FAISS + Graph)
-Stage 6: LLM Hiring Intelligence Engine
-Stage 7a: Explainable Ranking + 7b: Dark Horse Discovery
-Stage 8: Recruiter Copilot Dashboard
+---
 
-## Evidence Extraction Rules
-When extracting evidence, always produce this exact JSON structure per evidence item:
-```json
-{
-  "claim": "<exact or paraphrased claim from source text>",
-  "evidence_type": "<technical | impact | leadership | learning | behavioral>",
-  "confidence": "<high | medium | low>",
-  "source_text": "<exact quote or null if inferred>",
-  "quantified": <true | false>
+## Compute Contract (NON-NEGOTIABLE)
+
+The ranking step must satisfy ALL of the following:
+- Complete in **< 5 minutes** on CPU
+- Use **≤ 16 GB RAM**
+- Make **ZERO network calls** (no LLM API, no embeddings API, no HTTP requests)
+- Run on **CPU only** — no GPU
+
+**LLM use is permitted ONLY for:**
+1. JD analysis (Stage 1 — runs once, offline, before ranking)
+2. Reasoning generation for the final top 100 (runs after ranking, offline)
+
+**LLM is FORBIDDEN during ranking of 100K candidates.**
+
+---
+
+## Architecture (Challenge-Compliant)
+
+```
+Phase A — Offline Pre-computation (no time limit, LLM permitted)
+  src/stage1_jd_analysis.py   Input:  data/raw/job_description.docx
+                               Output: data/processed/jd_features.json
+
+  src/precompute.py            Input:  data/raw/candidates.jsonl (symlink → challenge bundle)
+                                       data/processed/jd_features.json
+                               Output: data/processed/features.pkl
+
+Phase B — Ranking  *** < 5 min, CPU only, ZERO network ***
+  src/rank.py                  Input:  data/processed/features.pkl
+                               Output: outputs/ranked_top100_raw.csv
+
+Phase C — Post-Ranking (offline, LLM permitted for top 100 only)
+  src/reason.py                Input:  outputs/ranked_top100_raw.csv
+                                       data/processed/features.pkl
+                               Output: outputs/submission.csv  ← SUBMIT THIS
+
+  validate_submission.py       Input:  outputs/submission.csv
+                               Output: "Submission is valid." or errors
+
+Phase D — Dashboard / Sandbox demo
+  src/stage8_dashboard.py      streamlit run src/stage8_dashboard.py
+```
+
+## Data Layout (authoritative file locations)
+
+```
+India_runs_data_and_ai_challenge/    ← SOURCE OF TRUTH — never modify
+  candidates.jsonl                   ← 100K pool (465 MB)
+  candidate_schema.json
+  job_description.docx
+  sample_candidates.json
+  sample_submission.csv
+  validate_submission.py
+  submission_metadata_template.yaml
+  README.docx / redrob_signals_doc.docx / submission_spec.docx
+
+data/raw/                            ← Runtime copies / symlinks
+  candidates.jsonl  → symlink to challenge bundle (DO NOT copy — 465 MB)
+  candidate_schema.json
+  job_description.docx
+  sample_candidates.json
+  sample_submission.csv
+
+data/processed/                      ← Generated by pipeline
+  jd_features.json                   ← Stage 1 output
+  features.pkl                       ← Precompute output (all 100K scored)
+  embeddings/                        ← Optional: pre-computed text embeddings
+  scores/                            ← Optional: per-candidate score breakdowns
+
+outputs/                             ← Final submission artifacts
+  ranked_top100_raw.csv              ← Phase B output (no reasoning)
+  submission.csv                     ← Phase C output (SUBMIT THIS)
+
+validate_submission.py               ← Copied to project root for easy access
+submission_metadata.yaml             ← Fill in before submitting
+```
+
+---
+
+## Job Description — Ground Truth
+
+**Role:** Senior AI Engineer — Founding Team  
+**Company:** Redrob AI (Series A, AI-native talent intelligence platform)  
+**Location:** Pune/Noida, India (Hybrid) — open to Hyderabad, Mumbai, Delhi NCR  
+**Experience:** 5–9 years (ideal: 6–8 years, with 4–5 in applied ML at product companies)
+
+### Must-Have Skills (hard requirements from JD)
+```
+production_embeddings_retrieval   # sentence-transformers, BGE, E5, OpenAI embeddings
+vector_database_hybrid_search     # FAISS, Pinecone, Weaviate, Qdrant, Milvus, ES, OpenSearch
+python_strong                     # code quality, not just scripts
+ranking_evaluation_frameworks     # NDCG, MRR, MAP, A/B testing, offline-to-online
+```
+
+### Nice-to-Have Skills
+```
+llm_finetuning        # LoRA, QLoRA, PEFT
+learning_to_rank      # XGBoost-based or neural LTR
+hr_tech_experience    # recruiting, marketplace, talent products
+distributed_systems   # large-scale inference optimization
+open_source_ml        # OSS contributions in AI/ML space
+```
+
+### Explicit Disqualifiers (from JD — these candidates should rank LOW)
+```
+pure_research_no_production     # academic labs only, no deployed systems
+recent_langchain_only           # AI experience = only LangChain + OpenAI < 12 months
+no_code_written_18_months       # architecture/tech lead but no hands-on code
+pure_services_career            # ALL roles at: TCS, Infosys, Wipro, Accenture, Cognizant,
+                                #   Capgemini, HCL, Mindtree, Tech Mahindra, IBM GBS,
+                                #   Mphasis, Hexaware, NIIT Technologies, Cyient
+cv_speech_robotics_only         # no NLP/IR exposure
+closed_source_5yr_no_validation # 5+ years proprietary only, no papers/talks/OSS
+```
+
+### Ideal Candidate Profile (from JD)
+- 6–8 years total, 4–5 in applied ML/AI at **product companies**
+- Shipped at least one end-to-end ranking/search/recommendation system to real users at scale
+- Has shipped a v2 of something — iterates, doesn't just design
+- Strong opinions on retrieval (hybrid vs dense), evaluation (offline vs online), LLM integration
+- Located in India (Pune/Noida/Hyderabad/Mumbai/Delhi NCR) or willing to relocate
+- Active on job market — responds to recruiters, has short notice period
+- Writes clearly — async-first company
+
+---
+
+## Candidate Schema — All Fields Used in Ranking
+
+### Top-Level Sections
+```
+candidate_id         CAND_[0-9]{7}  — must preserve exactly
+profile              Static identity and current role
+career_history       Array[1-10] of work history entries
+education            Array[0-5] of education entries
+skills               Array of skill objects
+certifications       Array (optional) of certification objects
+languages            Array (optional) of language proficiency
+redrob_signals       Object with 23 behavioral platform signals
+```
+
+### profile fields
+| Field | Type | Scoring Use |
+|---|---|---|
+| anonymized_name | string | Reasoning text only |
+| headline | string | Weak supporting signal |
+| summary | string | Semantic evidence of ML thinking |
+| years_of_experience | float | Experience band scoring (5-9 ideal) |
+| current_title | string | PRIMARY career signal — classify ML/AI vs noise |
+| current_company | string | Product vs services detection |
+| current_company_size | enum | Startup/scale-up experience signal |
+| current_industry | string | Domain relevance |
+| location | string | Location fit (target: Pune, Noida, Delhi, Mumbai, Hyderabad) |
+| country | string | India = preferred; willing_to_relocate matters for others |
+
+### career_history[] fields
+| Field | Type | Scoring Use |
+|---|---|---|
+| title | string | Role title per job — critical for career arc |
+| company | string | Services blacklist check |
+| industry | string | ML/tech industry presence |
+| company_size | enum | Product vs services proxy |
+| duration_months | int | Tenure stability; total ML career duration |
+| is_current | bool | Identify current role |
+| description | string | Evidence of retrieval/ranking/embedding work |
+| start_date / end_date | date | Chronology; honeypot detection |
+
+### skills[] fields
+| Field | Type | Scoring Use |
+|---|---|---|
+| name | string | Match against AI core skill list |
+| proficiency | enum | beginner=1, intermediate=2, advanced=3, expert=4 |
+| endorsements | int | Social trust multiplier |
+| duration_months | int | ANTI-STUFFER SIGNAL: duration=0 with expert proficiency = red flag |
+
+### education[] fields
+| Field | Type | Scoring Use |
+|---|---|---|
+| tier | enum | tier_1=1.0, tier_2=0.8, tier_3=0.6, tier_4=0.4, unknown=0.5 |
+| degree | string | CS/Engineering/ML field preferred |
+| field_of_study | string | ML/AI/CS/Data Science relevance |
+| end_year | int | Recency of education |
+
+### certifications[] fields
+| Field | Type | Scoring Use |
+|---|---|---|
+| name | string | AI/ML/Cloud certs are positive signals |
+| issuer | string | AWS, GCP, Google, Coursera, deeplearning.ai = credible |
+| year | int | Recent certs (last 3 years) weighted higher |
+
+### redrob_signals fields (all 23)
+| # | Field | Range | Scoring Weight |
+|---|---|---|---|
+| 1 | profile_completeness_score | 0-100 | Medium |
+| 2 | signup_date | date | Low |
+| 3 | last_active_date | date | **HIGH** |
+| 4 | open_to_work_flag | bool | **HIGH** |
+| 5 | profile_views_received_30d | int≥0 | Low |
+| 6 | applications_submitted_30d | int≥0 | Medium |
+| 7 | recruiter_response_rate | 0.0-1.0 | **HIGH** |
+| 8 | avg_response_time_hours | float≥0 | Medium |
+| 9 | skill_assessment_scores | dict[str→0-100] | **HIGH** (verified) |
+| 10 | connection_count | int≥0 | Low |
+| 11 | endorsements_received | int≥0 | Low |
+| 12 | notice_period_days | 0-180 | **HIGH** |
+| 13 | expected_salary_range_inr_lpa | {min, max} | Medium |
+| 14 | preferred_work_mode | enum | Medium |
+| 15 | willing_to_relocate | bool | Medium |
+| 16 | github_activity_score | -1 to 100 | **HIGH** |
+| 17 | search_appearance_30d | int≥0 | Low |
+| 18 | saved_by_recruiters_30d | int≥0 | Medium |
+| 19 | interview_completion_rate | 0.0-1.0 | Medium |
+| 20 | offer_acceptance_rate | -1 to 1.0 | Medium |
+| 21 | verified_email | bool | Low |
+| 22 | verified_phone | bool | Low |
+| 23 | linkedin_connected | bool | Low |
+
+**Sentinel values:** `github_activity_score = -1` means no GitHub linked (treat as neutral 0.5, not negative). `offer_acceptance_rate = -1` means no offer history (treat as neutral 0.5).
+
+---
+
+## Scoring Architecture
+
+### Final Score Formula
+```
+final_score = (
+    career_score   * 0.45   +   # title + history + product company
+    skill_score    * 0.25   +   # depth-weighted AI skills
+    behavioral_score * 0.20 +   # redrob availability multiplier
+    fit_score      * 0.10       # location, notice, years, education
+) * honeypot_penalty             # 0.0 if honeypot, 1.0 otherwise
+```
+
+Score range: [0.0, 1.0]. Non-increasing by rank. Normalized at output.
+
+### Component 1 — Career Score (0.45 weight)
+Measures genuine ML/AI engineering background.
+
+**Inputs used:**
+- `profile.current_title` → classify via title_score lookup
+- `career_history[].title` → identify ML/AI roles in history
+- `career_history[].description` → keyword evidence of retrieval/ranking/embeddings work
+- `career_history[].company` → services company blacklist
+- `career_history[].duration_months` → weight evidence by time in role
+- Ratio of career spent in ML/AI roles vs non-ML roles
+
+**Title classification (current_title → score):**
+```
+1.0  : ML Engineer, Machine Learning Engineer, AI Engineer, Senior ML Engineer,
+       Research Engineer (with deployment), Applied Scientist (with deployment),
+       NLP Engineer, Search Engineer, Ranking Engineer, Recommendation Engineer
+0.85 : Data Scientist (with ML deployment evidence), MLOps Engineer,
+       AI/ML Researcher (with production), Senior Data Engineer (ML focus)
+0.70 : Data Engineer (with ML evidence in descriptions), Backend Engineer (ML infra),
+       Analytics Engineer (ML adjacent), Software Engineer (AI/ML team)
+0.50 : Software Engineer (general), Data Analyst, Platform Engineer
+0.25 : Business Analyst, Product Manager, Marketing Manager, HR Manager,
+       Operations Manager, Content Writer, Customer Support, Accountant,
+       Graphic Designer, Sales Executive, Civil Engineer, Mechanical Engineer
+0.0  : Anything with no technical foundation
+```
+
+**Services company penalty:**
+If ≥ 80% of total career_history months are at services companies → multiply career_score × 0.4.
+If 50-80% at services → multiply × 0.65.
+Services companies blacklist: TCS, Infosys, Wipro, Accenture, Cognizant, Capgemini,
+HCL, Mindtree, Tech Mahindra, IBM Global Services, Mphasis, Hexaware, NIIT, Cyient.
+
+### Component 2 — Skill Score (0.25 weight)
+Measures depth of AI/ML skills — resists keyword stuffing.
+
+**Inputs used:**
+- `skills[].name` → match against AI core skill lists
+- `skills[].proficiency` → proficiency_weight: beginner=0.25, intermediate=0.5, advanced=0.75, expert=1.0
+- `skills[].duration_months` → depth signal; duration=0 with proficiency > beginner = stuffer flag
+- `skills[].endorsements` → trust multiplier: log1p(endorsements) / log1p(100)
+- `redrob_signals.skill_assessment_scores` → overrides proficiency when present
+- `redrob_signals.github_activity_score` → coding credibility
+
+**Skill depth formula per skill:**
+```python
+trust = log1p(endorsements) / log1p(100)          # endorsement multiplier [0, 1]
+depth = min(duration_months / 24.0, 1.0)          # depth multiplier [0, 1], saturates at 24 months
+stuffer_flag = 1 if (proficiency in [advanced, expert] and duration_months == 0) else 0
+raw = proficiency_weight * (0.4 + 0.4 * depth + 0.2 * trust)
+skill_score_item = raw * (0.3 if stuffer_flag else 1.0)
+
+# If platform-verified assessment score exists for this skill:
+if skill_name in skill_assessment_scores:
+    verified = skill_assessment_scores[skill_name] / 100.0
+    skill_score_item = 0.3 * skill_score_item + 0.7 * verified  # trust verified over self-reported
+```
+
+**AI core skill lists:**
+
+Must-have domain skills (weight 1.0 each):
+```
+embeddings, sentence-transformers, vector search, FAISS, Pinecone, Weaviate, Qdrant,
+Milvus, OpenSearch, Elasticsearch, retrieval, ranking, NDCG, MAP, MRR, NLP,
+natural language processing, LLM, large language model, PyTorch, TensorFlow,
+machine learning, deep learning, recommendation systems, information retrieval
+```
+
+Nice-to-have skills (weight 0.6 each):
+```
+LoRA, QLoRA, fine-tuning, PEFT, RAG, retrieval augmented generation, XGBoost,
+learning to rank, A/B testing, MLflow, Weights & Biases, feature store,
+distributed training, Spark ML, BentoML, Triton, ONNX, Hugging Face
+```
+
+Supporting skills (weight 0.35 each):
+```
+Python, Spark, Airflow, Kafka, dbt, Snowflake, data pipelines, feature engineering,
+Docker, Kubernetes, AWS SageMaker, GCP Vertex AI, Azure ML, scikit-learn,
+PostgreSQL, Redis, FastAPI, Flask, REST API, microservices
+```
+
+Trap/irrelevant skills (weight 0.0 — do not count):
+```
+SEO, content writing, Photoshop, CAD, SolidWorks, ANSYS, Six Sigma, SAP,
+accounting, marketing automation, project management, PowerPoint, Excel (non-ML)
+```
+
+### Component 3 — Behavioral Score (0.20 weight)
+Measures candidate availability and reachability.
+
+```python
+def behavioral_score(signals):
+    # Activity recency (30%)
+    days_since = (TODAY - last_active_date).days
+    if   days_since <=  30: activity = 1.00
+    elif days_since <=  60: activity = 0.85
+    elif days_since <=  90: activity = 0.70
+    elif days_since <= 180: activity = 0.50
+    else:                   activity = 0.25
+
+    # Open to work (20%)
+    otw = 1.0 if open_to_work_flag else 0.60
+
+    # Recruiter response rate (25%)
+    rr = recruiter_response_rate  # already 0-1
+
+    # Interview reliability (15%)
+    ir = interview_completion_rate  # already 0-1
+
+    # Active applications (10%)
+    apps = min(applications_submitted_30d / 5.0, 1.0)
+
+    return (activity * 0.30) + (otw * 0.20) + (rr * 0.25) + (ir * 0.15) + (apps * 0.10)
+```
+
+### Component 4 — Fit Score (0.10 weight)
+Measures logistics fit: location, notice period, experience years.
+
+```python
+def fit_score(profile, signals):
+    # Experience band: ideal 5-9 years
+    yoe = profile['years_of_experience']
+    if   5.0 <= yoe <= 9.0:  exp_fit = 1.00
+    elif 3.0 <= yoe < 5.0:   exp_fit = 0.75
+    elif 9.0 < yoe <= 12.0:  exp_fit = 0.80
+    elif yoe > 12.0:          exp_fit = 0.65
+    else:                     exp_fit = 0.50  # < 3 years
+
+    # Notice period: sub-30 days ideal
+    np = signals['notice_period_days']
+    if   np <=  15: notice_fit = 1.00
+    elif np <=  30: notice_fit = 0.95
+    elif np <=  60: notice_fit = 0.80
+    elif np <=  90: notice_fit = 0.65
+    elif np <= 120: notice_fit = 0.45
+    else:           notice_fit = 0.30
+
+    # Location fit
+    target_cities = ['pune', 'noida', 'delhi', 'ncr', 'gurgaon', 'gurugram',
+                     'mumbai', 'hyderabad', 'bangalore', 'bengaluru']
+    loc_lower = profile.get('location', '').lower()
+    in_target = any(c in loc_lower for c in target_cities)
+    in_india = profile.get('country', '').lower() in ['india', 'in']
+    relocate = signals.get('willing_to_relocate', False)
+    work_mode = signals.get('preferred_work_mode', 'flexible')
+
+    if in_target: location_fit = 1.00
+    elif in_india and relocate: location_fit = 0.90
+    elif in_india: location_fit = 0.75
+    elif relocate: location_fit = 0.65
+    else: location_fit = 0.45
+
+    work_mode_fit = {'hybrid': 1.0, 'onsite': 0.90, 'flexible': 0.85, 'remote': 0.60}
+    wm_score = work_mode_fit.get(work_mode, 0.75)
+
+    # Education tier (best tier across all education entries)
+    tier_map = {'tier_1': 1.0, 'tier_2': 0.8, 'tier_3': 0.6, 'tier_4': 0.4, 'unknown': 0.5}
+    best_tier = max([tier_map.get(e.get('tier', 'unknown'), 0.5) for e in education], default=0.5)
+
+    return (exp_fit * 0.35) + (notice_fit * 0.25) + (location_fit * 0.20) + (wm_score * 0.10) + (best_tier * 0.10)
+```
+
+---
+
+## Honeypot Detection Contract
+
+Honeypots are ~80 candidates with logically impossible profiles. Identify and score them 0.0.
+
+A candidate IS a honeypot if ANY of the following are true:
+
+1. **Impossible experience timeline:**
+   - `profile.years_of_experience` > (sum of all `career_history[].duration_months`) / 12 + 2 years gap allowance
+
+2. **Impossible skill expertise:**
+   - Count of skills where `proficiency` in [advanced, expert] AND `duration_months == 0` >= 6
+   - (Having 6+ "expert" skills they've never used is impossible)
+
+3. **Boilerplate description cloning:**
+   - Same exact description text appears in 3+ career_history entries (copy-paste)
+
+4. **Impossible career dates:**
+   - Any `career_history[].start_date` is earlier than `(today - 40 years)` for someone whose years_of_experience < 5
+
+5. **Profile completeness vs content mismatch:**
+   - `profile_completeness_score` > 90 but all `career_history[].description` fields are empty strings
+
+Set honeypot score multiplier = 0.0 for identified honeypots.
+
+---
+
+## Anti-Hallucination Rules for Reasoning Generation
+
+When generating reasoning text for the top 100 candidates:
+
+- Never mention a skill not present in `skills[].name` for that candidate
+- Never invent impact numbers not in `career_history[].description`
+- Never claim ML/AI experience if career history shows none
+- Never write identical reasoning for two different candidates
+- Never say "likely" or "probably" about skills — only reference what is stated
+- Reference actual `profile.current_title`, actual `profile.years_of_experience`, actual top skills, actual `recruiter_response_rate`
+- Reasoning must be 1-2 sentences maximum
+
+---
+
+## Output Contract — Submission CSV
+
+```
+Filename:    {participant_id}.csv
+Encoding:    UTF-8
+Columns:     candidate_id,rank,score,reasoning   (exactly this order)
+Rows:        1 header + exactly 100 data rows = 101 total rows
+Ranks:       1 through 100, each appearing exactly once
+Scores:      float, non-increasing (score[rank_i] >= score[rank_{i+1}])
+Tie-break:   equal scores → candidate_id ascending
+candidate_id: must match CAND_[0-9]{7} pattern
+             must exist in candidates.jsonl
+```
+
+**Validation:** Run `python India_runs_data_and_ai_challenge/validate_submission.py {submission}.csv` before every submission. Zero errors = safe to submit.
+
+---
+
+## Evaluation Metric Weights
+
+```
+Final composite = 0.50 × NDCG@10
+               + 0.30 × NDCG@50
+               + 0.15 × MAP
+               + 0.05 × P@10
+```
+
+**Implication:** Getting the top 10 right matters more than anything else.
+Optimize your scoring weights to maximize precision at rank 1-10.
+
+Tiebreak order: P@5 → P@10 → earlier submission timestamp.
+
+---
+
+## Scoring Constraint: Services Company Blacklist
+
+Candidates whose ENTIRE career (100% of duration_months) is at these companies
+receive a heavy career_score penalty (× 0.4):
+
+```python
+SERVICES_BLACKLIST = {
+    'tcs', 'tata consultancy services',
+    'infosys',
+    'wipro',
+    'accenture',
+    'cognizant', 'cognizant technology solutions', 'cts',
+    'capgemini',
+    'hcl', 'hcl technologies',
+    'mindtree',
+    'tech mahindra',
+    'ibm global services', 'ibm gbs',
+    'mphasis',
+    'hexaware',
+    'niit technologies',
+    'cyient',
+    'ltimindtree', 'larsen & toubro infotech', 'lti',
+    'persistent systems',
+    'zensar',
+    'birlasoft',
+    'mastech',
+    'igate',
+    'patni',
 }
 ```
-A quantified claim contains a number (users, %, revenue, team size, time). Quantified evidence weighs 1.5x unquantified evidence of the same type.
 
-## Scoring Contracts
-The system produces exactly 4 scores per candidate. Each score is 0–100.
+A candidate at one of these companies who ALSO has prior product company experience
+is NOT penalized — the penalty applies only when these companies represent 80%+ of career.
 
-**fit_score:** How well the candidate's background aligns with the explicit and implicit requirements of the JD. Driven by semantic similarity + evidence match to JD requirement schema.
+---
 
-**impact_score:** Evidence of real-world measurable outcomes the candidate has produced. Factors: users reached, revenue generated or influenced, cost reduced, production deployments, team output multiplied.
+## Dark Horse / Transferable Fit Pattern
 
-**potential_score:** Evidence that the candidate grows faster than average. Factors: career_velocity (promotions per year), complexity_growth (LLM-assessed difficulty increase across projects listed chronologically), self_learning_signals (certifications, OSS contributions, hackathons, side projects launched).
+These candidates score lower on title matching but higher on description evidence.
+Reward them appropriately — don't let title alone dominate.
 
-Formula: `potential_score = (career_velocity * 0.4) + (complexity_growth * 0.3) + (self_learning_signals * 0.3)`. Normalize each sub-factor to 0–100 before applying weights.
+**Pattern:** Data Engineer / Analytics Engineer / Backend Engineer at product companies
+whose `career_history[].description` contains retrieval, feature pipelines, ML model
+deployment, Spark ML, or recommendation systems.
 
-**risk_score:** Signals that may make this candidate a poor fit or a flight risk. Factors: skill gaps vs JD requirements, overqualification signals, very short tenures (<1 year in multiple roles), no evidence of collaboration, domain mismatch. Risk score is INVERTED in composite — higher risk = lower composite.
+These candidates may have `career_title_score = 0.70` but their skill_score and
+career description evidence can push them into the top 50.
 
-### Composite Score Formula (canonical — use only this)
-```
-composite_score = (fit_score * 0.35) + (impact_score * 0.30) + (potential_score * 0.20) + ((100 - risk_score) * 0.15)
-```
+---
 
-## Dark Horse Definition
-A candidate is a dark horse if ALL of the following are true:
-1. Their vector similarity rank is > 15 (they did not appear in top 15 by semantic search alone)
-2. Their impact_score OR potential_score is >= 75
-3. Their fit_score is >= 50 (they are not a complete mismatch)
+## Three-Submission Cap
 
-A dark horse must be surfaced with a `transferable_skills_map`: a list of skills the candidate has that map to JD requirements even though the candidate never used the exact JD terminology.
-
-## Anti-Hallucination Rules
-- Do not invent skills not mentioned in the candidate profile.
-- Do not invent impact numbers not stated in the candidate profile.
-- Do not assume a candidate has leadership experience because they have "senior" in their title.
-- Do not assume a candidate knows a technology because it was popular at their company.
-- If a field cannot be populated from evidence, write null. Never write "likely" or "probably" in a scored field.
-
-## Output Format Contract
-Every candidate in the final output must have exactly these fields:
-
-```
-rank
-candidate_id
-candidate_name
-composite_score
-fit_score
-impact_score
-potential_score
-risk_score
-confidence_level
-green_flags             (list)
-yellow_flags            (list)
-skill_gaps              (list)
-dark_horse              (boolean)
-dark_horse_reason       (string or null)
-transferable_skills_map (list or null)
-interview_questions     (list of 3)
-llm_rationale           (string, max 100 words)
-```
-
-## Output CSV Schema
-The final `ranked_candidates.csv` must have exactly these columns in this order:
-
-```
-rank, candidate_id, candidate_name, composite_score, fit_score, impact_score,
-potential_score, risk_score, confidence_level, green_flags, yellow_flags,
-skill_gaps, dark_horse, dark_horse_reason, transferable_skills_map,
-interview_q1, interview_q2, interview_q3, llm_rationale
-```
-
-List fields (green_flags, yellow_flags, skill_gaps, transferable_skills_map) must be pipe-separated strings.
-
-## Environment Variables Required
-```
-GEMINI_API_KEY=         # Required — Gemini API key (from Google AI Studio)
-GEMINI_MODEL=           # Optional — defaults to "gemini-2.0-flash"
-LOG_LEVEL=              # "DEBUG" | "INFO" | "WARNING"
-```
-
-## Hiring Decision Simulator Weight Schema
-The dashboard allows recruiter to override weights. Use this schema:
-```json
-{
-  "fit_weight": 0.35,       
-  "impact_weight": 0.30,    
-  "potential_weight": 0.20, 
-  "risk_weight": 0.15       
-}
-```
-- fit_weight range: 0.10 to 0.60
-- impact_weight range: 0.10 to 0.50
-- potential_weight range: 0.05 to 0.40
-- risk_weight range: 0.05 to 0.30
-
-Weights must always sum to 1.0. Normalize after each slider change.
+Maximum 3 total submissions. Last valid submission counts.
+Validate locally before each submission. Never submit without running the validator.

@@ -1,0 +1,113 @@
+{
+  "candidate_id": "CAND_0075439",
+  "evidence": [
+    {
+      "claim": "Implemented RAG-based customer support chatbot",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built document ingestion pipeline using OpenAI embeddings and Pinecone",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed evaluation framework using BLEU, ROUGE, and human-in-the-loop scores",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the evaluation framework with both automatic metrics (BLEU, ROUGE) and human-in-the-loop quality scores.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Deployment of RAG chatbot reduced ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built content recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built feature pipeline with ~200 features",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Most of my time went into the feature pipeline (~200 features)",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Launch of recommendation system improved 7-day retention by 6% and time spent per session by 14%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Expertise in Learning to Rank, Elasticsearch, Vector Search",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Learning to Rank (expert, 53mo), Elasticsearch (expert, 88mo), Vector Search (expert, 48mo)",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Owns the evaluation framework for RAG features",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Believes most retrieval problems are evaluation problems",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've learned that most retrieval problems are actually evaluation problems in disguise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes learning through shipping real systems",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "ASR",
+    "Elasticsearch",
+    "Embeddings",
+    "Feature Engineering",
+    "Flipkart",
+    "Genpact AI",
+    "Information Retrieval",
+    "JavaScript",
+    "Learning to Rank",
+    "LoRA",
+    "MLflow",
+    "Machine Learning Engineer",
+    "OpenSearch",
+    "Pinecone",
+    "RAG",
+    "Semantic Search",
+    "Vector Search"
+  ]
+}

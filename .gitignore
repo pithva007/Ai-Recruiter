@@ -17,11 +17,38 @@ build/
 venv/
 env/
 
-# Pipeline outputs (generated, not source)
-outputs/
-data/processed/
-data/raw/candidates.csv
-data/raw/candidates.json
+# ============================================================
+# Challenge dataset — too large for git (465 MB)
+# ============================================================
+# The symlink data/raw/candidates.jsonl points to the source-of-truth.
+# Neither the symlink target nor a direct copy should be committed.
+India_runs_data_and_ai_challenge/candidates.jsonl
+data/raw/candidates.jsonl
+
+# ============================================================
+# Pipeline outputs (generated — not source, commit only final submission)
+# ============================================================
+outputs/*.csv          # DO commit: your final {team_id}.csv before submitting
+outputs/*.pdf
+data/processed/features.pkl
+data/processed/embeddings/
+data/processed/scores/
+data/processed/candidate_profiles/
+
+# Keep .gitkeep sentinels (track empty dirs)
+!data/processed/.gitkeep
+!data/processed/embeddings/.gitkeep
+!data/processed/scores/.gitkeep
+!outputs/.gitkeep
+
+# Pre-computed artifacts (large binary files)
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.bin
+*.pt
+*.safetensors
 
 # FAISS index files
 *.faiss

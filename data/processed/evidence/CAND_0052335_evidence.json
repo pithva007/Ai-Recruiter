@@ -1,0 +1,108 @@
+{
+  "candidate_id": "CAND_0052335",
+  "evidence": [
+    {
+      "claim": "Built semantic search infrastructure using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I built our semantic search infrastructure from scratch — sentence-transformers, FAISS, the works.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with A/B testing, drift monitoring, and retraining schedules",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Along the way I've gotten comfortable with the operational side — A/B testing, drift monitoring, retraining schedules.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed relevance labeling pipeline using click-through data and human judgments",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the relevance labeling pipeline (mix of click-through data and explicit human judgments)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Implemented RAG-based customer support chatbot with Pinecone and OpenAI embeddings",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system. Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed evaluation framework for chatbot using BLEU, ROUGE, and human-in-the-loop scores",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the evaluation framework with both automatic metrics (BLEU, ROUGE) and human-in-the-loop quality scores.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via learning-to-rank model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Cut average ticket resolution time by 31% for supported categories",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Learned through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prefers ownership of a meaningful piece of the ML stack",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "ideally at product companies where I'd own a meaningful piece of the ML stack.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Aganitha",
+    "Applied ML Engineer",
+    "CNN",
+    "Data Science",
+    "Diffusion Models",
+    "FAISS",
+    "GANs",
+    "LangChain",
+    "Learning to Rank",
+    "LlamaIndex",
+    "Machine Learning",
+    "NLP",
+    "Pinecone",
+    "PyTorch",
+    "RAG",
+    "Semantic Search",
+    "Sentence Transformers",
+    "TTS",
+    "Weights & Biases",
+    "Wysa"
+  ]
+}

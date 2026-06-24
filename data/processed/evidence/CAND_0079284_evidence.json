@@ -1,0 +1,130 @@
+{
+  "candidate_id": "CAND_0079284",
+  "evidence": [
+    {
+      "claim": "Built ML-powered features in production",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "building ML-powered features in production",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led team migration from keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Trained and shipped ranking models for discovery feed using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed features across content metadata, user behavior signals, and item engagement history",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed features across three families: content metadata, user behavior signals, and item engagement history.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owned offline-online correlation analysis for A/B test metrics",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the offline-online correlation analysis that determined which offline metrics actually predicted A/B test outcomes.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built content recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Implemented item-item similarity via sentence-transformer embeddings for cold starts",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "The system uses item-item similarity (via sentence-transformer embeddings) for cold starts",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Managed feature pipeline of ~200 features",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Most of my time went into the feature pipeline (~200 features)",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6%",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved time spent per session by 14%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Values practical experience over theoretical background",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Views retrieval problems as evaluation problems",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've learned that most retrieval problems are actually evaluation problems in disguise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "Elasticsearch",
+    "Feature Engineering",
+    "Fine-tuning LLMs",
+    "Google",
+    "Illustrator",
+    "LlamaIndex",
+    "Machine Learning",
+    "Machine Learning Engineer",
+    "NLP",
+    "Project Management",
+    "QLoRA",
+    "Qdrant",
+    "Recommendation Systems",
+    "Swiggy",
+    "Terraform",
+    "Weights & Biases",
+    "XGBoost",
+    "scikit-learn"
+  ]
+}

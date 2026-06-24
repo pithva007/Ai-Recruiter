@@ -1,0 +1,91 @@
+{
+  "candidate_id": "CAND_0064326",
+  "evidence": [
+    {
+      "claim": "Expertise in scikit-learn, PyTorch, Milvus, Deep Learning, Semantic Search, Weaviate, RAG, Weights & Biases, BM25, Python, QLoRA, Reinforcement Learning, Object Detection, and Webpack.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: scikit-learn (advanced, 32mo, 40 endorsements); PyTorch (expert, 36mo, 5 endorsements); Milvus (advanced, 58mo, 1 endorsements); Deep Learning (expert, 73mo, 55 endorsements); Semantic Search (advanced, 37mo, 31 endorsements); Weaviate (expert, 51mo, 47 endorsements); Object Detection (intermediate, 32mo, 3 endorsements); RAG (expert, 46mo, 55 endorsements); Weights & Biases (advanced, 36mo, 21 endorsements); BM25 (advanced, 41mo, 1 endorsements); Webpack (beginner, 7mo, 14 endorsements); Python (expert, 60mo, 25 endorsements); QLoRA (expert, 76mo, 2 endorsements); Reinforcement Learning (intermediate, 21mo, 10 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% by evolving ranking layer from hand-tuned to learning-to-rank model.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months... Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31% via RAG-based chatbot deployment.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets and business metrics.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owns the evaluation framework for RAG-based features.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes practical system reliability and data quality over pure modeling.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Most of the work was infrastructure and data quality — the modeling part was almost the easy bit.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learns primarily through shipping real systems and production load testing.",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with offline-online correlation analysis for ranking models.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the offline-online correlation analysis that determined which offline metrics actually predicted A/B test outcomes.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Aganitha",
+    "Apple",
+    "BM25",
+    "Deep Learning",
+    "Freshworks",
+    "Machine Learning Engineer",
+    "Milvus",
+    "Object Detection",
+    "PyTorch",
+    "Python",
+    "QLoRA",
+    "RAG",
+    "Reinforcement Learning",
+    "Sarvam AI",
+    "Search Engineer",
+    "Semantic Search",
+    "Weaviate",
+    "Webpack",
+    "Weights & Biases",
+    "scikit-learn"
+  ]
+}

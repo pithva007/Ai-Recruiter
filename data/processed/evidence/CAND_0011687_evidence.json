@@ -1,0 +1,125 @@
+{
+  "candidate_id": "CAND_0011687",
+  "evidence": [
+    {
+      "claim": "Owned offline-online evaluation harness with 600GB index footprint and 15-minute refresh",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Most recently, I owned the offline-online evaluation harness — NDCG/MRR/recall calibrated to live A/B metrics, with an index footprint of ~600GB and incremental refresh every 15 min.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Developed calibration approach for recommendation metrics that held up for 18 months",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "After three iterations we landed on a calibration approach using simulated A/B tests that has held up over the last 18 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Curated 200K high-quality preference pairs for model training",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built the data curation pipeline that generated 200K high-quality preference pairs from recruiter labels",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Achieved sub-200ms p95 latency for LLM deployment",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployed the model via BentoML on Kubernetes with sub-200ms p95 latency",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Reduced inference cost from $0.04 to under $0.001",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Cost per inference dropped from $0.04 with GPT-3.5-fallback to under $0.001.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Technical stack includes TensorFlow, OpenSearch, FAISS, PEFT, LangChain, Weaviate, PyTorch, LlamaIndex",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: TensorFlow (expert, 56mo, 9 endorsements); OpenSearch (expert, 92mo, 31 endorsements); FAISS (advanced, 42mo, 41 endorsements); PEFT (expert, 75mo, 10 endorsements); LangChain (expert, 63mo, 55 endorsements); Weaviate (expert, 60mo, 29 endorsements); PyTorch (advanced, 39mo, 49 endorsements); LlamaIndex (expert, 67mo, 39 endorsements)",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Experience with fine-tuning LLaMA-2-7B and Mistral-7B using LoRA/QLoRA",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Fine-tuned LLaMA-2-7B and Mistral-7B variants using LoRA and QLoRA",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience deploying models via BentoML on Kubernetes",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Deployed the model via BentoML on Kubernetes",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with end-to-end ranking pipeline architecture",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the end-to-end ranking pipeline at a recommendations-heavy consumer product: candidate sourcing → embedding generation (using a fine-tuned BGE-large) → Pinecone retrieval → learning-to-rank re-scoring (XGBoost) → behavioral-signal integration.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Believes ranking problems are solved by feature engineering and rigorous eval over model size",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I believe most ranking problems are solved by careful feature engineering and rigorous eval, not by bigger models.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values understanding tradeoffs in both early-stage and large-scale environments",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've shipped systems in both early-stage product companies and at larger scale, and I've spent enough time on both that I know which tradeoffs apply where.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Ph.D in Artificial Intelligence",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Education: Ph.D in Artificial Intelligence at IIT Delhi (2014)",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "BentoML",
+    "Embeddings",
+    "FAISS",
+    "Feature Engineering",
+    "Image Classification",
+    "Krutrim",
+    "Kubernetes",
+    "LLM",
+    "LangChain",
+    "LlamaIndex",
+    "LoRA",
+    "MLOps",
+    "Niramai",
+    "OpenSearch",
+    "PEFT",
+    "PyTorch",
+    "QLoRA",
+    "Semantic Search",
+    "Senior Machine Learning Engineer",
+    "Senior NLP Engineer",
+    "TensorFlow",
+    "Weaviate"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "candidate_id": "CAND_0078002",
+  "evidence": [
+    {
+      "claim": "Used XGBoost and LightGBM for ranking models",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built content recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owned offline-online correlation analysis for A/B testing",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Owned the offline-online correlation analysis that determined which offline metrics actually predicted A/B test outcomes.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Shipped RAG-based feature and owns the evaluation framework",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned through shipping real systems in production",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficient in operational ML (A/B testing, drift monitoring, retraining)",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Along the way I've gotten comfortable with the operational side — A/B testing, drift monitoring, retraining schedules.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values cross-functional alignment over pure modeling",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target... that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Technical stack includes pgvector, Flask, FastAPI, TensorFlow, NLP, BentoML, scikit-learn, Time Series, Hugging Face, Weaviate, LlamaIndex, Deep Learning, QLoRA, LangChain, Haystack",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Statistical Modeling... pgvector... Flask... FastAPI... TensorFlow... NLP... BentoML... scikit-learn... Time Series... Hugging Face Transformers... Weaviate... LlamaIndex... Deep Learning... QLoRA... LangChain... Haystack",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Applied ML Engineer",
+    "BentoML",
+    "CRED",
+    "Deep Learning",
+    "FastAPI",
+    "Flask",
+    "Genpact AI",
+    "Haystack",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "LangChain",
+    "LlamaIndex",
+    "Machine Learning Engineer",
+    "Meta",
+    "NLP",
+    "QLoRA",
+    "RAG",
+    "Senior Data Scientist",
+    "Statistical Modeling",
+    "TensorFlow",
+    "Time Series",
+    "Weaviate",
+    "XGBoost",
+    "pgvector",
+    "scikit-learn"
+  ]
+}

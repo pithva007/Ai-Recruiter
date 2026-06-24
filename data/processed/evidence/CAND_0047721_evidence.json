@@ -1,0 +1,116 @@
+{
+  "candidate_id": "CAND_0047721",
+  "evidence": [
+    {
+      "claim": "Built content recommendation system using collaborative filtering, content-based ranking, sentence-transformer embeddings, and gradient-boosted models",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users that combined collaborative filtering with content-based ranking. The system uses item-item similarity (via sentence-transformer embeddings) for cold starts and a gradient-boosted model trained on engagement signals for warm users.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Managed feature pipeline with ~200 features and A/B testing infrastructure",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Most of my time went into the feature pipeline (~200 features) and the A/B testing infrastructure.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% via recommendation system launch",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed relevance labeling pipeline, feature pipeline, and training/eval workflow",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the relevance labeling pipeline (mix of click-through data and explicit human judgments), the feature pipeline, and the training/eval workflow.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% through ranking model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Acted as de-facto ML lead on a small team",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I've been the de-facto ML lead on a small team, shipping models across NLP and recsys.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned Google Cloud Professional ML Engineer certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Google Cloud Professional ML Engineer (Google Cloud, 2024)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes practical experience over theoretical background",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Believes retrieval problems are evaluation problems in disguise",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've learned that most retrieval problems are actually evaluation problems in disguise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "BM25",
+    "Diffusion Models",
+    "FAISS",
+    "Forecasting",
+    "Image Classification",
+    "Information Retrieval",
+    "Learning to Rank",
+    "MLOps",
+    "Machine Learning",
+    "Microsoft",
+    "Milvus",
+    "NLP",
+    "NLP Engineer",
+    "Observe.AI",
+    "OpenCV",
+    "Photoshop",
+    "Qdrant",
+    "RAG",
+    "Redux",
+    "Salesforce CRM",
+    "Senior Data Scientist"
+  ]
+}

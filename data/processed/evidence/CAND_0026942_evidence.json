@@ -1,0 +1,102 @@
+{
+  "candidate_id": "CAND_0026942",
+  "evidence": [
+    {
+      "claim": "Built NLP pipelines for sentiment analysis and document classification",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built NLP pipelines for sentiment analysis and document classification — primarily for an internal feedback-analytics dashboard.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Transitioned from sklearn-based bag-of-words models to DistilBERT for classification",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Started with sklearn-based bag-of-words models, then moved to transformer-based classifiers (DistilBERT) for the harder classes.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed churn, conversion, and lifetime value predictive models for e-commerce",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Worked on customer-facing predictive modeling for an e-commerce platform — churn prediction, conversion likelihood, lifetime value estimation.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built gradient-boosted tree models using ~80 hand-engineered features",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "main models were gradient-boosted trees with ~80 hand-engineered features.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Churn model deployed and used by the retention team",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The churn model is now used by the retention team",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Self-directed learning via DeepLearning.AI certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "LangChain for LLM Application Development (DeepLearning.AI, 2023)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Professional certification in ML engineering",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Google Cloud Professional ML Engineer (Google Cloud, 2021)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Transparent about current skill gaps in engineering and infra",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I'm strongest at the modeling and analysis side; comfortable with Python, scikit-learn, pandas, and standard MLOps tooling, but I'm still building depth on the engineering and infra side of production ML.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Demonstrated proficiency in a wide range of ML tools and frameworks",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Learning to Rank, LangChain, CNN, Microservices, TensorFlow, BentoML, Time Series, MLflow, Reinforcement Learning, Computer Vision, Information Retrieval, Data Science, Recommendation Systems, Haystack, scikit-learn, REST APIs, OpenCV",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Specialist",
+    "BentoML",
+    "CNN",
+    "Computer Vision",
+    "Content Writing",
+    "Data Science",
+    "Haystack",
+    "Information Retrieval",
+    "Junior ML Engineer",
+    "LangChain",
+    "Learning to Rank",
+    "MLflow",
+    "Microservices",
+    "NLP",
+    "OpenCV",
+    "REST APIs",
+    "Recommendation Systems",
+    "Reinforcement Learning",
+    "TCS",
+    "TensorFlow",
+    "Time Series",
+    "Verloop.io",
+    "scikit-learn"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "candidate_id": "CAND_0068351",
+  "evidence": [
+    {
+      "claim": "Expertise in pgvector, Deep Learning, Qdrant, Elasticsearch, Feature Engineering, Text Encoders, PEFT, Python, Haystack, Machine Learning, LoRA, Ranking Systems, Information Retrieval Systems, Search Backend, and GANs.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: pgvector (expert, 77mo, 18 endorsements); Deep Learning (expert, 44mo, 50 endorsements); Qdrant (expert, 78mo, 47 endorsements); Elasticsearch (expert, 44mo, 39 endorsements); Feature Engineering (advanced, 43mo, 25 endorsements); Text Encoders (expert, 51mo, 9 endorsements); PEFT (expert, 94mo, 58 endorsements); Spring Boot (beginner, 13mo, 14 endorsements); Python (expert, 67mo, 11 endorsements); Redis (intermediate, 30mo, 1 endorsements); Haystack (expert, 60mo, 18 endorsements); Machine Learning (expert, 68mo, 12 endorsements); Open-source ML libraries (expert, 81mo, 0 endorsements); Ranking Systems (advanced, 23mo, 35 endorsements); LoRA (expert, 49mo, 34 endorsements); Information Retrieval Systems (advanced, 39mo, 33 endorsements); Search Backend (advanced, 40mo, 10 endorsements); GANs (intermediate, 16mo, 15 endorsements); NLP (advanced, 27mo, 49 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed ranking layer for a flagship product serving millions of items to millions of users.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Designed the ranking layer for the company's flagship product: how do we surface the right thing at the right time, across millions of items, for millions of users.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Grew a team from 1 to 6 engineers while overhauling a matching layer.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "The team grew from just me to 6 engineers over the course of that work.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Prefers shipping real systems over research-only work; prioritizes v1 in 6 weeks over v2 in 6 months.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Strong preference for shipping real systems over research-only work; I'd rather have a working v1 in 6 weeks than a perfect v2 in 6 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Learned from past mistakes including over-engineering and optimizing metrics that didn't correlate with online engagement.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've made the standard mistakes — over-engineering early, optimizing offline metrics that didn't move online numbers, building beautiful infrastructure for features that users didn't actually want — so I notice them faster now.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built offline evaluation metrics that correlated with online engagement.",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Spent a fair amount of time on the eval side — building offline metrics that actually correlated with online engagement, which turned out to be the hardest part.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Deep Learning",
+    "Elasticsearch",
+    "Feature Engineering",
+    "GANs",
+    "Haystack",
+    "Information Retrieval Systems",
+    "Lead AI Engineer",
+    "LoRA",
+    "Machine Learning",
+    "Microsoft",
+    "NLP",
+    "Open-source ML libraries",
+    "PEFT",
+    "Python",
+    "Qdrant",
+    "Ranking Systems",
+    "Redis",
+    "Sarvam AI",
+    "Search Backend",
+    "Senior Machine Learning Engineer",
+    "Spring Boot",
+    "Staff Machine Learning Engineer",
+    "Text Encoders",
+    "Verloop.io",
+    "pgvector"
+  ]
+}

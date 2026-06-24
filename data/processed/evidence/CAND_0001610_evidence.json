@@ -1,0 +1,104 @@
+{
+  "candidate_id": "CAND_0001610",
+  "evidence": [
+    {
+      "claim": "Built semantic search infrastructure using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built a semantic search feature for an internal knowledge base... Used sentence-transformers... with FAISS",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built content recommendation system for 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Developed feature pipeline with ~200 features",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Most of my time went into the feature pipeline (~200 features)",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Trained and shipped ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficiency in various ML tools and frameworks including Haystack, Kubeflow, Pinecone, PyTorch, and scikit-learn",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Speech Recognition... Haystack... Deep Learning... Kubeflow... Pinecone... scikit-learn... PyTorch... FAISS",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learns primarily through shipping real systems and production experience",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Computer Vision",
+    "Data Science",
+    "Deep Learning",
+    "Dream11",
+    "Elasticsearch",
+    "FAISS",
+    "Feature Engineering",
+    "Fine-tuning LLMs",
+    "Flipkart",
+    "Haystack",
+    "Information Retrieval",
+    "Kubeflow",
+    "Machine Learning Engineer",
+    "Milvus",
+    "NLP",
+    "Pinecone",
+    "PyTorch",
+    "Reinforcement Learning",
+    "Salesforce CRM",
+    "Senior Data Scientist",
+    "Sentence Transformers",
+    "Speech Recognition",
+    "XGBoost",
+    "Zoho",
+    "scikit-learn"
+  ]
+}

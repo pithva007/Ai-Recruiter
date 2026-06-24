@@ -1,0 +1,120 @@
+{
+  "candidate_id": "CAND_0081686",
+  "evidence": [
+    {
+      "claim": "Used Kubeflow, Embeddings, FAISS, Feature Engineering, OpenCV, Milvus, BigQuery, CNN, Python, LangChain, Semantic Search, QLoRA, Java, LLMs, Hugging Face Transformers, Weights & Biases",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Machine Learning (expert, 84mo, 25 endorsements); Kubeflow (advanced, 33mo, 49 endorsements); Embeddings (expert, 59mo, 30 endorsements); FAISS (expert, 49mo, 26 endorsements); Feature Engineering (intermediate, 13mo, 11 endorsements); OpenCV (intermediate, 30mo, 12 endorsements); Milvus (expert, 93mo, 55 endorsements); BigQuery (beginner, 2mo, 5 endorsements); CNN (advanced, 43mo, 46 endorsements); Python (expert, 78mo, 59 endorsements); LangChain (expert, 48mo, 36 endorsements); Semantic Search (expert, 68mo, 44 endorsements); QLoRA (expert, 75mo, 8 endorsements); Java (beginner, 3mo, 4 endorsements); LLMs (expert, 61mo, 38 endorsements); Hugging Face Transformers (advanced, 21mo, 37 endorsements); Forecasting (advanced, 44mo, 14 endorsements); Weights & Biases (intermediate, 12mo, 0 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% at Netflix",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% at Niramai",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% at Zoho",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built content recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Developed semantic search for internal knowledge base of ~500K documents",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed Deep Learning Specialization",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: Deep Learning Specialization (Coursera/DeepLearning.AI, 2024)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes shipping real systems over academic theory",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Focuses on infrastructure and data quality over modeling",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Most of the work was infrastructure and data quality — the modeling part was almost the easy bit.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Leadership",
+      "evidence_type": "leadership",
+      "confidence": "low",
+      "source_text": null,
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "BigQuery",
+    "CNN",
+    "Embeddings",
+    "FAISS",
+    "Feature Engineering",
+    "Forecasting",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "Java",
+    "Kubeflow",
+    "LLMs",
+    "LangChain",
+    "Machine Learning",
+    "Milvus",
+    "Netflix",
+    "Niramai",
+    "OpenCV",
+    "Python",
+    "QLoRA",
+    "Recommendation Systems Engineer",
+    "Search Engineer",
+    "Semantic Search",
+    "Weights & Biases",
+    "Zoho"
+  ]
+}

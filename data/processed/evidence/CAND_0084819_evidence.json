@@ -1,0 +1,102 @@
+{
+  "candidate_id": "CAND_0084819",
+  "evidence": [
+    {
+      "claim": "Implemented a RAG-based customer support chatbot",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built document ingestion pipeline using OpenAI embeddings and Pinecone",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Acted as de-facto ML lead on a small team",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I've been the de-facto ML lead on a small team, shipping models across NLP and recsys.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes learning through shipping real systems over academic background",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Pragmatic approach to debugging and signal identification",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficiency in various ML and search technologies including Semantic Search, BM25, MLOps, OpenSearch, LlamaIndex, scikit-learn, PyTorch, Weaviate, MLflow, LoRA, Sentence Transformers, Reinforcement Learning, and Speech Recognition",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Semantic Search (advanced, 21mo, 56 endorsements); BM25 (expert, 64mo, 54 endorsements); MLOps (intermediate, 20mo, 15 endorsements); OpenSearch (expert, 78mo, 53 endorsements); Recommendation Systems (expert, 40mo, 47 endorsements); LlamaIndex (expert, 45mo, 3 endorsements); scikit-learn (expert, 42mo, 38 endorsements); GCP (beginner, 8mo, 12 endorsements); Docker (beginner, 5mo, 15 endorsements); PyTorch (advanced, 25mo, 3 endorsements); Weaviate (expert, 57mo, 52 endorsements); MLflow (intermediate, 33mo, 9 endorsements); LoRA (expert, 86mo, 60 endorsements); Sentence Transformers (expert, 68mo, 9 endorsements); Reinforcement Learning (advanced, 53mo, 15 endorsements); Speech Recognition (advanced, 41mo, 34 endorsements); Information Retrieval (expert, 80mo, 37 endorsements)",
+      "quantified": true,
+      "weight": 1.5
+    }
+  ],
+  "entities": [
+    "BM25",
+    "Docker",
+    "Dream11",
+    "GCP",
+    "Information Retrieval",
+    "LlamaIndex",
+    "LoRA",
+    "MLOps",
+    "MLflow",
+    "OpenSearch",
+    "Pinecone",
+    "PyTorch",
+    "RAG",
+    "Razorpay",
+    "Recommendation Systems",
+    "Reinforcement Learning",
+    "Search Engineer",
+    "Semantic Search",
+    "Senior Data Scientist",
+    "Sentence Transformers",
+    "Speech Recognition",
+    "Weaviate",
+    "scikit-learn"
+  ]
+}

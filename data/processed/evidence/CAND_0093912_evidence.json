@@ -1,0 +1,108 @@
+{
+  "candidate_id": "CAND_0093912",
+  "evidence": [
+    {
+      "claim": "Built ML-powered features in production",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Machine learning engineer with 5.3 years of experience building ML-powered features in production.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Shipped RAG-based feature and owns the evaluation framework",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Evolved ranking layer from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via ranking model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Developed semantic search for 500K document knowledge base",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Used sentence-transformers and FAISS for semantic search",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over academic theory",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with Feature Engineering, SAP, CNN, Milvus, Embeddings, Recommendation Systems, Vector Search, Haystack, Learning to Rank, Elasticsearch, FastAPI, Forecasting",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Feature Engineering... SAP... CNN... Milvus... Embeddings... Recommendation Systems... Vector Search... Haystack... Learning to Rank... Elasticsearch... FastAPI... Forecasting",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Apple",
+    "CNN",
+    "Elasticsearch",
+    "Embeddings",
+    "FAISS",
+    "FastAPI",
+    "Feature Engineering",
+    "Flipkart",
+    "Forecasting",
+    "Haystack",
+    "Learning to Rank",
+    "Milvus",
+    "RAG",
+    "Razorpay",
+    "Recommendation Systems",
+    "SAP",
+    "Sales",
+    "Search Engineer",
+    "Senior Data Scientist",
+    "Vector Search"
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "candidate_id": "CAND_0060054",
+  "evidence": [
+    {
+      "claim": "Developed semantic search for 500K documents using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built content recommendation system for 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users that combined collaborative filtering with content-based ranking.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Managed feature pipeline with ~200 features and A/B testing infrastructure",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Most of my time went into the feature pipeline (~200 features) and the A/B testing infrastructure.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Trained and shipped ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline-online correlation analysis",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust. Owned the offline-online correlation analysis that determined which offline metrics actually predicted A/B test outcomes.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned LangChain for LLM Application Development certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "LangChain for LLM Application Development (DeepLearning.AI, 2022)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned AWS Certified Machine Learning Specialty",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "AWS Certified Machine Learning Specialty (AWS, 2018)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Technical stack includes Diffusion Models, TensorFlow, Weaviate, FAISS, Time Series, Elasticsearch",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Diffusion Models (intermediate, 36mo, 14 endorsements); TensorFlow (expert, 84mo, 41 endorsements); Weaviate (advanced, 18mo, 11 endorsements); FAISS (advanced, 59mo, 37 endorsements); Time Series (intermediate, 36mo, 5 endorsements); Elasticsearch (expert, 53mo, 17 endorsements)",
+      "quantified": true,
+      "weight": 1.5
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "AWS",
+    "Diffusion Models",
+    "Elasticsearch",
+    "FAISS",
+    "Feature Engineering",
+    "LLM",
+    "Mad Street Den",
+    "Prompt Engineering",
+    "Recommendation Systems",
+    "Recommendation Systems Engineer",
+    "Semantic Search",
+    "TensorFlow",
+    "Time Series",
+    "Uber",
+    "Weaviate",
+    "XGBoost",
+    "Zomato"
+  ]
+}

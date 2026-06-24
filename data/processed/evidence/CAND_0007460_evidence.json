@@ -1,0 +1,99 @@
+{
+  "candidate_id": "CAND_0007460",
+  "evidence": [
+    {
+      "claim": "Built ML-powered features in production",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "building ML-powered features in production",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed recommendation system for discovery feed",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "my main project for the last 18 months has been the recommendation system that powers our discovery feed",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Experience with A/B testing, drift monitoring, and retraining schedules",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "A/B testing, drift monitoring, retraining schedules",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Designed relevance labeling, feature, and training/eval pipelines",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the relevance labeling pipeline (mix of click-through data and explicit human judgments), the feature pipeline, and the training/eval workflow.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Proficiency in LangChain, PEFT, Embeddings, Haystack, PostgreSQL, Weaviate, BentoML, YOLO, Go, LoRA, RAG, Airflow, Diffusion Models, Computer Vision, Semantic Search, NLP",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: LangChain (expert, 44mo), PEFT (expert, 42mo), Embeddings (advanced, 24mo), Haystack (expert, 64mo), PostgreSQL (intermediate, 19mo), Weaviate (expert, 72mo), BentoML (advanced, 35mo), YOLO (advanced, 30mo), Go (beginner, 2mo), LoRA (expert, 68mo), RAG (expert, 79mo), Airflow (intermediate, 24mo), Diffusion Models (advanced, 24mo), Computer Vision (advanced, 47mo), Semantic Search (expert, 38mo), NLP (expert, 37mo)",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Learned through shipping real systems and production load",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Focus on infrastructure and data quality over modeling",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Most of the work was infrastructure and data quality — the modeling part was almost the easy bit.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Airflow",
+    "BentoML",
+    "Computer Vision",
+    "Diffusion Models",
+    "Embeddings",
+    "Go",
+    "Haystack",
+    "Information Retrieval",
+    "LangChain",
+    "LoRA",
+    "NLP",
+    "PEFT",
+    "PostgreSQL",
+    "RAG",
+    "Recommendation Systems",
+    "Salesforce",
+    "Semantic Search",
+    "Weaviate",
+    "YOLO"
+  ]
+}

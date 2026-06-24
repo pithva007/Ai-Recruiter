@@ -1,0 +1,92 @@
+{
+  "candidate_id": "CAND_0030348",
+  "evidence": [
+    {
+      "claim": "Used LlamaIndex, Deep Learning, TTS, MLOps, PyTorch, Spring Boot, OpenCV, Embeddings, Vector Search, Elasticsearch, Redis, pgvector, Haystack, GANs, and Python",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: LlamaIndex (expert, 96mo, 7 endorsements); Deep Learning (advanced, 21mo, 30 endorsements); TTS (advanced, 58mo, 43 endorsements); MLOps (advanced, 29mo, 3 endorsements); PyTorch (expert, 65mo, 24 endorsements); Spring Boot (beginner, 14mo, 0 endorsements); OpenCV (intermediate, 23mo, 15 endorsements); Marketing (beginner, 5mo, 7 endorsements); Embeddings (advanced, 35mo, 20 endorsements); Vector Search (advanced, 47mo, 45 endorsements); Elasticsearch (advanced, 37mo, 11 endorsements); Redis (intermediate, 14mo, 14 endorsements); pgvector (expert, 94mo, 53 endorsements); Haystack (expert, 95mo, 25 endorsements); GANs (advanced, 34mo, 53 endorsements); Python (expert, 94mo, 35 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed semantic search for 500K documents using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS for fast nearest-neighbor retrieval.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built content recommendation system for 10M+ users using collaborative filtering and gradient-boosted models",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users that combined collaborative filtering with content-based ranking. The system uses item-item similarity (via sentence-transformer embeddings) for cold starts and a gradient-boosted model trained on engagement signals for warm users.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup, validated through human relevance judgments.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led team migrating keyword-search-based product to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over theoretical learning",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "BYJU'S",
+    "Deep Learning",
+    "Elasticsearch",
+    "Embeddings",
+    "FAISS",
+    "GANs",
+    "Haystack",
+    "LlamaIndex",
+    "MLOps",
+    "Machine Learning Engineer",
+    "Marketing",
+    "OpenCV",
+    "PolicyBazaar",
+    "PyTorch",
+    "Python",
+    "Redis",
+    "Senior Data Scientist",
+    "Spring Boot",
+    "TTS",
+    "Vector Search",
+    "pgvector"
+  ]
+}

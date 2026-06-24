@@ -1,0 +1,91 @@
+{
+  "candidate_id": "CAND_0008239",
+  "evidence": [
+    {
+      "claim": "4 years of experience building ML-powered features in production",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Machine learning engineer with 4.0 years of experience building ML-powered features in production.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "De-facto ML lead on a small team",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I've been the de-facto ML lead on a small team, shipping models across NLP and recsys.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via learning-to-rank model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Designed relevance labeling pipeline, feature pipeline, and training/eval workflow",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the relevance labeling pipeline (mix of click-through data and explicit human judgments), the feature pipeline, and the training/eval workflow.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learns primarily through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficient in a wide range of ML tools and frameworks including Milvus, PyTorch, LangChain, and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Milvus... Computer Vision... Feature Engineering... Semantic Search... Diffusion Models... Elasticsearch... LangChain... Weaviate... Forecasting... Recommendation Systems... Vector Search... MLflow... Python... BentoML... PyTorch... FAISS... scikit-learn... PEFT",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Pragmatic approach to debugging production systems",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Apple",
+    "BentoML",
+    "Computer Vision",
+    "Diffusion Models",
+    "Elasticsearch",
+    "FAISS",
+    "Feature Engineering",
+    "Forecasting",
+    "LangChain",
+    "MLflow",
+    "Milvus",
+    "PEFT",
+    "PyTorch",
+    "Python",
+    "Recommendation Systems",
+    "Semantic Search",
+    "Vector Search",
+    "Weaviate",
+    "scikit-learn"
+  ]
+}

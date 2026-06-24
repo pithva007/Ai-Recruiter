@@ -1,0 +1,78 @@
+{
+  "candidate_id": "CAND_0029367",
+  "evidence": [
+    {
+      "claim": "Used GANs, Haystack, BentoML, MLflow, TensorFlow, QLoRA, FAISS, Sentence Transformers, RAG, NLP, LangChain, Image Classification, PyTorch, Pinecone, Vector Search, Forecasting, and Recommendation Systems",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: GANs (advanced, 49mo, 16 endorsements); Haystack (advanced, 60mo, 50 endorsements); BentoML (intermediate, 12mo, 7 endorsements); MLflow (advanced, 20mo, 25 endorsements); TensorFlow (expert, 60mo, 28 endorsements); QLoRA (advanced, 49mo, 10 endorsements); FAISS (expert, 90mo, 4 endorsements); Sentence Transformers (expert, 95mo, 47 endorsements); RAG (expert, 89mo, 23 endorsements); NLP (expert, 83mo, 2 endorsements); LangChain (expert, 86mo, 49 endorsements); Image Classification (intermediate, 20mo, 12 endorsements); PyTorch (expert, 79mo, 25 endorsements); Pinecone (expert, 53mo, 47 endorsements); Vector Search (advanced, 29mo, 34 endorsements); Forecasting (advanced, 59mo, 52 endorsements); Recommendation Systems (expert, 36mo, 60 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed semantic search for 500K documents with 35% relevance improvement",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents... Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Implemented RAG-based chatbot reducing ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Acted as de-facto ML lead on a small team",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I've been the de-facto ML lead on a small team, shipping models across NLP and recsys.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes learning through shipping real systems and production experience",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experienced in debugging production ranking issues and distinguishing signal from noise",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Applied ML Engineer",
+    "BentoML",
+    "CRED",
+    "FAISS",
+    "Forecasting",
+    "GANs",
+    "Haystack",
+    "Image Classification",
+    "LangChain",
+    "MLflow",
+    "NLP",
+    "Pinecone",
+    "PyTorch",
+    "QLoRA",
+    "RAG",
+    "Recommendation Systems",
+    "Rephrase.ai",
+    "Senior Data Scientist",
+    "Sentence Transformers",
+    "TensorFlow",
+    "Vector Search",
+    "Vedantu"
+  ]
+}

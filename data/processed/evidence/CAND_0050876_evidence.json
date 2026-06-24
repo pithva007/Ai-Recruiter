@@ -1,0 +1,113 @@
+{
+  "candidate_id": "CAND_0050876",
+  "evidence": [
+    {
+      "claim": "Used SQL, Qdrant, MLOps, FAISS, scikit-learn, Weights & Biases, LlamaIndex, Forecasting, OpenSearch, YOLO, Kubeflow, QLoRA, Sentence Transformers, Image Classification, Python, Prompt Engineering, PyTorch",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: SQL... Qdrant... MLOps... FAISS... scikit-learn... Weights & Biases... LlamaIndex... Forecasting... Machine Learning... OpenSearch... YOLO... Kubeflow... QLoRA... Sentence Transformers... Image Classification... Python... Prompt Engineering... PyTorch",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% at Freshworks",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% at Yellow.ai",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% at Razorpay",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built recommendation system serving 10M+ users at Yellow.ai",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built recommendation system serving 10M+ users at Razorpay",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over theoretical knowledge",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned LangChain for LLM Application Development and AWS Certified Machine Learning Specialty certifications",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: LangChain for LLM Application Development (DeepLearning.AI, 2018); AWS Certified Machine Learning Specialty (AWS, 2018)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Evolved ranking layer from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "AWS",
+    "Applied ML Engineer",
+    "FAISS",
+    "Forecasting",
+    "Freshworks",
+    "Image Classification",
+    "Kubeflow",
+    "LLM",
+    "LlamaIndex",
+    "MLOps",
+    "Machine Learning",
+    "OpenSearch",
+    "Prompt Engineering",
+    "PyTorch",
+    "Python",
+    "QLoRA",
+    "Qdrant",
+    "Razorpay",
+    "Recommendation Systems Engineer",
+    "SQL",
+    "Sentence Transformers",
+    "Weights & Biases",
+    "YOLO",
+    "Yellow.ai",
+    "scikit-learn"
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "candidate_id": "CAND_0081852",
+  "evidence": [
+    {
+      "claim": "Built RAG-based customer support chatbot, document ingestion pipeline, and answer-generation layer",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system. Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone) and the answer-generation layer",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Used OpenAI embeddings, Pinecone, GPT-4, BLEU, and ROUGE metrics",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "embedding via OpenAI embeddings, storing in Pinecone) and the answer-generation layer (initially GPT-4... Designed the evaluation framework with both automatic metrics (BLEU, ROUGE)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built and operated production ML pipelines using MLflow, Kubeflow, and internal feature store",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow for experiment tracking, Kubeflow for orchestration, and our internal feature store.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Expertise in Salesforce CRM, Semantic Search, TTS, Milvus, BentoML, pgvector, Weaviate, Haystack, Vector Search, LoRA, MLOps, CNN",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Salesforce CRM... Semantic Search... TTS... Milvus... BentoML... pgvector... Weaviate... Haystack... Vector Search... LoRA... MLOps... CNN",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Deployment of RAG-based chatbot cut average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built churn prediction model used by customer success team",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "My main project was a churn prediction model that's now used by the customer success team to prioritize outreach.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led team migration from keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Mentored a junior engineer through their first end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed LangChain for LLM Application Development and Deep Learning Specialization",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: LangChain for LLM Application Development (DeepLearning.AI, 2020); Deep Learning Specialization (Coursera/DeepLearning.AI, 2021)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over academic theory",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "BentoML",
+    "CNN",
+    "Computer Vision",
+    "GPT",
+    "Haystack",
+    "LLM",
+    "LoRA",
+    "MLOps",
+    "MLflow",
+    "Mad Street Den",
+    "Milvus",
+    "Nykaa",
+    "Pinecone",
+    "RAG",
+    "Salesforce CRM",
+    "Semantic Search",
+    "Senior Data Scientist",
+    "Speech Recognition",
+    "TTS",
+    "Vector Search",
+    "Weaviate",
+    "pgvector"
+  ]
+}

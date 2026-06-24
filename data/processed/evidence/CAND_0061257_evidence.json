@@ -1,0 +1,99 @@
+{
+  "candidate_id": "CAND_0061257",
+  "evidence": [
+    {
+      "claim": "Designed the ranking layer for LinkedIn's flagship product",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the ranking layer for the company's flagship product",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Managed data pipelines, evaluation frameworks, and production health for ranking systems",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "The hard problem was rarely the modeling — it was the data pipeline that fed the models, the evaluation framework that told us whether they worked, and the operational discipline of keeping all of it healthy in production.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owned ranking layer, data pipelines, and evaluation frameworks for 14 months",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "I owned all three across roughly 14 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Owned search and discovery experience end-to-end at Yellow.ai",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the search and discovery experience end-to-end at a consumer product",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built offline metrics that correlated with online engagement",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "building offline metrics that actually correlated with online engagement",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated directly with product/PM on defining user relevance",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "direct collaboration with product/PM on what 'relevance' actually means for our users.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Strong preference for shipping real systems over research-only work",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Strong preference for shipping real systems over research-only work; I'd rather have a working v1 in 6 weeks than a perfect v2 in 6 months.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned from past mistakes in over-engineering and optimizing non-impactful metrics",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've made the standard mistakes — over-engineering early, optimizing offline metrics that didn't move online numbers, building beautiful infrastructure for features that users didn't actually want — so I notice them faster now.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficiency in PEFT, Haystack, Time Series, Machine Learning, Information Retrieval Systems, Search Infrastructure, Image Classification, TTS, Feature Engineering, ETL, Model Adaptation, Indexing Algorithms, Workflow Orchestration, Search Backend, Python, Vector Representations",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: PEFT (advanced, 33mo, 5 endorsements); Haystack (advanced, 43mo, 36 endorsements); Time Series (advanced, 28mo, 0 endorsements); Machine Learning (expert, 61mo, 23 endorsements); Information Retrieval Systems (advanced, 58mo, 32 endorsements); Search Infrastructure (expert, 83mo, 37 endorsements); Image Classification (advanced, 22mo, 37 endorsements); TTS (intermediate, 24mo, 3 endorsements); Feature Engineering (advanced, 27mo, 9 endorsements); ETL (intermediate, 14mo, 8 endorsements); Model Adaptation (expert, 79mo, 54 endorsements); Indexing Algorithms (expert, 39mo, 56 endorsements); Workflow Orchestration (expert, 62mo, 59 endorsements); Search Backend (advanced, 23mo, 10 endorsements); Python (expert, 72mo, 38 endorsements); Vector Representations (expert, 41mo, 55 endorsements)",
+      "quantified": true,
+      "weight": 1.5
+    }
+  ],
+  "entities": [
+    "ETL",
+    "Feature Engineering",
+    "Haystack",
+    "Image Classification",
+    "Indexing Algorithms",
+    "Information Retrieval Systems",
+    "LinkedIn",
+    "Machine Learning",
+    "Model Adaptation",
+    "PEFT",
+    "Python",
+    "Search Backend",
+    "Search Infrastructure",
+    "Senior Applied Scientist",
+    "Staff Machine Learning Engineer",
+    "TTS",
+    "Time Series",
+    "Vector Representations",
+    "Workflow Orchestration",
+    "Yellow.ai"
+  ]
+}

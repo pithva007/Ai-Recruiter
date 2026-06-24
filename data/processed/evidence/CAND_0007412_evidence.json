@@ -1,0 +1,102 @@
+{
+  "candidate_id": "CAND_0007412",
+  "evidence": [
+    {
+      "claim": "Implemented RAG-based customer support chatbot using OpenAI embeddings, Pinecone, GPT-4, and fine-tuned models",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system. Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone) and the answer-generation layer (initially GPT-4, then a fine-tuned smaller model for cost control).",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Deployment of RAG chatbot cut average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Trained and shipped ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% by evolving search ranking from hand-tuned to learning-to-rank",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Acted as de-facto ML lead on a small team",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I've been the de-facto ML lead on a small team, shipping models across NLP and recsys.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets for recommendation systems",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned through shipping real systems and production load testing",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficiency in various ML tools including PyTorch, Kubeflow, BM25, and Milvus",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: ... PyTorch (expert), BM25 (expert), Kubeflow (intermediate), RAG (advanced), Milvus (advanced)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed evaluation frameworks using BLEU, ROUGE, and human-in-the-loop scores",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the evaluation framework with both automatic metrics (BLEU, ROUGE) and human-in-the-loop quality scores.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Applied ML Engineer",
+    "BM25",
+    "Data Science",
+    "GPT",
+    "Glance",
+    "Kubeflow",
+    "LinkedIn",
+    "Locobuzz",
+    "Machine Learning Engineer",
+    "Milvus",
+    "Node.js",
+    "Object Detection",
+    "Photoshop",
+    "Pinecone",
+    "PyTorch",
+    "RAG",
+    "Recommendation Systems",
+    "Recommendation Systems Engineer",
+    "Search Engineer",
+    "Swiggy",
+    "XGBoost",
+    "Zoho",
+    "scikit-learn"
+  ]
+}

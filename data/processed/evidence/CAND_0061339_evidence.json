@@ -1,0 +1,92 @@
+{
+  "candidate_id": "CAND_0061339",
+  "evidence": [
+    {
+      "claim": "Used NLP, recommendation systems, applied AI, feature engineering, deployment, Information Retrieval, YOLO, Data Pipelines, Milvus, BentoML, TensorFlow, Vector Search, LlamaIndex, OpenSearch, MLflow, LLMs, Diffusion Models, Prompt Engineering, and TTS.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Information Retrieval... YOLO... Data Pipelines... Milvus... BentoML... TensorFlow... Vector Search... LlamaIndex... OpenSearch... MLflow... LLMs... Diffusion Models... Prompt Engineering... TTS",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built a content recommendation system serving 10M+ users.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% via recommendation system launch.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led the team that migrated keyword-search-based product to embedding-based retrieval.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets for ranking models.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned through shipping real systems and observing production load performance.",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Believes most retrieval problems are actually evaluation problems in disguise.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've learned that most retrieval problems are actually evaluation problems in disguise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values cross-functional alignment on business metrics as much as technical modeling.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target... that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "Applied ML Engineer",
+    "BentoML",
+    "Data Pipelines",
+    "Diffusion Models",
+    "Information Retrieval",
+    "Krutrim",
+    "LLMs",
+    "LlamaIndex",
+    "MLflow",
+    "Milvus",
+    "NLP",
+    "OpenSearch",
+    "Prompt Engineering",
+    "Rephrase.ai",
+    "Search Engineer",
+    "Senior Data Scientist",
+    "TTS",
+    "TensorFlow",
+    "Vector Search",
+    "YOLO",
+    "Zoho"
+  ]
+}

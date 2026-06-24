@@ -1,0 +1,94 @@
+{
+  "candidate_id": "CAND_0049540",
+  "evidence": [
+    {
+      "claim": "Built computer vision models for image moderation using PyTorch and fine-tuned ResNet variants",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built computer vision models for our product's image moderation feature using PyTorch — fine-tuned ResNet variants on a labeled dataset of ~200K images.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Fine-tuned ResNet models on a dataset of approximately 200,000 images",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "fine-tuned ResNet variants on a labeled dataset of ~200K images.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Developed customer-facing predictive models for churn, conversion, and lifetime value",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Worked on customer-facing predictive modeling for an e-commerce platform — churn prediction, conversion likelihood, lifetime value estimation.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Used scikit-learn and XGBoost with ~80 hand-engineered features for predictive modeling",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Used scikit-learn and XGBoost; main models were gradient-boosted trees with ~80 hand-engineered features.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Churn model successfully deployed and used by the retention team",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The churn model is now used by the retention team",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed NLP Specialization certification",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "NLP Specialization (Coursera/DeepLearning.AI, 2020)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Self-aware regarding current skill gaps in engineering/infra and desire to pivot to LLMs",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I'm still building depth on the engineering and infra side of production ML. I want to grow into senior AI engineering — get serious about LLMs and retrieval beyond the surface level.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficient in various ML and MLOps tools including YOLO, TensorFlow, MLflow, pgvector, and QLoRA",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: YOLO (advanced), TensorFlow (intermediate), MLflow (advanced), pgvector (advanced), QLoRA (advanced)",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Research Engineer",
+    "BYJU'S",
+    "Data Science",
+    "Data Scientist",
+    "Deep Learning",
+    "Feature Engineering",
+    "GCP",
+    "Genpact AI",
+    "ML Engineer",
+    "MLflow",
+    "Microservices",
+    "NLP",
+    "Photoshop",
+    "PyTorch",
+    "QLoRA",
+    "Saarthi.ai",
+    "Sentence Transformers",
+    "Statistical Modeling",
+    "TensorFlow",
+    "XGBoost",
+    "YOLO",
+    "pgvector",
+    "scikit-learn"
+  ]
+}

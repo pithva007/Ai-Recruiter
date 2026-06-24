@@ -1,0 +1,106 @@
+{
+  "candidate_id": "CAND_0028793",
+  "evidence": [
+    {
+      "claim": "Used sentence-transformers, FAISS, Elasticsearch, OpenAI embeddings, Pinecone, XGBoost, LightGBM, Kubeflow, Haystack, YOLO, LoRA, PEFT, QLoRA, PyTorch, pgvector, Weights & Biases",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS... Elasticsearch BM25... OpenAI embeddings... Pinecone... XGBoost and LightGBM... Kubeflow... Haystack... YOLO... LoRA... PEFT... QLoRA... PyTorch... pgvector... Weights & Biases",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Developed semantic search for internal knowledge base of ~500K documents",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owns the evaluation framework for RAG features",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Earned AWS Certified Machine Learning Specialty and Deep Learning Specialization",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "AWS Certified Machine Learning Specialty (AWS, 2021); Deep Learning Specialization (Coursera/DeepLearning.AI, 2025)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over theoretical background",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AWS",
+    "Amazon",
+    "Elasticsearch",
+    "Embeddings",
+    "FAISS",
+    "Google",
+    "Haystack",
+    "Information Retrieval",
+    "Kubeflow",
+    "Learning to Rank",
+    "LoRA",
+    "Machine Learning Engineer",
+    "Meesho",
+    "NLP",
+    "PEFT",
+    "Pinecone",
+    "PowerPoint",
+    "PyTorch",
+    "QLoRA",
+    "RAG",
+    "SAP",
+    "Search Engineer",
+    "Senior Data Scientist",
+    "Weights & Biases",
+    "XGBoost",
+    "YOLO",
+    "pgvector"
+  ]
+}

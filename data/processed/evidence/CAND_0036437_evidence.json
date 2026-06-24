@@ -1,0 +1,99 @@
+{
+  "candidate_id": "CAND_0036437",
+  "evidence": [
+    {
+      "claim": "Used Go, Kubeflow, OpenSearch, Elasticsearch, Sentence Transformers, Milvus, Vector Search, Weaviate, FAISS, and GANs in production environments.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Go (intermediate, 28mo, 5 endorsements); Kubeflow (intermediate, 28mo, 7 endorsements); OpenSearch (expert, 48mo, 32 endorsements); Elasticsearch (expert, 92mo, 11 endorsements); Sentence Transformers (expert, 93mo, 4 endorsements); Milvus (advanced, 57mo, 38 endorsements); Vector Search (expert, 50mo, 32 endorsements); Weaviate (expert, 73mo, 11 endorsements); FAISS (advanced, 37mo, 60 endorsements); GANs (intermediate, 30mo, 11 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built and operated production ML pipelines using MLflow, Kubeflow, and internal feature stores.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow for experiment tracking, Kubeflow for orchestration, and our internal feature store.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Shipped first RAG-based feature and owns the evaluation framework.",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% through a learning-to-rank model.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Developed a churn prediction model used by the customer success team for outreach prioritization.",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "My main project was a churn prediction model that's now used by the customer success team to prioritize outreach.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Mentored a junior engineer through their first end-to-end ML project.",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learns primarily through shipping real systems and observing production performance.",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes infrastructure and data quality over modeling in production environments.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Most of the work was infrastructure and data quality — the modeling part was almost the easy bit.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experienced in debugging production ranking issues and identifying relevant signals.",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "Accounting",
+    "Elasticsearch",
+    "FAISS",
+    "Feature Engineering",
+    "GANs",
+    "Go",
+    "Kubeflow",
+    "MLflow",
+    "Machine Learning Engineer",
+    "Milvus",
+    "Nykaa",
+    "Ola",
+    "OpenSearch",
+    "RAG",
+    "Rephrase.ai",
+    "Search Engineer",
+    "Sentence Transformers",
+    "Vector Search",
+    "Weaviate"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "candidate_id": "CAND_0075249",
+  "evidence": [
+    {
+      "claim": "Built content recommendation system serving 10M+ users",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a content recommendation system serving 10M+ users",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved 7-day retention by 6% and time spent per session by 14% via recommendation system launch",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The launch improved 7-day retention by 6% and time spent per session by 14%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Developed semantic search for internal knowledge base of ~500K documents",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led team migrating keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Technical stack includes Sentence Transformers, Milvus, Machine Learning, Fine-tuning LLMs, MLflow, Hadoop, BM25, Pinecone, Haystack, Time Series, Diffusion Models, ASR, Kubeflow, Learning to Rank",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Sentence Transformers, Milvus, Machine Learning, Fine-tuning LLMs, MLflow, Hadoop, BM25, Pinecone, Haystack, Time Series, Diffusion Models, ASR, Kubeflow, Learning to Rank",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experience with feature engineering (~200 features) and A/B testing infrastructure",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Most of my time went into the feature pipeline (~200 features) and the A/B testing infrastructure.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Completed NLP Specialization (Coursera/DeepLearning.AI, 2019)",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: NLP Specialization (Coursera/DeepLearning.AI, 2019)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over academic theory",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Experienced in debugging production ranking issues",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've spent enough time debugging production ranking issues to know which signals matter and which are noise.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "Applied ML Engineer",
+    "BM25",
+    "Diffusion Models",
+    "Elasticsearch",
+    "Fine-tuning LLMs",
+    "Hadoop",
+    "Haystack",
+    "Kubeflow",
+    "Learning to Rank",
+    "MLflow",
+    "Machine Learning",
+    "Milvus",
+    "NLP",
+    "Pinecone",
+    "Search Engineer",
+    "Sentence Transformers",
+    "Time Series",
+    "Zomato",
+    "upGrad"
+  ]
+}

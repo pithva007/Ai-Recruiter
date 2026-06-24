@@ -1,0 +1,78 @@
+{
+  "candidate_id": "CAND_0051630",
+  "evidence": [
+    {
+      "claim": "Used Elasticsearch, Hugging Face Transformers, BentoML, MLflow, Embeddings, Python, OpenSearch, GANs, LoRA, Sentence Transformers, OpenCV, Computer Vision, Reinforcement Learning, and Information Retrieval",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Elasticsearch (expert, 63mo, 15 endorsements); Hugging Face Transformers (advanced, 59mo, 26 endorsements); BentoML (advanced, 21mo, 46 endorsements); MLflow (intermediate, 35mo, 14 endorsements); Embeddings (expert, 50mo, 12 endorsements); Recommendation Systems (expert, 40mo, 33 endorsements); Machine Learning (expert, 62mo, 59 endorsements); Python (expert, 62mo, 59 endorsements); NLP (expert, 56mo, 19 endorsements); Excel (beginner, 13mo, 2 endorsements); OpenSearch (advanced, 39mo, 57 endorsements); GANs (intermediate, 13mo, 5 endorsements); LoRA (expert, 74mo, 33 endorsements); Sentence Transformers (expert, 53mo, 50 endorsements); Information Retrieval (expert, 96mo, 51 endorsements); OpenCV (intermediate, 35mo, 8 endorsements); Computer Vision (intermediate, 11mo, 15 endorsements); Reinforcement Learning (intermediate, 32mo, 8 endorsements)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% at Razorpay",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved search-relevance by 35% for a 500K document knowledge base at InMobi",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents... Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Acted as de-facto ML lead on a small team",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I've been the de-facto ML lead on a small team, shipping models across NLP and recsys.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Learned through shipping real systems and production load experience",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "BentoML",
+    "Computer Vision",
+    "Elasticsearch",
+    "Embeddings",
+    "Excel",
+    "GANs",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "InMobi",
+    "Information Retrieval",
+    "LoRA",
+    "MLflow",
+    "Machine Learning",
+    "Machine Learning Engineer",
+    "NLP",
+    "OpenCV",
+    "OpenSearch",
+    "Python",
+    "Razorpay",
+    "Recommendation Systems",
+    "Reinforcement Learning",
+    "Sentence Transformers"
+  ]
+}

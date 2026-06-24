@@ -1,0 +1,113 @@
+{
+  "candidate_id": "CAND_0051004",
+  "evidence": [
+    {
+      "claim": "Built ML-powered features in production",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Machine learning engineer with 4.7 years of experience building ML-powered features in production.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led team migration from keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Implemented RAG-based customer support chatbot",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built document ingestion pipeline using OpenAI embeddings and Pinecone",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Optimized answer-generation layer by fine-tuning a smaller model for cost control",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "answer-generation layer (initially GPT-4, then a fine-tuned smaller model for cost control).",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed evaluation framework using BLEU, ROUGE, and human-in-the-loop scores",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the evaluation framework with both automatic metrics (BLEU, ROUGE) and human-in-the-loop quality scores.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Proficiency in various ML tools and frameworks including MLflow, PyTorch, gRPC, Qdrant, and Haystack",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: MLflow... PyTorch... gRPC... Qdrant... Haystack",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Believes retrieval problems are evaluation problems in disguise",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I've learned that most retrieval problems are actually evaluation problems in disguise.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes learning through shipping real systems under production load",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "BentoML",
+    "BigQuery",
+    "CRED",
+    "Docker",
+    "Embeddings",
+    "Fine-tuning LLMs",
+    "Forecasting",
+    "Haystack",
+    "LlamaIndex",
+    "LoRA",
+    "MLOps",
+    "MLflow",
+    "NLP Engineer",
+    "Niramai",
+    "PEFT",
+    "Pinecone",
+    "Prompt Engineering",
+    "PyTorch",
+    "Qdrant",
+    "RAG",
+    "Reinforcement Learning",
+    "Semantic Search",
+    "Senior Data Scientist",
+    "Vector Search",
+    "gRPC"
+  ]
+}

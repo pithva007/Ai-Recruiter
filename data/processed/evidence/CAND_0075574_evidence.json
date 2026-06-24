@@ -1,0 +1,103 @@
+{
+  "candidate_id": "CAND_0075574",
+  "evidence": [
+    {
+      "claim": "Used Hugging Face Transformers, pgvector, Weaviate, OpenSearch, Weights & Biases, scikit-learn, LlamaIndex, Qdrant, MongoDB, Elasticsearch, BM25, and PyTorch",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Hugging Face Transformers... pgvector... Weaviate... OpenSearch... Weights & Biases... scikit-learn... LlamaIndex... Qdrant... MongoDB... Elasticsearch... BM25... PyTorch",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Evolved e-commerce search ranking from hand-tuned scoring to learning-to-rank model",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Owned the ranking layer for an e-commerce search product, evolving it from a hand-tuned scoring function to a learning-to-rank model over 9 months.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Improved revenue-per-search by 12% via ranking model",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Final model improved revenue-per-search by 12%.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Trained and shipped ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Implemented RAG-based chatbot with document ingestion and answer-generation layers",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot... Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone) and the answer-generation layer (initially GPT-4, then a fine-tuned smaller model for cost control).",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion) — that work was as important as the modeling itself.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed Deep Learning Specialization",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: Deep Learning Specialization (Coursera/DeepLearning.AI, 2018)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owns the evaluation framework for RAG-based features",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I shipped our first RAG-based feature this year and now own the eval framework for it.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "BM25",
+    "Elasticsearch",
+    "Genpact AI",
+    "Haptik",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "LlamaIndex",
+    "Machine Learning Engineer",
+    "MongoDB",
+    "NLP Engineer",
+    "Observe.AI",
+    "OpenSearch",
+    "PyTorch",
+    "Qdrant",
+    "RAG",
+    "Recommendation Systems",
+    "Statistical Modeling",
+    "TTS",
+    "Vector Search",
+    "Weaviate",
+    "Weights & Biases",
+    "XGBoost",
+    "pgvector",
+    "scikit-learn"
+  ]
+}

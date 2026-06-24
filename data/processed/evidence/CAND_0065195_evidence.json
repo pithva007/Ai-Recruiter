@@ -1,0 +1,108 @@
+{
+  "candidate_id": "CAND_0065195",
+  "evidence": [
+    {
+      "claim": "Implemented RAG-based customer support chatbot",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Implemented a RAG-based customer support chatbot integrated with our existing ticketing system.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built document ingestion pipeline using OpenAI embeddings and Pinecone",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built the document ingestion pipeline (chunking, embedding via OpenAI embeddings, storing in Pinecone)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced average ticket resolution time by 31%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Deployment cut average ticket resolution time by 31% for the supported categories.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built and operated production ML pipelines using MLflow, Kubeflow, and internal feature store",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Built and operated production ML pipelines using MLflow for experiment tracking, Kubeflow for orchestration, and our internal feature store.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed model monitoring stack including data drift detection and alerting",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the model monitoring stack: data drift detection, prediction distribution checks, and alerting.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Mentored a junior engineer through their first end-to-end ML project",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Mentored a junior engineer through their first end-to-end ML project last year.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led team migration from keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over purely academic learning",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "My academic background is in CS/ML but my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficiency in LLMs, BentoML, QLoRA, scikit-learn, Diffusion Models, Elasticsearch, Hugging Face, Qdrant, Django, MLOps, pgvector, Learning to Rank, and LlamaIndex",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: LLMs (expert, 59mo, 34 endorsements); BentoML (intermediate, 35mo, 2 endorsements); QLoRA (expert, 93mo, 24 endorsements); scikit-learn (expert, 74mo, 19 endorsements); Diffusion Models (advanced, 23mo, 47 endorsements); Elasticsearch (expert, 89mo, 31 endorsements); Hugging Face Transformers (advanced, 29mo, 60 endorsements); Qdrant (expert, 94mo, 13 endorsements); Django (intermediate, 24mo, 15 endorsements); MLOps (advanced, 35mo, 22 endorsements); pgvector (expert, 55mo, 18 endorsements); Learning to Rank (advanced, 52mo, 25 endorsements); LlamaIndex (expert, 44mo, 51 endorsements)",
+      "quantified": true,
+      "weight": 1.5
+    }
+  ],
+  "entities": [
+    "BentoML",
+    "CRED",
+    "Diffusion Models",
+    "Django",
+    "Elasticsearch",
+    "Google",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "LLMs",
+    "Learning to Rank",
+    "LlamaIndex",
+    "MLOps",
+    "MLflow",
+    "Pinecone",
+    "QLoRA",
+    "Qdrant",
+    "RAG",
+    "Search Engineer",
+    "Senior Data Scientist",
+    "pgvector",
+    "scikit-learn"
+  ]
+}

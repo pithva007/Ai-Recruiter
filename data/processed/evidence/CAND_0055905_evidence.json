@@ -1,0 +1,110 @@
+{
+  "candidate_id": "CAND_0055905",
+  "evidence": [
+    {
+      "claim": "Led migration from keyword-based ranking to learning-to-rank model serving 50M+ queries/month",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Most recently, I led the migration from keyword-based ranking to a learning-to-rank model with embedded behavioral signals, serving 50M+ queries per month.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Prioritizes shipping working systems in 6 weeks over theoretically perfect ones in 6 months",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care more about shipping a working system in 6 weeks than a theoretically perfect one in 6 months.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Designed and rolled out semantic search system for 35M+ items",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Owned the design and rollout of a large-scale semantic search system serving an internal corpus of 35M+ items.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Reduced p95 retrieval latency by 60% and improved NDCG@10 by 18%",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "The new system reduced p95 retrieval latency by 60% while improving NDCG@10 by 18% on our held-out eval set.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led a team of 4 engineers",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Led a team of 4 engineers across the rollout.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Technical expertise in Elasticsearch, ASR, Hugging Face Transformers, Haystack, Speech Recognition, LangChain, Python, LLMs, OpenSearch, Fine-tuning LLMs, Information Retrieval, Embeddings, Vector Search",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Elasticsearch (expert, 80mo, 23 endorsements); ASR (advanced, 41mo, 56 endorsements); Hugging Face Transformers (advanced, 33mo, 54 endorsements); Haystack (advanced, 26mo, 6 endorsements); Speech Recognition (advanced, 57mo, 20 endorsements); LangChain (expert, 70mo, 33 endorsements); Python (expert, 45mo, 34 endorsements); LLMs (advanced, 43mo, 50 endorsements); OpenSearch (expert, 56mo, 57 endorsements); Fine-tuning LLMs (advanced, 50mo, 57 endorsements); Information Retrieval (advanced, 60mo, 8 endorsements); Embeddings (expert, 75mo, 17 endorsements); Vector Search (expert, 93mo, 1 endorsements)",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Fine-tuned LLaMA-2-7B and Mistral-7B using LoRA and QLoRA",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Fine-tuned LLaMA-2-7B and Mistral-7B variants using LoRA and QLoRA for domain-specific candidate-JD matching.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Reduced inference cost from $0.04 to under $0.001",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Cost per inference dropped from $0.04 with GPT-3.5-fallback to under $0.001.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built RAG-based ranking pipeline serving 50M+ queries per month",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a RAG-based ranking pipeline serving 50M+ queries per month for an internal recruiter-facing search product.",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Designed offline evaluation framework from scratch",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Designed the offline evaluation framework from scratch — NDCG, MRR, recall@K calibrated against online A/B engagement metrics.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "ASR",
+    "Elasticsearch",
+    "Embeddings",
+    "Fine-tuning LLMs",
+    "Flipkart",
+    "Haystack",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "Information Retrieval",
+    "LLMs",
+    "LangChain",
+    "LoRA",
+    "OpenSearch",
+    "Python",
+    "QLoRA",
+    "RAG",
+    "Rephrase.ai",
+    "Senior AI Engineer",
+    "Senior Applied Scientist",
+    "Senior Machine Learning Engineer",
+    "Speech Recognition",
+    "Uber",
+    "Vector Search"
+  ]
+}

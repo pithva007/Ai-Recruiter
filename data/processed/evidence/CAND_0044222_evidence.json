@@ -1,0 +1,129 @@
+{
+  "candidate_id": "CAND_0044222",
+  "evidence": [
+    {
+      "claim": "Used Vector Search, LlamaIndex, OpenSearch, Java, Qdrant, Weaviate, BM25, Deep Learning, LangChain, Hugging Face Transformers, Fine-tuning LLMs, ASR, Diffusion Models, QLoRA, Hadoop, and Feature Engineering",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Vector Search... LlamaIndex... OpenSearch... Java... Qdrant... Feature Engineering... Weaviate... BM25... Deep Learning... LangChain... Hugging Face Transformers... Fine-tuning LLMs... ASR... Diffusion Models... QLoRA... Hadoop",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Migrated keyword-search-based product to embedding-based retrieval",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Developed semantic search feature for ~500K documents using sentence-transformers and FAISS",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Developed a semantic search feature for an internal knowledge base of ~500K documents. Used sentence-transformers (all-MiniLM-L6-v2 initially, later upgraded to bge-base) with FAISS",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Trained and shipped ranking models using XGBoost and LightGBM",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Trained and shipped multiple ranking models for our product's discovery feed using XGBoost and LightGBM.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Improved search-relevance by 35% over Elasticsearch BM25",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Reported search-relevance improvement of 35% over the prior Elasticsearch BM25 setup",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Led the team that migrated keyword-search to embedding-based retrieval",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Recently, I led the team that migrated our keyword-search-based product to embedding-based retrieval.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Owned offline-online correlation analysis for ranking models",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Owned the offline-online correlation analysis that determined which offline metrics actually predicted A/B test outcomes.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Collaborated with PMs to define optimization targets",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Worked closely with PMs to define the optimization target (click-through vs. dwell time vs. downstream conversion)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Completed Deep Learning Specialization",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Certifications: Deep Learning Specialization (Coursera/DeepLearning.AI, 2023)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Holds M.Sc in Machine Learning",
+      "evidence_type": "learning",
+      "confidence": "high",
+      "source_text": "Education: M.Sc in Machine Learning at IISc Bangalore (2021)",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Prioritizes evaluation rigor and offline benchmarks",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I care a lot about evaluation rigor — too many teams ship models without offline benchmarks they trust.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Values practical experience over theoretical knowledge",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "my main learning has come from shipping real systems and seeing what holds up under production load.",
+      "quantified": false,
+      "weight": 1.0
+    }
+  ],
+  "entities": [
+    "AI Engineer",
+    "ASR",
+    "BM25",
+    "Content Writing",
+    "Deep Learning",
+    "Diffusion Models",
+    "Elasticsearch",
+    "FAISS",
+    "Feature Engineering",
+    "Fine-tuning LLMs",
+    "Hadoop",
+    "Hugging Face",
+    "Hugging Face Transformers",
+    "InMobi",
+    "Java",
+    "LangChain",
+    "LlamaIndex",
+    "NLP",
+    "OpenSearch",
+    "PolicyBazaar",
+    "QLoRA",
+    "Qdrant",
+    "Time Series",
+    "Vector Search",
+    "Weaviate",
+    "XGBoost"
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "candidate_id": "CAND_0046064",
+  "evidence": [
+    {
+      "claim": "Rebuilt candidate-JD matching pipeline improving NDCG@10 from 0.72 to 0.91",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "rebuilt the candidate-JD matching pipeline from scratch, taking it from 0.72 to 0.91 NDCG@10",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Achieved single-digit-millisecond p95 retrieval latency",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "operating at single-digit-millisecond p95 retrieval latency",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Fine-tuned LLaMA-2-7B and Mistral-7B using LoRA and QLoRA",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Fine-tuned LLaMA-2-7B and Mistral-7B variants using LoRA and QLoRA",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Built data curation pipeline generating 200K preference pairs",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built the data curation pipeline that generated 200K high-quality preference pairs",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Reduced inference cost from $0.04 to under $0.001",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Cost per inference dropped from $0.04 with GPT-3.5-fallback to under $0.001",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Built RAG-based ranking pipeline serving 50M+ queries per month",
+      "evidence_type": "impact",
+      "confidence": "high",
+      "source_text": "Built a RAG-based ranking pipeline serving 50M+ queries per month",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Used BM25, BGE embeddings, FAISS HNSW, and LLM-based re-rankers",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "The architecture combined BM25 + dense retrieval (BGE embeddings, FAISS HNSW) with an LLM-based re-ranker",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Led migration of ranking pipeline over 4 months",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Drove the migration over 4 months",
+      "quantified": true,
+      "weight": 1.5
+    },
+    {
+      "claim": "Owned end-to-end ranking pipeline at Amazon",
+      "evidence_type": "leadership",
+      "confidence": "high",
+      "source_text": "Owned the end-to-end ranking pipeline at a recommendations-heavy consumer product",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Believes ranking problems are solved by feature engineering and eval over bigger models",
+      "evidence_type": "behavioral",
+      "confidence": "high",
+      "source_text": "I believe most ranking problems are solved by careful feature engineering and rigorous eval, not by bigger models.",
+      "quantified": false,
+      "weight": 1.0
+    },
+    {
+      "claim": "Proficiency in Python, Pinecone, Haystack, OpenCV, and various ML frameworks",
+      "evidence_type": "technical",
+      "confidence": "high",
+      "source_text": "Skills: Python, Image Classification, OpenCV, Pinecone, Haystack, BM25, OpenSearch, PEFT, Deep Learning, Elasticsearch, QLoRA, Semantic Search",
+      "quantified": true,
+      "weight": 1.5
+    }
+  ],
+  "entities": [
+    "Amazon",
+    "BM25",
+    "Deep Learning",
+    "Diffusion Models",
+    "Elasticsearch",
+    "FAISS",
+    "Haystack",
+    "Image Classification",
+    "LLM",
+    "Lead AI Engineer",
+    "LoRA",
+    "OpenCV",
+    "OpenSearch",
+    "PEFT",
+    "Pinecone",
+    "Python",
+    "QLoRA",
+    "RAG",
+    "Salesforce",
+    "Semantic Search",
+    "Senior ML Engineer — Search & Ranking",
+    "Senior NLP Engineer",
+    "Six Sigma",
+    "TTS",
+    "Verloop.io",
+    "YOLO"
+  ]
+}
