@@ -1,10 +1,48 @@
 # CLAUDE.md — LLM Prompting Strategy and System Prompts
 
 ## Model Selection
-- Use `claude-3-5-sonnet-20241022` or `gpt-4o` as the primary reasoning model for all agent stages.
-- Use `text-embedding-3-small` (OpenAI) or `sentence-transformers/all-mpnet-base-v2` (local) for all embedding operations.
+- Use `claude-3-5-sonnet-20241022` as the primary reasoning model for all agent stages.
+- Use `sentence-transformers/all-mpnet-base-v2` (local) for all embedding operations.
 - Never use a smaller or faster model for scoring or evidence extraction — accuracy is non-negotiable.
 - Temperature: `0.0` for all scoring and extraction tasks. `0.3` for interview question generation. `0.0` for rationale generation.
+
+## LLM Client Pattern (use this exact pattern in every stage)
+
+```python
+# utils/llm_client.py
+import json
+from tenacity import retry, stop_after_attempt, wait_exponential
+import anthropic
+
+client = anthropic.Anthropic()
+
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
+def call_llm(system_prompt: str, user_content: str, temperature: float = 0.0) -> dict:
+    response = client.messages.create(
+        model="claude-3-5-sonnet-20241022",
+        max_tokens=4096,
+        temperature=temperature,
+        system=system_prompt,
+        messages=[{"role": "user", "content": user_content}]
+    )
+    raw = response.content[0].text.strip()
+    raw = raw.replace("```json", "").replace("```", "").strip()
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        retry_response = client.messages.create(
+            model="claude-3-5-sonnet-20241022",
+            max_tokens=4096,
+            temperature=0.0,
+            system=system_prompt,
+            messages=[
+                {"role": "user", "content": user_content},
+                {"role": "assistant", "content": raw},
+                {"role": "user", "content": "Your response was not valid JSON. Respond only with valid JSON. No markdown. No explanation. No code blocks. Just the raw JSON object."}
+            ]
+        )
+        return json.loads(retry_response.content[0].text.strip())
+```
 
 ## Prompt Engineering Rules
 1. Every LLM call must include a system prompt that states the model's role, the exact output format required, and the anti-hallucination constraint.
