@@ -1,95 +1,170 @@
-# AI Recruiter — Intelligent Candidate Discovery & Ranking
+# AI Recruiter — Redrob Hackathon Submission
 
-Redrob Hackathon: Intelligent Candidate Discovery & Ranking Challenge.
-
-Ranks the top 100 candidates from a 100,000-candidate pool for the role of **Senior AI Engineer — Founding Team at Redrob AI**.
+Ranks the top 100 candidates from a 100,000-candidate pool for the role of **Senior AI Engineer — Founding Team at Redrob AI (Series A)**.
 
 ---
 
-## Setup
+## Quick Start (Reproduce Submission CSV)
 
 ```bash
 git clone https://github.com/pithva007/Ai-Recruiter.git
 cd Ai-Recruiter
 pip install -r requirements.txt
-cp .env.example .env
-# Add your GEMINI_API_KEY to .env
-```
 
----
-
-## Reproduce the Submission (single command)
-
-```bash
+# Fast path: rank from pre-computed features (< 1 second)
 python src/rank.py \
-  --candidates India_runs_data_and_ai_challenge/candidates.jsonl \
-  --features data/processed/features.pkl \
-  --out outputs/submission_raw.csv
+  --candidates ./data/raw/candidates.jsonl \
+  --features ./data/processed/features.pkl \
+  --out ./outputs/submission.csv
 
-python src/reason.py \
-  --raw outputs/submission_raw.csv \
-  --out outputs/submission.csv
-
-python validate_submission.py outputs/submission.csv
+python validate_submission.py ./outputs/submission.csv
 ```
-
-**Runtime:** rank.py completes in ~0.3 seconds on CPU. No GPU, no network calls.
-
----
-
-## Full Pipeline (Stages 1–8)
-
-| Stage | Script | What it does | LLM? | Time |
-|---|---|---|---|---|
-| 1 | `src/stage1_jd_analysis.py` | Parse JD → structured requirements | Yes (once) | ~30s |
-| 2 | `src/precompute.py` | Score all 100K candidates | No | ~14s |
-| 3 | `src/rank.py` | Sort → top 100 CSV | No | **0.3s** |
-| 4 | `src/reason.py` | LLM reasoning for top 100 | Yes | ~12min |
-| 5 | `src/stage3_evidence_extraction.py` | Extract evidence from top 100 | Yes | ~15min |
-| 6 | `src/stage4_graph_builder.py` | Build GraphRAG knowledge graph | No | ~2s |
-| 7 | `src/stage5_hybrid_retrieval.py` | FAISS + graph hybrid retrieval | No | ~10s |
-| 8 | `src/stage6_scoring_engine.py` | LLM deep scoring (fit/impact/potential/risk) | Yes | ~10min |
-| 9 | `src/stage7_ranking.py` | Explainable ranking + dark horse detection | Yes | ~10min |
-| 10 | `app.py` | Streamlit dashboard | No | instant |
 
 ---
 
 ## Architecture
 
 ```
-candidates.jsonl (100K)
+candidates.jsonl (100K) + job_description.docx
         │
-        ▼
-precompute.py ──── deterministic scoring (title + skills + behavioral + fit)
+        ▼ Stage 1 — JD Analysis  (LLM once, offline)
+        │   → data/processed/jd_features.json
         │
-        ▼
-rank.py ──────── sort → top 100 (< 5 min, CPU, no network) ← SUBMISSION CORE
+        ▼ Stage 2 — Precompute  (CPU, no LLM, ~14s)
+        │   → data/processed/features.pkl  (17 MB, all 100K candidates scored)
         │
-        ▼
-reason.py ──── LLM reasoning per candidate → submission.csv ← SUBMIT THIS
+        ▼ rank.py — Sort top 100  (<0.3s, no network, no LLM)  ← SUBMISSION CORE
+        │   → outputs/ranked_top100_raw.csv
+        │
+        ▼ reason.py — LLM reasoning for top 100  (offline, ~12 min)
+        │   → outputs/submission.csv  ← SUBMIT THIS
+        │
+        ▼ Stages 3–7 — Optional LLM enrichment pipeline  (offline)
+        │   Evidence → Graph → Retrieval → Scoring → Ranking
+        │   → outputs/ranked_candidates.csv  (30 deeply-scored candidates)
+        │
+        ▼ Stage 8 — Streamlit Dashboard
+        │   streamlit run app.py
+        │
+        ▼ Stage 9 — PDF Report
+            → outputs/shortlist_report.pdf
 ```
-
-**Scoring formula:**
-```
-final_score = career_score×0.45 + skill_score×0.25 + behavioral_score×0.20 + fit_score×0.10
-```
-
-**Key design decisions:**
-- Career history title + description dominate over skills keywords (anti-stuffer)
-- 472 honeypot candidates detected and scored 0.0
-- Services company penalty (TCS/Infosys/Wipro/etc.) applied to pure-services careers
-- Behavioral signals from redrob_signals used as availability multiplier
-- skill.duration_months anti-stuffer: expert skill with 0 months = flagged and down-weighted
 
 ---
 
-## Dashboard
+## Two-Step Submission Process
 
-```bash
-streamlit run app.py
+```
+rank.py   →  ranked CSV (no reasoning, no network, < 5 min on CPU)
+reason.py →  adds LLM-generated reasoning to top-100 (requires GEMINI_API_KEY, run offline)
 ```
 
-Features: 3-panel layout, hiring decision simulator with weight sliders, radar charts, dark horse spotlight, bias audit.
+The final `submission.csv` was produced by running `reason.py` after `rank.py`.
+`rank.py` alone satisfies all compute constraints. `reason.py` is offline pre-processing.
+
+---
+
+## Pre-computation (only needed if features.pkl is missing)
+
+```bash
+cp .env.example .env   # add your GEMINI_API_KEY
+python src/stage1_jd_analysis.py   # one-time JD analysis (needs Gemini, ~30s)
+python src/precompute.py           # scores all 100K candidates (~14 seconds, no network)
+```
+
+---
+
+## Setup
+
+```bash
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env: GEMINI_API_KEY=your_key_here
+```
+
+**Environment variables (`.env`):**
+```
+GEMINI_API_KEY=your_key_here
+GEMINI_MODEL=gemini-flash-lite-latest
+LOG_LEVEL=INFO
+```
+
+---
+
+## Compute Constraints Compliance
+
+| Constraint | Limit | Our System |
+|---|---|---|
+| Runtime | ≤ 5 min | **< 1 second** (from features.pkl) |
+| Memory | ≤ 16 GB | **~2 GB** (features.pkl is 17 MB) |
+| CPU only | Yes | **No GPU used** at any stage |
+| No network | Yes | **rank.py has zero network calls** |
+| Streaming fallback | Required | streams candidates.jsonl if pkl missing (~15s) |
+
+---
+
+## Key Design Decisions
+
+1. **Career history dominates**: production retrieval/ranking at product companies is weighted 0.30 in the final formula — the single largest component
+2. **Services penalty**: pure TCS/Infosys/Wipro careers get a 0.05× multiplier (JD explicitly rejects pure-services profiles); mixed careers get 0.40–0.75×
+3. **Skills trust scoring**: zero-duration skills get near-zero weight (0.05–0.10×) regardless of declared proficiency — catches keyword stuffers
+4. **Behavioral multiplier**: 8 availability signals multiply the base score multiplicatively — an inactive candidate (last active > 180 days) loses 60% of their score
+5. **Honeypot detection**: 472 impossible-profile candidates scored near-zero (impossible timelines, mass zero-duration expert skills, copy-paste descriptions)
+
+**Scoring formula:**
+```
+final_score = (career×0.30 + skill×0.20 + retrieval×0.30 + fit×0.20)
+              × behavioral_multiplier
+              × services_penalty
+```
+
+---
+
+## File Structure
+
+```
+ai-recruiter/
+├── run_pipeline.py              ← Single command to run all 9 stages
+├── app.py                       ← Streamlit dashboard entry point
+├── validate_submission.py       ← Official submission validator
+├── submission_metadata.yaml     ← Hackathon submission metadata
+├── AGENT.md                     ← Scoring contracts, JD requirements, honeypot spec
+├── CLAUDE.md                    ← LLM prompts, anti-hallucination rules
+├── SKILLS.md                    ← Technical reference, formulas, skill lists
+│
+├── src/
+│   ├── stage1_jd_analysis.py    ← Phase A: JD → jd_features.json  (LLM, once)
+│   ├── precompute.py            ← Phase A: 100K candidates → features.pkl
+│   ├── rank.py                  ← Phase B: features.pkl → ranked CSV  (<1s, no network)
+│   ├── reason.py                ← Phase C: top-100 → reasoning  (LLM, offline)
+│   ├── stage3_evidence_extraction.py
+│   ├── stage4_graph_builder.py
+│   ├── stage5_hybrid_retrieval.py
+│   ├── stage6_scoring_engine.py
+│   ├── stage7_ranking.py
+│   └── stage8_dashboard.py
+│
+├── utils/
+│   ├── llm_client.py            ← Gemini API wrapper (retry, rate-limit aware)
+│   ├── feature_engineering.py  ← All scoring functions (deterministic, no network)
+│   ├── embedding_client.py      ← sentence-transformers (local, offline)
+│   ├── json_validator.py        ← Pydantic models for all pipeline I/O
+│   └── report_generator.py     ← reportlab PDF generator
+│
+├── data/
+│   ├── raw/                     ← Input files + symlinks to challenge bundle
+│   │   ├── candidates.jsonl     ← Symlink → challenge bundle (465 MB, not committed)
+│   │   └── job_description.docx
+│   └── processed/               ← Generated: features.pkl, evidence/, scores/, etc.
+│       ├── features.pkl         ← 17 MB pre-computed scores (run precompute.py once)
+│       └── jd_features.json
+│
+└── outputs/                     ← Final submission artifacts
+    ├── submission.csv           ← SUBMIT THIS (100 rows, validated)
+    ├── ranked_top100_raw.csv    ← rank.py output (no reasoning)
+    ├── ranked_candidates.csv    ← 30 LLM-scored candidates
+    └── shortlist_report.pdf     ← 17-page PDF shortlist report
+```
 
 ---
 
@@ -102,11 +177,24 @@ python validate_submission.py outputs/submission.csv
 
 ---
 
-## Pre-computed Artifacts
-
-`data/processed/features.pkl` must exist to run `rank.py`. Generate it once:
+## Dashboard
 
 ```bash
-python src/stage1_jd_analysis.py   # requires GEMINI_API_KEY, runs once
-python src/precompute.py           # no network, ~14s
+streamlit run app.py
+```
+
+Features: 3-panel layout, hiring decision simulator with weight sliders, radar charts,
+dark horse spotlight, bias audit.
+
+---
+
+## Sandbox
+
+[Link to HuggingFace Spaces demo]
+
+Accepts up to 100 candidates as input, produces ranked CSV. Deploy with:
+```bash
+# Deploy app.py to HuggingFace Spaces (Streamlit SDK)
+# Set GEMINI_API_KEY as a Space secret
+streamlit run app.py
 ```

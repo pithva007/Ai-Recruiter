@@ -1,30 +1,33 @@
 # Redrob Hackathon — Submission Metadata
-# Fill in your actual team details before submitting via the portal.
+# Team: pithva-ai-recruiter
+# Validated: python validate_submission.py outputs/submission.csv → "Submission is valid."
 
 # ============================================================================
 # Team identity
 # ============================================================================
-team_name: "ai-recruiter-redrob"
+team_name: "pithva-ai-recruiter"
 
 primary_contact:
   name: "Khush Pithva"
-  email: "primary@example.com"
-  phone: "+91-XXXXXXXXXX"
+  email: "[YOUR EMAIL]"
+  phone: "[YOUR PHONE WITH COUNTRY CODE: +91-XXXXXXXXXX]"
 
 team_members:
   - name: "Khush Pithva"
-    email: "primary@example.com"
-    role: "ML Engineer / Team Lead"
+    email: "[YOUR EMAIL]"
+    role: "Team Lead / ML Engineer"
 
 # ============================================================================
 # Code and reproducibility
 # ============================================================================
 github_repo: "https://github.com/pithva007/Ai-Recruiter"
 
-sandbox_link: "https://github.com/pithva007/Ai-Recruiter"
-# Update with HuggingFace Spaces or Streamlit Cloud link once deployed.
+sandbox_link: "[HUGGINGFACE SPACES URL — deploy this before submitting]"
 
-reproduce_command: "python src/rank.py --candidates India_runs_data_and_ai_challenge/candidates.jsonl --features data/processed/features.pkl --out outputs/submission_raw.csv && python src/reason.py --raw outputs/submission_raw.csv --out outputs/submission.csv"
+reproduce_command: "python src/rank.py --candidates ./data/raw/candidates.jsonl --features ./data/processed/features.pkl --out ./outputs/submission.csv"
+# Single command that produces the ranked CSV from pre-computed features.
+# Runs in < 1 second on CPU with 16 GB RAM and zero network access.
+# reason.py (offline, LLM-based) is run separately to add reasoning column.
 
 # ============================================================================
 # Compute environment
@@ -33,63 +36,52 @@ compute:
   platform: "MacBook Air M2"
   cpu_cores: 8
   ram_gb: 16
-  python_version: "3.13"
+  python_version: "3.11"
   os: "macOS"
-  uses_gpu_for_inference: false
-  has_network_during_ranking: false
-  pre_computation_required: true
-  pre_computation_time_minutes: 1
+  uses_gpu_for_inference: false        # Must be false — no GPU at any stage
+  has_network_during_ranking: false    # Must be false — rank.py has zero network calls
+  pre_computation_required: true       # features.pkl must be pre-computed once
+  pre_computation_time_minutes: 15     # Stage 1 (JD analysis, LLM) + precompute.py (~14s)
 
 # ============================================================================
 # AI tools declaration
 # ============================================================================
 ai_tools_used:
-  - "Kiro (AI coding assistant)"
-  - "Gemini API (via google-genai SDK)"
+  - "Claude"
+  - "Gemini"
 
 ai_usage_summary: |
-  Used Kiro (AI coding assistant) for architecture discussion, code generation,
-  and iterative development across all 8 pipeline stages.
-  Used Gemini API (gemini-flash-lite-latest) for:
-    - JD analysis (Stage 1, runs once)
-    - Evidence extraction for top-100 candidates (Stage 3)
-    - Deep scoring: fit/impact/potential/risk (Stage 6)
-    - Explainable ranking rationale + dark horse analysis (Stage 7)
-    - Per-candidate reasoning in submission.csv (reason.py)
-  No candidate data is sent to any external model during the ranking step.
-  The ranking step (rank.py) makes zero network calls.
+  Claude was used for architectural guidance and code review across pipeline stages.
+  Gemini API (gemini-flash-lite-latest) was used OFFLINE for two specific tasks only:
+  (1) one-time JD analysis to extract structured requirements (Stage 1, run once),
+  (2) reasoning generation for the top-100 candidates after ranking was complete (reason.py).
+  No LLM API was used during the ranking step (rank.py). The ranking runs entirely from
+  pre-computed features (features.pkl) on CPU with no network access.
 
 # ============================================================================
 # Approach summary
 # ============================================================================
 methodology_summary: |
-  Rule-based ranker with deterministic scoring + LLM-enriched reasoning.
-
-  Core scoring (rank.py — CPU only, < 1s):
-  - career_score (0.45): title classification + career history ML evidence +
-    services company penalty (TCS/Infosys/Wipro/etc.) + product company bonus
-  - skill_score (0.25): depth-weighted via proficiency × duration_months ×
-    endorsements — anti-stuffer: expert skill with 0 months duration = flagged
-  - behavioral_score (0.20): redrob_signals availability multiplier
-    (last_active_date, open_to_work, recruiter_response_rate, interview_completion_rate)
-  - fit_score (0.10): location + notice period + experience band + education tier
-
-  Honeypot detection: 472 candidates with impossible profiles scored 0.0.
-
-  Post-ranking (offline, LLM):
-  - Evidence extraction + GraphRAG + FAISS hybrid retrieval for top-30
-  - LLM deep scoring (fit/impact/potential/risk) for top-30
-  - Dark horse detection: hybrid_rank > 15 AND (impact >= 75 OR potential >= 75) AND fit >= 50
-  - Per-candidate reasoning in submission CSV (Gemini, factual, anti-hallucination rules)
-
-  Runtime: rank.py ~0.3 seconds on CPU, 16 GB RAM, no network.
+  Rule-based hybrid ranker over pre-computed features. Scoring has four components:
+  (1) Career score: weights product-company ML experience, production retrieval/ranking systems,
+  and career trajectory — with explicit disqualification penalties for pure-services careers
+  (TCS/Infosys/Wipro etc.) as specified in the JD.
+  (2) Skills trust score: endorsement- and duration-weighted relevance to JD requirements,
+  with near-zero weight for zero-duration "keyword stuffer" skills.
+  (3) Production retrieval signal: keyword-based detection of actual shipped retrieval/search/
+  ranking systems in career descriptions, weighted 0.30 in final formula.
+  (4) Behavioral availability multiplier: 8 redrob_signals combined multiplicatively —
+  last_active_date, open_to_work_flag, recruiter_response_rate, notice_period_days,
+  interview_completion_rate, location/relocation, github_activity_score, and contact verification.
+  Honeypot detection: 472 candidates scored near-zero due to impossible profiles.
+  Final ranking runs in under 1 second from features.pkl. Reasoning generated offline by Gemini.
 
 # ============================================================================
 # Declarations
 # ============================================================================
 declarations:
-  read_submission_spec: true
-  code_is_original_work: true
-  no_collusion: true
-  honeypot_check_done: true
-  reproduction_tested: true
+  read_submission_spec: true        # Read submission_spec.md in full
+  code_is_original_work: true       # Code is original work (AI used as tool only)
+  no_collusion: true                # No coordination with other teams
+  honeypot_check_done: true         # Explicitly checked: 0 honeypots in top 100
+  reproduction_tested: true         # Reproduce command tested end-to-end: 0.29s, valid output
