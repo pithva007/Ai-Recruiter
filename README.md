@@ -459,5 +459,6 @@ Final composite = 0.50 × NDCG@10      ← Highest weight — top 10 matter most
 
 **Built for Redrob AI Hackathon 2026**  
 _Intelligent Candidate Discovery — Track 01_
+**Built With ❤️ By Team ErrorFoundAT5**
 
 </div>
