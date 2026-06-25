@@ -623,6 +623,60 @@ def compute_career_score(profile: dict, career_history: list) -> float:
 
 
 # ===========================================================================
+# Title Relevance Gate
+# ===========================================================================
+COMPLETELY_IRRELEVANT_TITLES = {
+    # Non-technical roles
+    "accountant", "marketing manager", "operations manager",
+    "hr manager", "human resources", "graphic designer",
+    "content writer", "customer support", "business analyst",
+    "project manager", "sales", "finance", "administrative",
+    
+    # Wrong engineering domains  
+    "civil engineer", "mechanical engineer", "electrical engineer",
+    "hardware engineer", "manufacturing engineer",
+    
+    # Non-ML tech roles that lack any ML path
+    ".net developer", "mobile developer", "frontend engineer",
+    "full stack developer", "devops engineer", "qa engineer",
+    "java developer", "web developer", "ui developer",
+}
+
+def compute_title_relevance_gate(profile: dict) -> float:
+    """
+    Hard gate for completely irrelevant titles.
+    Returns a multiplier: 0.05 for irrelevant, 1.0 otherwise.
+    
+    This prevents location/availability bonuses from inflating
+    candidates who are fundamentally wrong for the role.
+    """
+    title = (profile.get("current_title") or "").lower()
+    
+    # Check for completely irrelevant title keywords
+    for irrelevant in COMPLETELY_IRRELEVANT_TITLES:
+        if irrelevant in title:
+            return 0.05  # near-disqualification
+    
+    # Check for ML/AI/data relevant title keywords — these get full score
+    RELEVANT_TITLE_KEYWORDS = {
+        "ml", "machine learning", "ai ", "artificial intelligence",
+        "data scientist", "data science", "nlp", "deep learning",
+        "recommendation", "search engineer", "retrieval",
+        "applied scientist", "research scientist", "research engineer",
+        "software engineer", "software developer", "backend engineer",
+        "data engineer", "platform engineer", "infrastructure engineer",
+        "cloud engineer", "sre", "mlops", "llm", "generative"
+    }
+    
+    for relevant in RELEVANT_TITLE_KEYWORDS:
+        if relevant in title:
+            return 1.0
+    
+    # Unknown title — neutral, don't penalize
+    return 0.85
+
+
+# ===========================================================================
 # FIX 5 — compute_final_score()
 # Updated formula:
 #   career_score    × 0.30
@@ -682,5 +736,9 @@ def compute_final_score(candidate: dict) -> float:
     behavioral_mult  = compute_availability_multiplier(signals, profile)
     services_penalty = compute_services_penalty(career)
 
-    final = base * behavioral_mult * services_penalty
+    title_gate = compute_title_relevance_gate(profile)
+
+    # Apply title gate AFTER all other scoring
+    # This ensures location/availability can't rescue irrelevant titles
+    final = base * behavioral_mult * services_penalty * title_gate
     return round(min(max(final, 0.0), 1.0), 6)
