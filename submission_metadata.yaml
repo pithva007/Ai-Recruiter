@@ -5,16 +5,16 @@
 # ============================================================================
 # Team identity
 # ============================================================================
-team_name: "pithva-ai-recruiter"
+team_name: "ErrorFoundAT5"
 
 primary_contact:
   name: "Khush Pithva"
-  email: "[YOUR EMAIL]"
-  phone: "[YOUR PHONE WITH COUNTRY CODE: +91-XXXXXXXXXX]"
+  email: "khushpithva@gmail.com"
+  phone: "+91-6356001526"
 
 team_members:
   - name: "Khush Pithva"
-    email: "[YOUR EMAIL]"
+    email: "khushpithva@gmail.com"
     role: "Team Lead / ML Engineer"
 
 # ============================================================================
@@ -22,7 +22,7 @@ team_members:
 # ============================================================================
 github_repo: "https://github.com/pithva007/Ai-Recruiter"
 
-sandbox_link: "[HUGGINGFACE SPACES URL — deploy this before submitting]"
+sandbox_link: "https://huggingface.co/spaces/Khush-Pithva/redrob-ranker"
 
 reproduce_command: "python src/rank.py --candidates ./data/raw/candidates.jsonl --features ./data/processed/features.pkl --out ./outputs/submission.csv"
 # Single command that produces the ranked CSV from pre-computed features.
