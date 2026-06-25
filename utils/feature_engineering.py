@@ -3,14 +3,20 @@
 # Used by: src/precompute.py (offline), src/rank.py (< 5-min ranking),
 #          src/stage8_dashboard.py (sandbox demo)
 #
-# Fixes applied (v3):
-#   Fix 1 — compute_services_penalty():    near-disqualification (0.05) for pure-services careers
-#   Fix 2 — compute_skill_trust_score():   replaces compute_skill_score() with career cross-reference
-#   Fix 3 — compute_availability_multiplier(): replaces compute_behavioral_score() with 8-signal multiplier
-#   Fix 4 — detect_production_retrieval_experience(): new signal for this JD's #1 requirement
-#   Fix 5 — compute_final_score():         updated formula using all new functions
-#   Fix 6 — _experience_band_multiplier(): strengthened YoE penalty — 5.5-9yr sweet spot, <4yr heavy penalty
-#   Fix 7 — _title_chaser_penalty():       penalises job-hoppers (≥50% past roles < 18 months)
+# Fixes applied (v4 — competitive hardening):
+#   Fix 1  — compute_services_penalty():      near-disqualification (0.05) for pure-services careers
+#   Fix 2  — compute_skill_trust_score():     trust-weighted skill score with JD relevance
+#   Fix 3  — compute_availability_multiplier(): 8-signal multiplicative availability
+#   Fix 4  — detect_production_retrieval_experience(): JD's #1 explicit requirement
+#   Fix 5  — compute_final_score():           updated formula using all new functions
+#   Fix 6  — _experience_band_multiplier():   strengthened YoE penalty
+#   Fix 7  — _title_chaser_penalty():         penalises job-hoppers
+#   P0-a   — is_honeypot():                   stricter thresholds (3 vs 7), expert-cap, founding-date checks
+#   P0-b   — compute_honeypot_suspicion():    soft 0.5-1.0 penalty for borderline cases
+#   P1-a   — compute_services_penalty():      5-tier bands matching competitor precision
+#   P1-b   — get_title_score():               unknown title default 0.40 → 0.25
+#   P2     — compute_must_have_coverage_gate(): NDCG@10 calibration gate
+#   P3     — compute_skill_trust_score():     explicit assessment bonus aligned to competitor
 #
 # Legacy functions (compute_skill_score, compute_behavioral_score) are kept as aliases
 # so that any external callers don't break.
@@ -178,7 +184,7 @@ def get_title_score(title: str) -> float:
     for score, keywords in TITLE_SCORE_MAP:
         if any(kw in t for kw in keywords):
             return score
-    return 0.40
+    return 0.25   # P1-b: lowered from 0.40 — unknown titles no longer get free points
 
 
 # ===========================================================================
@@ -188,15 +194,17 @@ def get_title_score(title: str) -> float:
 # ===========================================================================
 def compute_services_penalty(career_history: list) -> float:
     """
+    P1-a: 5-tier services penalty matching competitor precision.
     Returns a multiplier [0.05, 1.0].
 
     0.05  — pure services (≥80% months, NO non-services role ever)
-    0.40  — escaped services (≥80% months but has at least one non-services role)
-    0.75  — mixed (50–79% months at services)
-    1.00  — no penalty
+    0.40  — escaped services (≥80% months but has ≥1 non-services role)
+    0.45  — heavy-services (70–79%)
+    0.70  — mixed (50–69%)
+    0.85  — services-leaning (25–49%)
+    1.00  — no penalty (<25%)
 
-    Applied as multiplier on career_score (and propagated to final_score via
-    the services_penalty factor in compute_final_score).
+    Applied as multiplier on career_score and final_score.
     """
     total = sum(r.get('duration_months', 0) for r in career_history)
     if total == 0:
@@ -222,9 +230,13 @@ def compute_services_penalty(career_history: list) -> float:
             return 0.05   # pure services — near-disqualification
         else:
             return 0.40   # escaped services — significant penalty
+    if ratio >= 0.70:
+        return 0.45       # P1-a: new band — heavy-services career
     if ratio >= 0.50:
-        return 0.75       # mixed — moderate penalty
-    return 1.0            # no penalty
+        return 0.70       # mixed — moderate penalty (adjusted from 0.75)
+    if ratio >= 0.25:
+        return 0.85       # P1-a: new band — services-leaning but mixed
+    return 1.0            # no penalty (<25% services)
 
 
 # ===========================================================================
@@ -486,36 +498,154 @@ def compute_fit_score(profile: dict, education: list, signals: dict) -> float:
 
 
 # ===========================================================================
-# Honeypot Detection (unchanged)
+# P0-a: Honeypot Detection — overhauled to match/exceed competitor precision
+#
+# Changes vs v3:
+#   • expert_zero threshold: 7 → 3  (competitor uses 3)
+#   • new: total expert skills cap at 12
+#   • new: founding-date impossibility check for young companies
+#   • new: total duration vs claimed YoE inflation check (stricter multiplier)
 # ===========================================================================
+
+# Companies founded after Jan 2023 — max plausible tenure as of June 2026
+YOUNG_COMPANY_MAX_MONTHS: dict = {
+    'sarvam ai':  38,   # founded April 2023
+    'sarvam':     38,
+    'krutrim':    30,   # founded December 2023
+}
+
+
 def is_honeypot(candidate: dict) -> bool:
+    """
+    P0-a: Stricter honeypot detection.
+
+    STRONG signals (1 alone = honeypot):
+      1. Claimed YoE > actual career months by > 2 years (and YoE > 5)
+      2. >= 3 advanced/expert skills with duration_months == 0
+      3. Total expert-level skills >= 12 (impossible legitimately)
+      4. Duration at a young company exceeds its founding-date ceiling
+      5. All career descriptions identical (copy-paste fraud)
+      6. High completeness score but ALL descriptions empty
+      7. Sum of all duration_months > 2.5× (years_of_experience × 12)
+    """
     profile = candidate.get('profile', {})
     career  = candidate.get('career_history', [])
     skills  = candidate.get('skills', [])
 
+    claimed_years       = float(profile.get('years_of_experience', 0) or 0)
     total_career_months = sum(r.get('duration_months', 0) for r in career)
-    claimed_years       = float(profile.get('years_of_experience', 0))
+
+    # Signal 1: Inflated YoE vs actual career span
     if claimed_years > (total_career_months / 12.0) + 2.0 and claimed_years > 5:
         return True
 
+    # Signal 7: Total career months > 2.5× declared YoE (overlapping/fake tenures)
+    if claimed_years > 0 and total_career_months > (claimed_years * 12 * 2.5):
+        return True
+
+    # Signal 2: P0 — ≥3 advanced/expert skills with ZERO months used (lowered from 7)
     expert_zero = sum(
         1 for s in skills
         if s.get('proficiency') in ('advanced', 'expert')
         and s.get('duration_months', 0) == 0
     )
-    if expert_zero >= 7:
+    if expert_zero >= 3:
         return True
 
+    # Signal 3: P0 — 12+ expert-level skills total (no legitimate candidate has this)
+    total_expert = sum(1 for s in skills if s.get('proficiency') == 'expert')
+    if total_expert >= 12:
+        return True
+
+    # Signal 4: P0 — Impossible tenure at young companies
+    for r in career:
+        company = (r.get('company') or '').lower().strip()
+        dur     = r.get('duration_months', 0)
+        for co_name, max_mo in YOUNG_COMPANY_MAX_MONTHS.items():
+            if co_name in company and dur > max_mo:
+                return True
+
+    # Signal 5: All non-empty descriptions are identical (copy-paste fraud)
     descs = [r.get('description', '').strip() for r in career if r.get('description', '').strip()]
     if len(descs) >= 3 and len(set(descs)) == 1:
         return True
 
+    # Signal 6: High completeness + ALL descriptions empty = fabricated completeness
     completeness = candidate.get('redrob_signals', {}).get('profile_completeness_score', 0)
     all_empty = all(not r.get('description', '').strip() for r in career)
     if completeness > 85 and all_empty and len(career) > 1:
         return True
 
     return False
+
+
+# ===========================================================================
+# P0-b: Soft Honeypot Suspicion Multiplier
+# For borderline candidates that don't hit hard flags but look suspicious.
+# Returns a multiplier in [0.50, 1.0] — 1.0 = no suspicion.
+# ===========================================================================
+def compute_honeypot_suspicion(candidate: dict) -> float:
+    """
+    P0-b: Soft penalty for borderline suspicious profiles.
+    Does NOT zero out the score — applies a gradual penalty.
+
+    Weak signals (accumulate suspicion points):
+      +2 pts: 1-2 expert skills with 0 months used
+      +2 pts: 10-11 total expert skills (unusual)
+      +1 pt:  3-4 advanced/expert skills with 0 months (but < 3 expert)
+      +1 pt:  total_career_months > 2.0× declared YoE × 12
+
+    Suspicion multiplier:
+      0 pts  → 1.00 (no penalty)
+      1 pt   → 0.85
+      2 pts  → 0.70
+      3+ pts → 0.50 (heavily suspicious)
+    """
+    skills  = candidate.get('skills', [])
+    career  = candidate.get('career_history', [])
+    profile = candidate.get('profile', {})
+
+    suspicion = 0
+
+    claimed_years       = float(profile.get('years_of_experience', 0) or 0)
+    total_career_months = sum(r.get('duration_months', 0) for r in career)
+
+    # Count expert/advanced skills with 0 months
+    expert_zero = sum(
+        1 for s in skills
+        if s.get('proficiency') in ('advanced', 'expert')
+        and s.get('duration_months', 0) == 0
+    )
+    total_expert = sum(1 for s in skills if s.get('proficiency') == 'expert')
+
+    # Weak signal: 1-2 expert skills with 0 months
+    if 1 <= expert_zero <= 2:
+        suspicion += 2
+
+    # Weak signal: 10-11 total expert skills
+    if 10 <= total_expert <= 11:
+        suspicion += 2
+
+    # Weak signal: 3-4 advanced+expert with 0 months (but not already flagged as honeypot)
+    adv_expert_zero = sum(
+        1 for s in skills
+        if s.get('proficiency') in ('advanced', 'expert')
+        and s.get('duration_months', 0) == 0
+    )
+    if 3 <= adv_expert_zero <= 4 and expert_zero < 3:
+        suspicion += 1
+
+    # Weak signal: Total career months > 2× declared YoE
+    if claimed_years > 0 and total_career_months > (claimed_years * 12 * 2.0):
+        suspicion += 1
+
+    if suspicion == 0:
+        return 1.00
+    if suspicion == 1:
+        return 0.85
+    if suspicion == 2:
+        return 0.70
+    return 0.50   # 3+ suspicion points
 
 
 # ===========================================================================
@@ -631,32 +761,33 @@ COMPLETELY_IRRELEVANT_TITLES = {
     "hr manager", "human resources", "graphic designer",
     "content writer", "customer support", "business analyst",
     "project manager", "sales", "finance", "administrative",
-    
-    # Wrong engineering domains  
+
+    # Wrong engineering domains
     "civil engineer", "mechanical engineer", "electrical engineer",
     "hardware engineer", "manufacturing engineer",
-    
+
     # Non-ML tech roles that lack any ML path
     ".net developer", "mobile developer", "frontend engineer",
     "full stack developer", "devops engineer", "qa engineer",
     "java developer", "web developer", "ui developer",
 }
 
+
 def compute_title_relevance_gate(profile: dict) -> float:
     """
     Hard gate for completely irrelevant titles.
     Returns a multiplier: 0.05 for irrelevant, 1.0 otherwise.
-    
+
     This prevents location/availability bonuses from inflating
     candidates who are fundamentally wrong for the role.
     """
     title = (profile.get("current_title") or "").lower()
-    
+
     # Check for completely irrelevant title keywords
     for irrelevant in COMPLETELY_IRRELEVANT_TITLES:
         if irrelevant in title:
             return 0.05  # near-disqualification
-    
+
     # Check for ML/AI/data relevant title keywords — these get full score
     RELEVANT_TITLE_KEYWORDS = {
         "ml", "machine learning", "ai ", "artificial intelligence",
@@ -667,27 +798,94 @@ def compute_title_relevance_gate(profile: dict) -> float:
         "data engineer", "platform engineer", "infrastructure engineer",
         "cloud engineer", "sre", "mlops", "llm", "generative"
     }
-    
+
     for relevant in RELEVANT_TITLE_KEYWORDS:
         if relevant in title:
             return 1.0
-    
-    # Unknown title — neutral, don't penalize
-    return 0.85
+
+    # Unknown title — P1-b: reduced from 0.85 (unknown is now penalised slightly more)
+    return 0.70
 
 
 # ===========================================================================
-# FIX 5 — compute_final_score()
+# P2: Must-Have Skill Coverage Gate
+# JD has 8 must-have skill groups. Candidates matching < 3 groups are penalised
+# to protect NDCG@10. This is the primary discriminator at the very top.
+# ===========================================================================
+MUST_HAVE_SKILL_GROUPS: list[set] = [
+    # Group 1: Embeddings
+    {'embedding', 'embeddings', 'sentence-transformers', 'sentence transformers',
+     'bge', 'e5', 'openai embeddings', 'text embeddings', 'dense retrieval', 'bi-encoder'},
+    # Group 2: Vector DB
+    {'faiss', 'pinecone', 'weaviate', 'qdrant', 'milvus', 'opensearch',
+     'elasticsearch', 'chroma', 'pgvector', 'vector database', 'vector db', 'vector search'},
+    # Group 3: Ranking/IR
+    {'ranking', 'bm25', 'tf-idf', 'hybrid search', 'information retrieval',
+     'ranker', 'reranking', 'learning to rank', 'ltr'},
+    # Group 4: Evaluation
+    {'ndcg', 'mrr', 'map', 'recall@k', 'precision@k', 'a/b testing',
+     'ab testing', 'evaluation framework', 'experimentation'},
+    # Group 5: Python
+    {'python'},
+    # Group 6: NLP/Transformers
+    {'nlp', 'natural language processing', 'transformer', 'transformers',
+     'bert', 'gpt', 'llm', 'large language model', 'rag', 'text classification'},
+    # Group 7: ML Core
+    {'pytorch', 'tensorflow', 'scikit-learn', 'sklearn', 'deep learning',
+     'machine learning', 'statistical modeling'},
+    # Group 8: Search
+    {'search', 'search engineering', 'vector search', 'solr', 'lucene',
+     'recommendation', 'recommender'},
+]
+
+
+def compute_must_have_coverage_gate(skills: list) -> float:
+    """
+    P2: Must-have coverage gate for NDCG@10 calibration.
+
+    Counts how many of the 8 JD must-have skill groups the candidate covers.
+    Any skill with duration > 0 counts (trust-filtered).
+
+    Gate:
+      >= 5 groups → 1.00 (no penalty — clearly qualified)
+      3-4 groups  → 0.85 (borderline — slight penalty)
+      1-2 groups  → 0.50 (weak coverage — significant penalty)
+      0 groups    → 0.25 (no relevant skills at all)
+    """
+    # Only count skills actually used (duration > 0)
+    used_skills = {
+        s.get('name', '').lower().strip()
+        for s in skills
+        if s.get('duration_months', 0) > 0
+    }
+
+    covered = 0
+    for group in MUST_HAVE_SKILL_GROUPS:
+        if any(kw in name for kw in group for name in used_skills):
+            covered += 1
+
+    if covered >= 5:
+        return 1.00
+    if covered >= 3:
+        return 0.85
+    if covered >= 1:
+        return 0.50
+    return 0.25
+
+
+# ===========================================================================
+# FIX 5 (v4) — compute_final_score()
 # Updated formula:
 #   career_score    × 0.30
 #   skill_score     × 0.20
-#   retrieval_score × 0.30   ← new, JD's #1 explicit requirement
+#   retrieval_score × 0.30   ← JD's #1 explicit requirement
 #   fit_score       × 0.20
-# then multiply by behavioral_multiplier and services_penalty
+# then multiply by behavioral_multiplier, services_penalty,
+#   title_gate, must_have_gate (P2), and honeypot_suspicion (P0-b)
 # ===========================================================================
 def compute_final_score(candidate: dict) -> float:
     """
-    Fix 5: Revised final score formula.
+    v4: All P0–P3 improvements applied.
 
     Base:
       career_score    * 0.30
@@ -696,22 +894,26 @@ def compute_final_score(candidate: dict) -> float:
       fit_score       * 0.20
 
     Multipliers applied on top:
-      × behavioral_multiplier   (availability/reachability — can go to 1.15)
-      × services_penalty        (also embedded in career_score but applied here
-                                 to affect the full score, not just career)
+      × behavioral_multiplier       (availability/reachability — can go to 1.15)
+      × services_penalty            (5-tier penalty, P1-a)
+      × title_gate                  (hard gate for irrelevant titles)
+      × must_have_coverage_gate     (P2 — NDCG@10 calibration)
+      × honeypot_suspicion          (P0-b — soft penalty for borderline fakes)
+      + assessment_bonus            (P3 — platform-verified skill bonus)
 
     Range: [0.0, 1.0]  (clamped)
     No network calls. No LLM calls. Pure deterministic computation.
     """
+    # P0-a hard gate: confirmed honeypots score 0.0 immediately
     if is_honeypot(candidate):
         return 0.0
 
-    profile   = candidate.get('profile', {})
-    career    = candidate.get('career_history', [])
-    education = candidate.get('education', [])
-    skills    = candidate.get('skills', [])
-    signals   = candidate.get('redrob_signals', {})
-    assessments = signals.get('skill_assessment_scores', {})
+    profile     = candidate.get('profile', {})
+    career      = candidate.get('career_history', [])
+    education   = candidate.get('education', [])
+    skills      = candidate.get('skills', [])
+    signals     = candidate.get('redrob_signals', {})
+    assessments = signals.get('skill_assessment_scores', {}) or {}
 
     # --- Component scores (all 0-1) ---
     career_s    = compute_career_score(profile, career)
@@ -719,10 +921,23 @@ def compute_final_score(candidate: dict) -> float:
     retrieval_s = detect_production_retrieval_experience(career)
     fit_s       = compute_fit_score(profile, education, signals)
 
-    # --- Blend github into skill score (as before) ---
+    # --- P3: Assessment bonus — platform-verified skills add up to +0.15 ---
+    # Competitors give +0.25 per matched assessment; we blend it into skill_s
+    assessment_bonus = 0.0
+    if assessments:
+        verified_scores = [
+            v / 100.0 for k, v in assessments.items()
+            if isinstance(v, (int, float)) and v > 0
+        ]
+        if verified_scores:
+            # Bonus = mean of top-3 verified scores × 0.15 weight
+            top3 = sorted(verified_scores, reverse=True)[:3]
+            assessment_bonus = (sum(top3) / len(top3)) * 0.15
+
+    # --- Blend github + assessment bonus into skill score ---
     gh_raw   = float(signals.get('github_activity_score', -1))
     gh_score = 0.50 if gh_raw < 0 else gh_raw / 100.0
-    skill_s  = 0.80 * skill_s + 0.20 * gh_score
+    skill_s  = min(1.0, 0.75 * skill_s + 0.15 * gh_score + assessment_bonus)
 
     # --- Weighted base score ---
     base = (
@@ -732,13 +947,12 @@ def compute_final_score(candidate: dict) -> float:
         fit_s       * 0.20
     )
 
-    # --- Multipliers ---
+    # --- Multipliers (applied in order of severity) ---
     behavioral_mult  = compute_availability_multiplier(signals, profile)
-    services_penalty = compute_services_penalty(career)
+    services_penalty = compute_services_penalty(career)          # P1-a: 5-tier
+    title_gate       = compute_title_relevance_gate(profile)     # hard irrelevant-title gate
+    must_have_gate   = compute_must_have_coverage_gate(skills)   # P2: NDCG@10 calibration
+    suspicion_mult   = compute_honeypot_suspicion(candidate)     # P0-b: soft suspicion
 
-    title_gate = compute_title_relevance_gate(profile)
-
-    # Apply title gate AFTER all other scoring
-    # This ensures location/availability can't rescue irrelevant titles
-    final = base * behavioral_mult * services_penalty * title_gate
+    final = base * behavioral_mult * services_penalty * title_gate * must_have_gate * suspicion_mult
     return round(min(max(final, 0.0), 1.0), 6)

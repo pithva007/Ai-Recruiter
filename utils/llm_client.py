@@ -16,6 +16,11 @@ from google.genai import types
 from google.genai import errors as genai_errors
 from tenacity import RetryError
 
+try:
+    from groq import Groq
+except ImportError:
+    Groq = None
+
 # Load .env from the project root (two levels up: utils/ → root)
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
 
@@ -24,6 +29,11 @@ client = genai.Client()
 
 # Primary model — override with GEMINI_MODEL env var
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+
+# Groq fallback client setup
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+groq_client = Groq(api_key=GROQ_API_KEY) if Groq and GROQ_API_KEY else None
+GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
 # Retry config
 MAX_ATTEMPTS   = 6
@@ -88,6 +98,23 @@ def _call_once(system_prompt: str, user_content: str, temperature: float) -> str
     return response.text.strip()
 
 
+def _call_groq_once(system_prompt: str, user_content: str, temperature: float) -> str:
+    """Fallback API call to Groq."""
+    if not groq_client:
+        raise ValueError("Groq client not initialized (missing API key or package).")
+    
+    response = groq_client.chat.completions.create(
+        model=GROQ_MODEL,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_content}
+        ],
+        temperature=temperature,
+        max_tokens=4096,
+    )
+    return response.choices[0].message.content.strip()
+
+
 def call_llm(system_prompt: str, user_content: str, temperature: float = 0.0):
     """
     Call the Gemini LLM with a system prompt and user content.
@@ -97,34 +124,50 @@ def call_llm(system_prompt: str, user_content: str, temperature: float = 0.0):
     - Up to 6 attempts on 429/503 with exponential backoff (10s → 90s)
     - Does NOT retry on auth/validation errors (400/401/403/404)
     - On JSON parse failure, makes one explicit JSON-only retry call
+    - Falls back to Groq if Gemini fails completely.
     """
     last_exc = None
     wait = BASE_WAIT_SEC
     raw = None
+    used_client = "gemini"
 
     for attempt in range(1, MAX_ATTEMPTS + 1):
         try:
             raw = _call_once(system_prompt, user_content, temperature)
             last_exc = None
+            used_client = "gemini"
             break   # success
         except Exception as exc:
             last_exc = exc
+            
+            # Immediately try Groq if available
+            if groq_client:
+                print(f"[llm_client] Gemini attempt failed ({type(exc).__name__}). Falling back to Groq immediately...")
+                try:
+                    raw = _call_groq_once(system_prompt, user_content, temperature)
+                    last_exc = None
+                    used_client = "groq"
+                    break   # success with Groq
+                except Exception as groq_exc:
+                    print(f"[llm_client] Groq fallback also failed: {groq_exc}")
+                    last_exc = Exception(f"Gemini error: {exc}. Groq error: {groq_exc}")
+            
+            # If both failed (or no Groq), wait and retry
             if _is_transient(exc) and attempt < MAX_ATTEMPTS:
                 # Respect retryDelay hint from the API if present
                 api_wait = _parse_retry_delay(exc)
                 actual_wait = max(wait, api_wait)
                 print(
-                    f"[llm_client] Attempt {attempt}/{MAX_ATTEMPTS} failed "
-                    f"({type(exc).__name__}: {str(exc)[:100]}). "
+                    f"[llm_client] Attempt {attempt}/{MAX_ATTEMPTS} failed. "
                     f"Retrying in {actual_wait}s ..."
                 )
                 time.sleep(actual_wait)
                 wait = min(wait * 2, MAX_WAIT_SEC)
             else:
-                raise   # non-transient OR final attempt — propagate immediately
+                break   # break instead of raise
 
     if last_exc is not None:
-        raise last_exc  # should not reach here, but safety net
+        raise last_exc  # All attempts (Gemini + Groq) exhausted
 
     # Strip markdown fences if the model wraps its output
     raw = raw.replace("```json", "").replace("```", "").strip()
@@ -134,17 +177,18 @@ def call_llm(system_prompt: str, user_content: str, temperature: float = 0.0):
     except json.JSONDecodeError:
         # One explicit JSON-only retry
         try:
-            raw2 = _call_once(
-                system_prompt,
-                (
-                    f"{user_content}\n\n"
-                    "Your previous response was not valid JSON. "
-                    "Respond only with valid JSON. "
-                    "No markdown. No explanation. No code blocks. "
-                    "Just the raw JSON object."
-                ),
-                0.0,
+            retry_prompt = (
+                f"{user_content}\n\n"
+                "Your previous response was not valid JSON. "
+                "Respond only with valid JSON. "
+                "No markdown. No explanation. No code blocks. "
+                "Just the raw JSON object."
             )
+            if used_client == "gemini":
+                raw2 = _call_once(system_prompt, retry_prompt, 0.0)
+            else:
+                raw2 = _call_groq_once(system_prompt, retry_prompt, 0.0)
+                
             raw2 = raw2.replace("```json", "").replace("```", "").strip()
             return json.loads(raw2)
         except Exception:
