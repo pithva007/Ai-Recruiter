@@ -5,49 +5,150 @@ import gzip as gz_lib
 import io
 import re
 import math
+import os
 from datetime import date, datetime
-
-# ── session_state init ─────────────────────────────────────
-if "results" not in st.session_state:
-    st.session_state["results"] = None
-if "ran" not in st.session_state:
-    st.session_state["ran"] = False
+from pathlib import Path
 
 # ============================================================
-# SCORING ENGINE  (self-contained — no external imports)
+# PAGE CONFIG — must be first Streamlit call
 # ============================================================
+st.set_page_config(
+    page_title="AI Recruiter · Redrob Hackathon",
+    page_icon="🎯",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+# ── session_state init ────────────────────────────────────────
+for _k, _v in [("live_results", None), ("live_ran", False)]:
+    if _k not in st.session_state:
+        st.session_state[_k] = _v
+
+# ============================================================
+# DATA LOADER — pre-computed results (bundled in hf_space/)
+# ============================================================
+_HERE = Path(__file__).parent
+
+@st.cache_data
+def load_submission_csv() -> list[dict]:
+    """Load pre-computed submission.csv (100 ranked, official results)."""
+    p = _HERE / "submission.csv"
+    if not p.exists():
+        return []
+    rows = []
+    with open(p, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            rows.append(row)
+    return rows
+
+@st.cache_data
+def load_ranked_candidates() -> list[dict]:
+    """Load pre-computed ranked_candidates.csv (30 deeply LLM-scored)."""
+    p = _HERE / "ranked_candidates.csv"
+    if not p.exists():
+        return []
+    rows = []
+    with open(p, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            rows.append(row)
+    return rows
+
+@st.cache_data
+def load_jd_features() -> dict:
+    p = _HERE / "jd_features.json"
+    if not p.exists():
+        return {}
+    with open(p, encoding="utf-8") as f:
+        return json.load(f)
+
+@st.cache_data
+def load_sample_candidates() -> list[dict]:
+    p = _HERE / "sample_candidates.json"
+    if not p.exists():
+        return []
+    with open(p, encoding="utf-8") as f:
+        return json.load(f)
+
+SUBMISSION     = load_submission_csv()
+RANKED_DEEP    = load_ranked_candidates()
+JD             = load_jd_features()
+SAMPLE_CANDS   = load_sample_candidates()
+
+# ============================================================
+# SCORING ENGINE v4  (self-contained — synced with feature_engineering.py)
+# ============================================================
+
+def _extract_skill_name(s: dict) -> str:
+    return (s.get("skill") or "").lower().strip()
+
+_JD_LOADED = bool(JD)
 
 SERVICES_COMPANIES = {
-    "tcs", "tata consultancy", "infosys", "wipro", "accenture",
-    "cognizant", "capgemini", "hcl technologies", "hcl tech",
-    "tech mahindra", "mphasis", "hexaware", "l&t infotech", "ltimindtree"
+    "tcs", "tata consultancy", "tata consultancy services", "infosys", "wipro",
+    "accenture", "cognizant", "cognizant technology solutions", "cts", "capgemini",
+    "hcl technologies", "hcl tech", "hcl", "tech mahindra", "mphasis",
+    "hexaware", "l&t infotech", "ltimindtree", "mindtree",
+    "ibm gbs", "ibm global services", "niit technologies", "cyient",
+    "zensar", "birlasoft", "persistent systems", "mastech",
 }
+if _JD_LOADED:
+    for _co in JD.get("services_company_names", []):
+        SERVICES_COMPANIES.add(_co.lower().strip())
 
 MUST_HAVE_SKILLS = {
-    "embeddings", "vector search", "vector database", "faiss", "pinecone",
-    "weaviate", "qdrant", "milvus", "elasticsearch", "opensearch",
-    "sentence transformers", "retrieval", "ranking", "recommendation",
-    "python", "llm", "fine-tuning", "rag", "information retrieval",
-    "ndcg", "map", "mrr", "bert", "transformers", "huggingface",
-    "pytorch", "tensorflow", "bge", "e5", "hybrid search",
-    "learning to rank", "xgboost", "reranking", "dense retrieval"
+    "embeddings", "sentence-transformers", "sentence transformers",
+    "vector search", "vector database", "faiss", "pinecone", "weaviate",
+    "qdrant", "milvus", "elasticsearch", "opensearch", "retrieval", "ranking",
+    "recommendation", "python", "llm", "large language model", "fine-tuning",
+    "rag", "information retrieval", "ndcg", "map", "mrr", "bert", "transformers",
+    "huggingface", "pytorch", "tensorflow", "bge", "e5", "hybrid search",
+    "learning to rank", "xgboost", "reranking", "dense retrieval",
+    "mlops", "evaluation framework", "a/b testing", "product engineering",
 }
+if _JD_LOADED:
+    for _s in JD.get("must_have_skills", []):
+        MUST_HAVE_SKILLS.add(_extract_skill_name(_s))
 
 NICE_TO_HAVE_SKILLS = {
-    "lora", "qlora", "peft", "langchain", "openai", "gemini",
-    "llama", "mistral", "spark", "kafka", "airflow", "kubernetes",
-    "docker", "mlflow", "weights & biases", "a/b testing",
-    "distributed systems", "inference optimization"
+    "lora", "qlora", "peft", "langchain", "openai", "gemini", "llama",
+    "mistral", "spark", "kafka", "airflow", "kubernetes", "docker", "mlflow",
+    "weights & biases", "distributed systems", "inference optimization",
+    "open-source", "oss", "hr-tech", "recruiting",
 }
+if _JD_LOADED:
+    for _s in JD.get("nice_to_have_skills", []):
+        NICE_TO_HAVE_SKILLS.add(_extract_skill_name(_s))
 
 RETRIEVAL_KEYWORDS = {
-    "retrieval", "search", "ranking", "recommendation", "vector",
-    "embedding", "similarity", "index", "faiss", "elasticsearch",
-    "recommend", "ranker", "rerank", "recall", "precision", "ndcg",
-    "bm25", "dense", "sparse", "hybrid", "semantic search"
+    "retrieval", "search", "ranking", "recommendation", "vector", "embedding",
+    "embeddings", "similarity", "index", "faiss", "elasticsearch", "opensearch",
+    "recommend", "ranker", "rerank", "recall", "precision", "ndcg", "mrr", "map",
+    "bm25", "dense", "sparse", "hybrid", "semantic search", "information retrieval",
+    "vector database", "pinecone", "weaviate", "qdrant", "milvus",
+    "sentence-transformers", "bi-encoder", "cross-encoder",
 }
 
-REFERENCE_DATE = date(2026, 6, 1)
+REFERENCE_DATE = date.today()
+
+_YOUNG_COMPANY_MAX_MONTHS = {"sarvam ai": 38, "sarvam": 38, "krutrim": 30}
+
+_MUST_HAVE_GROUPS = [
+    {"embedding", "embeddings", "sentence-transformers", "sentence transformers",
+     "bge", "e5", "dense retrieval", "bi-encoder"},
+    {"faiss", "pinecone", "weaviate", "qdrant", "milvus", "opensearch",
+     "elasticsearch", "chroma", "pgvector", "vector database", "vector db", "vector search"},
+    {"ranking", "bm25", "tf-idf", "hybrid search", "information retrieval",
+     "ranker", "reranking", "learning to rank", "ltr"},
+    {"ndcg", "mrr", "map", "recall@k", "precision@k", "a/b testing",
+     "ab testing", "evaluation framework", "experimentation"},
+    {"python"},
+    {"nlp", "natural language processing", "transformer", "transformers",
+     "bert", "gpt", "llm", "large language model", "rag", "text classification"},
+    {"pytorch", "tensorflow", "scikit-learn", "sklearn", "deep learning",
+     "machine learning", "statistical modeling"},
+    {"search", "search engineering", "solr", "lucene", "recommendation", "recommender"},
+]
+
 
 def _parse_date(date_str):
     if not date_str:
@@ -67,8 +168,7 @@ def compute_services_penalty(career_history):
     if total == 0:
         return 1.0
     services = sum(
-        j.get("duration_months", 0) or 0
-        for j in career_history
+        j.get("duration_months", 0) or 0 for j in career_history
         if any(s in (j.get("company") or "").lower() for s in SERVICES_COMPANIES)
     )
     ratio = services / total
@@ -76,12 +176,11 @@ def compute_services_penalty(career_history):
         not any(s in (j.get("company") or "").lower() for s in SERVICES_COMPANIES)
         for j in career_history
     )
-    if ratio >= 0.80 and not has_escape:
-        return 0.05
-    if ratio >= 0.80:
-        return 0.40
-    if ratio >= 0.50:
-        return 0.75
+    if ratio >= 0.80 and not has_escape: return 0.05
+    if ratio >= 0.80: return 0.40
+    if ratio >= 0.70: return 0.45
+    if ratio >= 0.50: return 0.70
+    if ratio >= 0.25: return 0.85
     return 1.0
 
 
@@ -103,7 +202,7 @@ def compute_skill_trust_score(skills):
             jd_weight = 0.0
         if jd_weight == 0.0:
             continue
-        if duration == 0 and proficiency in ["expert", "advanced"]:
+        if duration == 0 and proficiency in ("expert", "advanced"):
             skill_weight = 0.05
         elif duration == 0:
             skill_weight = 0.10
@@ -195,18 +294,12 @@ def compute_availability_multiplier(signals, profile):
 
 
 def _experience_band_multiplier(years):
-    if years is None or years <= 0:
-        return 0.40
-    if years < 4.0:
-        return 0.35
-    if years < 5.0:
-        return 0.72
-    if years < 5.5:
-        return 0.88
-    if 5.5 <= years <= 9.0:
-        return 1.0
-    if 9.0 < years <= 11.0:
-        return 0.95
+    if years is None or years <= 0: return 0.40
+    if years < 4.0:  return 0.35
+    if years < 5.0:  return 0.72
+    if years < 5.5:  return 0.88
+    if 5.5 <= years <= 9.0: return 1.0
+    if 9.0 < years <= 11.0: return 0.95
     return 0.85
 
 
@@ -218,122 +311,151 @@ def _title_chaser_penalty(career_history):
         return 1.0
     short = sum(1 for j in past if (j.get("duration_months") or 99) < 18)
     ratio = short / len(past)
-    if ratio >= 0.70:
-        return 0.60
-    if ratio >= 0.50:
-        return 0.80
+    if ratio >= 0.70: return 0.60
+    if ratio >= 0.50: return 0.80
     return 1.0
 
 
 def _is_honeypot(candidate):
     profile = candidate.get("profile", {})
-    career = candidate.get("career_history", [])
-    skills = candidate.get("skills", [])
-    zero_dur_expert = sum(
+    career  = candidate.get("career_history", [])
+    skills  = candidate.get("skills", [])
+    claimed_years = float(profile.get("years_of_experience") or 0)
+    total_career_months = sum(j.get("duration_months") or 0 for j in career)
+    if claimed_years > (total_career_months / 12.0) + 2.0 and claimed_years > 5:
+        return True
+    if claimed_years > 0 and total_career_months > (claimed_years * 12 * 2.5):
+        return True
+    expert_zero = sum(
         1 for s in skills
         if (s.get("duration_months") or 0) == 0
-        and (s.get("proficiency") or "") in ["expert", "advanced"]
+        and (s.get("proficiency") or "") in ("expert", "advanced")
     )
-    if zero_dur_expert >= 5:
+    if expert_zero >= 3:
         return True
-    stated_yoe = profile.get("years_of_experience") or 0
-    career_months = sum(j.get("duration_months") or 0 for j in career)
-    if stated_yoe > 2 and career_months < 6:
+    total_expert = sum(1 for s in skills if (s.get("proficiency") or "") == "expert")
+    if total_expert >= 12:
+        return True
+    for job in career:
+        company = (job.get("company") or "").lower().strip()
+        dur = job.get("duration_months") or 0
+        for co_name, max_mo in _YOUNG_COMPANY_MAX_MONTHS.items():
+            if co_name in company and dur > max_mo:
+                return True
+    descs = [job.get("description", "").strip() for job in career
+             if job.get("description", "").strip()]
+    if len(descs) >= 3 and len(set(descs)) == 1:
+        return True
+    completeness = candidate.get("redrob_signals", {}).get("profile_completeness_score", 0)
+    all_empty = all(not job.get("description", "").strip() for job in career)
+    if completeness > 85 and all_empty and len(career) > 1:
         return True
     return False
 
 
+def _compute_honeypot_suspicion(candidate):
+    skills  = candidate.get("skills", [])
+    career  = candidate.get("career_history", [])
+    profile = candidate.get("profile", {})
+    suspicion = 0
+    claimed_years = float(profile.get("years_of_experience") or 0)
+    total_career_months = sum(j.get("duration_months") or 0 for j in career)
+    expert_zero = sum(1 for s in skills
+                      if (s.get("proficiency") or "") in ("advanced", "expert")
+                      and (s.get("duration_months") or 0) == 0)
+    total_expert = sum(1 for s in skills if (s.get("proficiency") or "") == "expert")
+    if 1 <= expert_zero <= 2: suspicion += 2
+    if 10 <= total_expert <= 11: suspicion += 2
+    if claimed_years > 0 and total_career_months > (claimed_years * 12 * 2.0):
+        suspicion += 1
+    if suspicion == 0: return 1.00
+    if suspicion == 1: return 0.85
+    if suspicion == 2: return 0.70
+    return 0.50
+
+
+def _compute_must_have_coverage_gate(skills):
+    used = {(s.get("name") or "").lower().strip()
+            for s in skills if (s.get("duration_months") or 0) > 0}
+    covered = sum(1 for grp in _MUST_HAVE_GROUPS
+                  if any(kw in name for kw in grp for name in used))
+    if covered >= 5: return 1.00
+    if covered >= 3: return 0.85
+    if covered >= 1: return 0.50
+    return 0.25
+
+
 COMPLETELY_IRRELEVANT_TITLES = {
-    # Non-technical roles
-    "accountant", "marketing manager", "operations manager",
-    "hr manager", "human resources", "graphic designer",
-    "content writer", "customer support", "business analyst",
-    "project manager", "sales", "finance", "administrative",
-    
-    # Wrong engineering domains  
+    "accountant", "marketing manager", "operations manager", "hr manager",
+    "human resources", "graphic designer", "content writer", "customer support",
+    "business analyst", "project manager", "sales", "finance", "administrative",
     "civil engineer", "mechanical engineer", "electrical engineer",
     "hardware engineer", "manufacturing engineer",
-    
-    # Non-ML tech roles that lack any ML path
     ".net developer", "mobile developer", "frontend engineer",
     "full stack developer", "devops engineer", "qa engineer",
     "java developer", "web developer", "ui developer",
 }
+RELEVANT_TITLE_KEYWORDS = {
+    "ml", "machine learning", "ai ", "artificial intelligence",
+    "data scientist", "data science", "nlp", "deep learning",
+    "recommendation", "search engineer", "retrieval", "applied scientist",
+    "research scientist", "research engineer", "software engineer",
+    "software developer", "backend engineer", "data engineer",
+    "platform engineer", "infrastructure engineer", "cloud engineer",
+    "sre", "mlops", "llm", "generative",
+}
+
 
 def compute_title_relevance_gate(profile: dict) -> float:
-    """
-    Hard gate for completely irrelevant titles.
-    Returns a multiplier: 0.05 for irrelevant, 1.0 otherwise.
-    
-    This prevents location/availability bonuses from inflating
-    candidates who are fundamentally wrong for the role.
-    """
     title = (profile.get("current_title") or "").lower()
-    
-    # Check for completely irrelevant title keywords
-    for irrelevant in COMPLETELY_IRRELEVANT_TITLES:
-        if irrelevant in title:
-            return 0.05  # near-disqualification
-    
-    # Check for ML/AI/data relevant title keywords — these get full score
-    RELEVANT_TITLE_KEYWORDS = {
-        "ml", "machine learning", "ai ", "artificial intelligence",
-        "data scientist", "data science", "nlp", "deep learning",
-        "recommendation", "search engineer", "retrieval",
-        "applied scientist", "research scientist", "research engineer",
-        "software engineer", "software developer", "backend engineer",
-        "data engineer", "platform engineer", "infrastructure engineer",
-        "cloud engineer", "sre", "mlops", "llm", "generative"
-    }
-    
-    for relevant in RELEVANT_TITLE_KEYWORDS:
-        if relevant in title:
+    for irr in COMPLETELY_IRRELEVANT_TITLES:
+        if irr in title:
+            return 0.05
+    for rel in RELEVANT_TITLE_KEYWORDS:
+        if rel in title:
             return 1.0
-    
-    # Unknown title — neutral, don't penalize
     return 0.85
 
 
-def score_candidate(candidate):
-    profile = candidate.get("profile", {})
-    career = candidate.get("career_history", [])
-    skills = candidate.get("skills", [])
-    signals = candidate.get("redrob_signals", {})
+def score_candidate(candidate) -> float:
     if _is_honeypot(candidate):
         return 0.01
-    years = profile.get("years_of_experience") or 0
-    exp_mult = _experience_band_multiplier(years)
-    title_pen = _title_chaser_penalty(career)
-    services_pen = compute_services_penalty(career)
-    skill_score = compute_skill_trust_score(skills)
+    profile  = candidate.get("profile", {})
+    career   = candidate.get("career_history", [])
+    skills   = candidate.get("skills", [])
+    signals  = candidate.get("redrob_signals", {})
+    years       = profile.get("years_of_experience") or 0
+    exp_mult    = _experience_band_multiplier(years)
+    title_pen   = _title_chaser_penalty(career)
+    career_score    = exp_mult * title_pen
+    skill_score     = compute_skill_trust_score(skills)
     retrieval_score = detect_retrieval_experience(career)
-    avail_mult = compute_availability_multiplier(signals, profile)
-    career_score = exp_mult * title_pen
+    avail_mult      = compute_availability_multiplier(signals, profile)
+    services_pen    = compute_services_penalty(career)
+    title_gate      = compute_title_relevance_gate(profile)
+    must_have_gate  = _compute_must_have_coverage_gate(skills)
+    suspicion_mult  = _compute_honeypot_suspicion(candidate)
     base = (
         career_score    * 0.30 +
         skill_score     * 0.20 +
         retrieval_score * 0.30 +
         0.50            * 0.20
     )
-    title_gate = compute_title_relevance_gate(profile)
-    final = base * avail_mult * services_pen * title_gate
+    final = base * avail_mult * services_pen * title_gate * must_have_gate * suspicion_mult
     return round(min(max(final, 0.0), 1.0), 6)
 
 
 # ============================================================
-# FORMAT DETECTION & FILE PARSING  (self-contained)
+# FILE PARSING  (supports JSON array, JSONL, single JSON, gzip)
 # ============================================================
 
 def read_uploaded_file(uploaded_file) -> str:
-    """Read uploaded file, handling gzip automatically."""
     raw = uploaded_file.read()
-
     if raw[:2] == b'\x1f\x8b':
         try:
             return gz_lib.decompress(raw).decode("utf-8")
         except Exception as e:
             raise ValueError(f"Failed to decompress gzip: {e}")
-
     try:
         return raw.decode("utf-8")
     except UnicodeDecodeError:
@@ -341,124 +463,58 @@ def read_uploaded_file(uploaded_file) -> str:
 
 
 def parse_candidates_file(content: str) -> list:
-    """
-    Handles THREE formats:
-    1. JSON array:  [{...}, {...}]           (sample_candidates.json)
-    2. JSONL:       {...}\n{...}\n{...}      (candidates.jsonl)
-    3. Single JSON: {...}                    (single candidate)
-    """
     content = content.strip()
-
     if content.startswith("["):
-        try:
-            data = json.loads(content)
-            if isinstance(data, list):
-                return data
-            elif isinstance(data, dict):
-                return [data]
-        except json.JSONDecodeError as e:
-            raise ValueError(f"Invalid JSON array: {e}")
-
+        data = json.loads(content)
+        return data if isinstance(data, list) else [data]
     if content.startswith("{"):
         candidates = []
-        errors = []
-        for i, line in enumerate(content.split("\n"), 1):
+        for line in content.split("\n"):
             line = line.strip()
             if not line:
                 continue
             try:
-                obj = json.loads(line)
-                candidates.append(obj)
-            except json.JSONDecodeError as e:
-                errors.append(f"Line {i}: {e}")
-
-        if not candidates and errors:
-            raise ValueError(f"No valid JSON objects found. First error: {errors[0]}")
-
+                candidates.append(json.loads(line))
+            except json.JSONDecodeError:
+                pass
+        if not candidates:
+            raise ValueError("No valid JSON objects found.")
         return candidates
-
-    raise ValueError(
-        f"Unrecognized format. File must start with '[' (JSON array) "
-        f"or '{{' (JSONL). Got: {content[:30]!r}"
-    )
+    raise ValueError("File must start with '[' (JSON array) or '{' (JSONL).")
 
 
 def get_candidate_id(candidate: dict, index: int) -> str:
-    """Get candidate ID, generating one if missing or invalid."""
     cid = candidate.get("candidate_id", "")
     if re.match(r"^CAND_[0-9]{7}$", str(cid)):
         return cid
     return f"CAND_{(index + 1):07d}"
 
 
-# ============================================================
-# RANKING ENGINE  (deterministic, CPU-only)
-# ============================================================
-
 def build_reasoning(candidate: dict, rank: int, score: float) -> str:
-    profile = candidate.get("profile", {})
-    signals = candidate.get("redrob_signals", {})
-    skills = candidate.get("skills", [])
-    career = candidate.get("career_history", [])
-
-    title = profile.get("current_title") or "Professional"
-    yoe = profile.get("years_of_experience") or 0
-    rr = signals.get("recruiter_response_rate", 0.5)
-    notice = signals.get("notice_period_days", 30)
-
-    top_skills = [
-        s.get("name") for s in skills
-        if s.get("duration_months", 0) > 6
-    ][:2]
-    skills_str = ", ".join(top_skills) if top_skills else ""
-
-    if _is_honeypot(candidate):
-        reasoning = f"{title} with {yoe}yr; flagged as honeypot (impossible skill profile)."
-    elif compute_services_penalty(career) <= 0.40:
-        reasoning = f"{title} with {yoe}yr at services firms; penalized for pure-services career."
-    elif rank <= 10:
-        base = f"{title} with {yoe}yr; "
-        if skills_str:
-            base += f"strong {skills_str}; "
-        base += f"response rate {rr:.2f}, notice {notice}d."
-        reasoning = base
-    elif rank <= 30:
-        ref = f"{skills_str}; " if skills_str else ""
-        reasoning = f"{title} with {yoe}yr; {ref}moderate engagement signals; notice {notice}d."
-    elif rank <= 50:
-        reasoning = f"{title} with {yoe}yr; some {skills_str}; mid-ranked on availability and depth."
-    else:
-        adj = f"adjacent background with {skills_str}; " if skills_str else "adjacent background; "
-        reasoning = f"{title} with {yoe}yr; {adj}included based on engagement signals."
-
-    # Strip any HTML chars that could break rendering
     import html as html_lib
-    reasoning = html_lib.escape(reasoning)
-    return reasoning
-
-
-def rank_candidates(candidates: list) -> list:
-    scored = []
-    for c in candidates:
-        score = score_candidate(c)
-        cid = get_candidate_id(c, len(scored))
-        scored.append({"candidate": c, "candidate_id": cid, "score": score})
-
-    scored.sort(key=lambda x: (-x["score"], x["candidate_id"]))
-
-    results = []
-    for i, item in enumerate(scored[:100]):
-        rank = i + 1
-        candidate = item["candidate"]
-        reasoning = build_reasoning(candidate, rank, item["score"])
-        results.append({
-            "candidate_id": item["candidate_id"],
-            "rank": rank,
-            "score": item["score"],
-            "reasoning": reasoning,
-            "candidate": candidate
-        })
-    return results
+    profile  = candidate.get("profile", {})
+    signals  = candidate.get("redrob_signals", {})
+    skills   = candidate.get("skills", [])
+    career   = candidate.get("career_history", [])
+    title    = profile.get("current_title") or "Professional"
+    yoe      = profile.get("years_of_experience") or 0
+    rr       = signals.get("recruiter_response_rate", 0.5)
+    notice   = signals.get("notice_period_days", 30)
+    top_skills = [s.get("name") for s in skills if s.get("duration_months", 0) > 6][:2]
+    skills_str = ", ".join(top_skills) if top_skills else ""
+    if _is_honeypot(candidate):
+        r = f"{title} with {yoe}yr; flagged as honeypot (impossible skill profile)."
+    elif compute_services_penalty(career) <= 0.40:
+        r = f"{title} with {yoe}yr at services firms; penalized for pure-services career."
+    elif rank <= 10:
+        r = f"{title} with {yoe}yr; " + (f"strong {skills_str}; " if skills_str else "") + f"response rate {rr:.2f}, notice {notice}d."
+    elif rank <= 30:
+        r = f"{title} with {yoe}yr; " + (f"{skills_str}; " if skills_str else "") + f"moderate engagement signals; notice {notice}d."
+    elif rank <= 50:
+        r = f"{title} with {yoe}yr; some {skills_str}; mid-ranked on availability and depth."
+    else:
+        r = f"{title} with {yoe}yr; adjacent background; included based on engagement signals."
+    return html_lib.escape(r)
 
 
 def to_csv_string(results: list) -> str:
@@ -466,375 +522,29 @@ def to_csv_string(results: list) -> str:
     writer = csv.writer(output)
     writer.writerow(["candidate_id", "rank", "score", "reasoning"])
     for r in results:
-        writer.writerow([r["candidate_id"], r["rank"], f"{r['score']:.4f}", r["reasoning"]])
+        writer.writerow([r["candidate_id"], r["rank"], f"{r['score']:.4f}", r.get("reasoning", "")])
     return output.getvalue()
 
 
-def _get_builtin_candidates() -> list:
-    return [
-        {
-            "candidate_id": "CAND_9990001",
-            "profile": {
-                "anonymized_name": "Demo A",
-                "headline": "Senior ML Engineer | Search & Retrieval | 7yr",
-                "summary": "ML engineer with 7 years building production retrieval and ranking systems. Strong background in embeddings, vector search, and deep learning.",
-                "location": "Pune",
-                "country": "India",
-                "years_of_experience": 7.0,
-                "current_title": "Senior ML Engineer",
-                "current_company": "TechCorp",
-                "current_company_size": "501-1000",
-                "current_industry": "Technology"
-            },
-            "career_history": [
-                {
-                    "company": "TechCorp",
-                    "title": "Senior ML Engineer",
-                    "start_date": "2023-03-01",
-                    "end_date": None,
-                    "duration_months": 39,
-                    "is_current": True,
-                    "industry": "Technology",
-                    "company_size": "501-1000",
-                    "description": "Designed and deployed production retrieval systems using FAISS and dense embeddings. Built hybrid search pipelines combining BM25 and vector similarity. Improved NDCG@10 by 15% through reranking with cross-encoders."
-                },
-                {
-                    "company": "StartupX",
-                    "title": "ML Engineer",
-                    "start_date": "2020-06-01",
-                    "end_date": "2023-02-01",
-                    "duration_months": 32,
-                    "is_current": False,
-                    "industry": "Technology",
-                    "company_size": "51-200",
-                    "description": "Built recommendation systems for content discovery. Implemented embedding-based similarity search using sentence-transformers. Worked on ranking models with learning-to-rank techniques."
-                },
-                {
-                    "company": "DataCorp",
-                    "title": "Data Scientist",
-                    "start_date": "2019-01-01",
-                    "end_date": "2020-05-01",
-                    "duration_months": 16,
-                    "is_current": False,
-                    "industry": "Technology",
-                    "company_size": "1001-5000",
-                    "description": "Developed ML models for customer analytics. Built data pipelines and feature engineering workflows."
-                }
-            ],
-            "skills": [
-                {"name": "Python", "proficiency": "expert", "duration_months": 72, "endorsements": 45},
-                {"name": "FAISS", "proficiency": "expert", "duration_months": 36, "endorsements": 20},
-                {"name": "PyTorch", "proficiency": "advanced", "duration_months": 36, "endorsements": 30},
-                {"name": "Embeddings", "proficiency": "expert", "duration_months": 30, "endorsements": 18},
-                {"name": "Transformers", "proficiency": "advanced", "duration_months": 24, "endorsements": 15},
-                {"name": "RAG", "proficiency": "intermediate", "duration_months": 12, "endorsements": 8},
-                {"name": "Machine Learning", "proficiency": "expert", "duration_months": 60, "endorsements": 40},
-                {"name": "Elasticsearch", "proficiency": "advanced", "duration_months": 18, "endorsements": 10}
-            ],
-            "redrob_signals": {
-                "last_active_date": "2026-05-25",
-                "open_to_work_flag": True,
-                "recruiter_response_rate": 0.82,
-                "notice_period_days": 15,
-                "interview_completion_rate": 0.95,
-                "github_activity_score": 75,
-                "willing_to_relocate": False,
-                "preferred_work_mode": "hybrid",
-                "applications_submitted_30d": 3,
-                "profile_completeness_score": 95,
-                "skill_assessment_scores": {"Python": 92, "Machine Learning": 88, "PyTorch": 85}
-            }
-        },
-        {
-            "candidate_id": "CAND_9990002",
-            "profile": {
-                "anonymized_name": "Demo B",
-                "headline": "Data Scientist | NLP | 6yr Experience",
-                "summary": "Data scientist with strong NLP background and experience deploying ML models in production.",
-                "location": "Bangalore",
-                "country": "India",
-                "years_of_experience": 6.0,
-                "current_title": "Data Scientist",
-                "current_company": "ProductCo",
-                "current_company_size": "1001-5000",
-                "current_industry": "Technology"
-            },
-            "career_history": [
-                {
-                    "company": "ProductCo",
-                    "title": "Data Scientist",
-                    "start_date": "2023-06-01",
-                    "end_date": None,
-                    "duration_months": 36,
-                    "is_current": True,
-                    "industry": "Technology",
-                    "company_size": "1001-5000",
-                    "description": "Built NLP models for text classification and entity extraction. Deployed ML models to production using A/B testing framework. Worked on search relevance and ranking improvements."
-                },
-                {
-                    "company": "OtherCo",
-                    "title": "Data Analyst",
-                    "start_date": "2021-01-01",
-                    "end_date": "2023-05-01",
-                    "duration_months": 28,
-                    "is_current": False,
-                    "industry": "Finance",
-                    "company_size": "501-1000",
-                    "description": "Developed dashboards and analytical models. Built feature pipelines for ML models."
-                },
-                {
-                    "company": "StartCo",
-                    "title": "Junior Data Analyst",
-                    "start_date": "2020-01-01",
-                    "end_date": "2020-12-01",
-                    "duration_months": 11,
-                    "is_current": False,
-                    "industry": "Technology",
-                    "company_size": "11-50",
-                    "description": "Data cleaning and exploratory analysis."
-                }
-            ],
-            "skills": [
-                {"name": "Python", "proficiency": "advanced", "duration_months": 48, "endorsements": 25},
-                {"name": "Machine Learning", "proficiency": "advanced", "duration_months": 36, "endorsements": 20},
-                {"name": "NLP", "proficiency": "intermediate", "duration_months": 24, "endorsements": 12},
-                {"name": "TensorFlow", "proficiency": "intermediate", "duration_months": 18, "endorsements": 10},
-                {"name": "SQL", "proficiency": "expert", "duration_months": 60, "endorsements": 30}
-            ],
-            "redrob_signals": {
-                "last_active_date": "2026-04-01",
-                "open_to_work_flag": True,
-                "recruiter_response_rate": 0.65,
-                "notice_period_days": 30,
-                "interview_completion_rate": 0.85,
-                "github_activity_score": 45,
-                "willing_to_relocate": True,
-                "preferred_work_mode": "hybrid",
-                "applications_submitted_30d": 2,
-                "profile_completeness_score": 88,
-                "skill_assessment_scores": {"Python": 85, "Machine Learning": 78}
-            }
-        },
-        {
-            "candidate_id": "CAND_9990003",
-            "profile": {
-                "anonymized_name": "Demo C",
-                "headline": "ML Engineer | 8yr | Deep Learning & AI",
-                "summary": "Experienced ML engineer with strong background in deep learning and AI solutions.",
-                "location": "Hyderabad",
-                "country": "India",
-                "years_of_experience": 8.0,
-                "current_title": "ML Engineer",
-                "current_company": "TCS",
-                "current_company_size": "10001+",
-                "current_industry": "IT Services"
-            },
-            "career_history": [
-                {
-                    "company": "TCS",
-                    "title": "ML Engineer",
-                    "start_date": "2022-06-01",
-                    "end_date": None,
-                    "duration_months": 48,
-                    "is_current": True,
-                    "industry": "IT Services",
-                    "company_size": "10001+",
-                    "description": "Built ML models for client projects using TensorFlow and PyTorch. Managed data pipelines and model deployment."
-                },
-                {
-                    "company": "Infosys",
-                    "title": "Data Engineer",
-                    "start_date": "2019-01-01",
-                    "end_date": "2022-05-01",
-                    "duration_months": 40,
-                    "is_current": False,
-                    "industry": "IT Services",
-                    "company_size": "10001+",
-                    "description": "Developed ETL pipelines and data infrastructure. Worked with Spark and cloud platforms."
-                },
-                {
-                    "company": "Wipro",
-                    "title": "Junior Developer",
-                    "start_date": "2018-01-01",
-                    "end_date": "2018-12-01",
-                    "duration_months": 11,
-                    "is_current": False,
-                    "industry": "IT Services",
-                    "company_size": "10001+",
-                    "description": "Software development and maintenance."
-                }
-            ],
-            "skills": [
-                {"name": "Python", "proficiency": "advanced", "duration_months": 60, "endorsements": 15},
-                {"name": "Machine Learning", "proficiency": "advanced", "duration_months": 36, "endorsements": 10},
-                {"name": "Deep Learning", "proficiency": "intermediate", "duration_months": 24, "endorsements": 8},
-                {"name": "TensorFlow", "proficiency": "intermediate", "duration_months": 18, "endorsements": 5},
-                {"name": "Docker", "proficiency": "intermediate", "duration_months": 24, "endorsements": 6}
-            ],
-            "redrob_signals": {
-                "last_active_date": "2026-05-15",
-                "open_to_work_flag": True,
-                "recruiter_response_rate": 0.40,
-                "notice_period_days": 45,
-                "interview_completion_rate": 0.70,
-                "github_activity_score": 25,
-                "willing_to_relocate": True,
-                "preferred_work_mode": "hybrid",
-                "applications_submitted_30d": 1,
-                "profile_completeness_score": 75,
-                "skill_assessment_scores": {"Python": 80, "Machine Learning": 70}
-            }
-        },
-        {
-            "candidate_id": "CAND_9990004",
-            "profile": {
-                "anonymized_name": "Demo D",
-                "headline": "AI/ML Expert | 12yr | All Major Frameworks",
-                "summary": "Expert in all AI/ML technologies. Built numerous production systems.",
-                "location": "Mumbai",
-                "country": "India",
-                "years_of_experience": 12.0,
-                "current_title": "AI Consultant",
-                "current_company": "Freelance",
-                "current_company_size": "1-10",
-                "current_industry": "Technology"
-            },
-            "career_history": [
-                {
-                    "company": "Freelance",
-                    "title": "AI Consultant",
-                    "start_date": "2026-03-01",
-                    "end_date": None,
-                    "duration_months": 3,
-                    "is_current": True,
-                    "industry": "Technology",
-                    "company_size": "1-10",
-                    "description": ""
-                }
-            ],
-            "skills": [
-                {"name": "Python", "proficiency": "expert", "duration_months": 0, "endorsements": 50},
-                {"name": "FAISS", "proficiency": "expert", "duration_months": 0, "endorsements": 30},
-                {"name": "PyTorch", "proficiency": "expert", "duration_months": 0, "endorsements": 40},
-                {"name": "TensorFlow", "proficiency": "expert", "duration_months": 0, "endorsements": 35},
-                {"name": "NLP", "proficiency": "expert", "duration_months": 0, "endorsements": 25},
-                {"name": "LLM", "proficiency": "expert", "duration_months": 0, "endorsements": 20},
-                {"name": "RAG", "proficiency": "expert", "duration_months": 0, "endorsements": 15},
-                {"name": "Embeddings", "proficiency": "expert", "duration_months": 0, "endorsements": 20},
-                {"name": "Transformers", "proficiency": "expert", "duration_months": 0, "endorsements": 18}
-            ],
-            "redrob_signals": {
-                "last_active_date": "2026-05-01",
-                "open_to_work_flag": True,
-                "recruiter_response_rate": 0.30,
-                "notice_period_days": 90,
-                "interview_completion_rate": 0.50,
-                "github_activity_score": -1,
-                "willing_to_relocate": False,
-                "preferred_work_mode": "remote",
-                "applications_submitted_30d": 0,
-                "profile_completeness_score": 95,
-                "skill_assessment_scores": {}
-            }
-        },
-        {
-            "candidate_id": "CAND_9990005",
-            "profile": {
-                "anonymized_name": "Demo E",
-                "headline": "Data Engineer | Spark, Airflow, Python",
-                "summary": "Data engineer with 5 years building data infrastructure. Transitioning toward ML engineering.",
-                "location": "Delhi",
-                "country": "India",
-                "years_of_experience": 5.0,
-                "current_title": "Data Engineer",
-                "current_company": "MidSizeCo",
-                "current_company_size": "501-1000",
-                "current_industry": "Technology"
-            },
-            "career_history": [
-                {
-                    "company": "MidSizeCo",
-                    "title": "Data Engineer",
-                    "start_date": "2024-01-01",
-                    "end_date": None,
-                    "duration_months": 29,
-                    "is_current": True,
-                    "industry": "Technology",
-                    "company_size": "501-1000",
-                    "description": "Built feature engineering pipelines for ML teams. Implemented real-time data processing with Spark Streaming. Worked closely with data scientists to productionize models."
-                },
-                {
-                    "company": "SmallCo",
-                    "title": "Data Engineer",
-                    "start_date": "2022-06-01",
-                    "end_date": "2023-12-01",
-                    "duration_months": 18,
-                    "is_current": False,
-                    "industry": "Technology",
-                    "company_size": "51-200",
-                    "description": "Developed data pipelines and ETL workflows. Built dashboards and reporting infrastructure."
-                },
-                {
-                    "company": "StartCo",
-                    "title": "Junior Data Analyst",
-                    "start_date": "2021-06-01",
-                    "end_date": "2022-05-01",
-                    "duration_months": 11,
-                    "is_current": False,
-                    "industry": "Technology",
-                    "company_size": "11-50",
-                    "description": "Data analysis and reporting."
-                }
-            ],
-            "skills": [
-                {"name": "Python", "proficiency": "advanced", "duration_months": 36, "endorsements": 20},
-                {"name": "Spark", "proficiency": "intermediate", "duration_months": 24, "endorsements": 12},
-                {"name": "SQL", "proficiency": "expert", "duration_months": 48, "endorsements": 25},
-                {"name": "Airflow", "proficiency": "intermediate", "duration_months": 18, "endorsements": 8}
-            ],
-            "redrob_signals": {
-                "last_active_date": "2026-05-20",
-                "open_to_work_flag": True,
-                "recruiter_response_rate": 0.55,
-                "notice_period_days": 30,
-                "interview_completion_rate": 0.80,
-                "github_activity_score": 35,
-                "willing_to_relocate": True,
-                "preferred_work_mode": "hybrid",
-                "applications_submitted_30d": 2,
-                "profile_completeness_score": 82,
-                "skill_assessment_scores": {"Python": 78, "SQL": 85}
-            }
-        }
-    ]
-
-
 # ============================================================
-# PAGE CONFIG & CUSTOM CSS
+# CUSTOM CSS
 # ============================================================
-
-st.set_page_config(
-    page_title="AI Recruiter · Redrob Hackathon",
-    page_icon="🎯",
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
-
 st.markdown("""
 <style>
-/* ── Global ── */
-[data-testid="stAppViewContainer"] {
-    background: #0f1117;
-    color: #e2e8f0;
-}
-[data-testid="stHeader"] { background: transparent; }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* ── Hero banner ── */
+* { font-family: 'Inter', sans-serif !important; }
+
+[data-testid="stAppViewContainer"] { background: #0a0d14; color: #e2e8f0; }
+[data-testid="stHeader"] { background: transparent; }
+[data-testid="stSidebar"] { background: #0f1117 !important; border-right: 1px solid #1e2433; }
+
+/* ── Hero ── */
 .hero {
-    background: linear-gradient(135deg, #1a1f35 0%, #0f1117 50%, #1a1235 100%);
-    border: 1px solid #2d3748;
-    border-radius: 16px;
-    padding: 36px 40px 28px;
+    background: linear-gradient(135deg, #111827 0%, #0a0d14 50%, #0d0a1f 100%);
+    border: 1px solid #1e2433;
+    border-radius: 20px;
+    padding: 40px 48px 32px;
     margin-bottom: 28px;
     position: relative;
     overflow: hidden;
@@ -842,168 +552,146 @@ st.markdown("""
 .hero::before {
     content: '';
     position: absolute;
-    top: -60px; right: -60px;
-    width: 220px; height: 220px;
-    background: radial-gradient(circle, rgba(239,68,68,0.12) 0%, transparent 70%);
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(239,68,68,0.10) 0%, transparent 70%);
+    border-radius: 50%;
+}
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
     border-radius: 50%;
 }
 .hero-title {
-    font-size: 2.1rem;
+    font-size: 2.4rem;
     font-weight: 800;
     background: linear-gradient(90deg, #ef4444, #f97316, #eab308);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 0 0 6px;
+    margin: 0 0 8px;
     line-height: 1.2;
 }
-.hero-subtitle {
-    color: #94a3b8;
-    font-size: 0.95rem;
-    margin: 0 0 18px;
-}
-.hero-pills {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
+.hero-subtitle { color: #94a3b8; font-size: 1rem; margin: 0 0 20px; }
+.hero-pills { display: flex; gap: 10px; flex-wrap: wrap; }
 .pill {
     background: rgba(239,68,68,0.12);
     border: 1px solid rgba(239,68,68,0.3);
     color: #fca5a5;
-    padding: 4px 12px;
+    padding: 5px 14px;
     border-radius: 99px;
     font-size: 0.78rem;
     font-weight: 600;
 }
-.pill-blue {
-    background: rgba(59,130,246,0.12);
-    border-color: rgba(59,130,246,0.3);
-    color: #93c5fd;
-}
-.pill-green {
-    background: rgba(34,197,94,0.12);
-    border-color: rgba(34,197,94,0.3);
-    color: #86efac;
-}
+.pill-blue  { background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.3); color: #93c5fd; }
+.pill-green { background: rgba(34,197,94,0.12);  border-color: rgba(34,197,94,0.3);  color: #86efac; }
+.pill-amber { background: rgba(234,179,8,0.12);  border-color: rgba(234,179,8,0.3);  color: #fde68a; }
 
 /* ── Cards ── */
 .card {
-    background: #1a1f2e;
-    border: 1px solid #2d3748;
-    border-radius: 12px;
-    padding: 20px 24px;
+    background: #111827;
+    border: 1px solid #1e2433;
+    border-radius: 14px;
+    padding: 22px 26px;
     margin-bottom: 16px;
 }
 .card-title {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #64748b;
-    margin-bottom: 12px;
+    letter-spacing: 0.10em;
+    color: #4b5563;
+    margin-bottom: 14px;
 }
 
 /* ── Metric boxes ── */
-.metric-row {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
-}
+.metric-row { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
 .metric-box {
     flex: 1;
-    background: #1a1f2e;
-    border: 1px solid #2d3748;
-    border-radius: 10px;
-    padding: 14px 16px;
+    min-width: 100px;
+    background: #111827;
+    border: 1px solid #1e2433;
+    border-radius: 12px;
+    padding: 16px;
     text-align: center;
 }
-.metric-val {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #e2e8f0;
-    line-height: 1;
-}
-.metric-label {
-    font-size: 0.72rem;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-top: 4px;
-}
+.metric-val  { font-size: 1.9rem; font-weight: 800; color: #e2e8f0; line-height: 1; }
+.metric-label{ font-size: 0.68rem; color: #4b5563; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 5px; }
 .metric-green .metric-val { color: #4ade80; }
-.metric-blue .metric-val  { color: #60a5fa; }
+.metric-blue  .metric-val { color: #60a5fa; }
 .metric-amber .metric-val { color: #fbbf24; }
+.metric-purple .metric-val { color: #a78bfa; }
 
 /* ── Score badge ── */
-.score-badge {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 0.85rem;
-}
-.score-high   { background: rgba(34,197,94,0.15);  color: #4ade80; }
-.score-mid    { background: rgba(234,179,8,0.15);  color: #fbbf24; }
-.score-low    { background: rgba(239,68,68,0.15);  color: #f87171; }
+.score-high  { background: rgba(34,197,94,0.12);  color: #4ade80;  padding: 3px 12px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; display:inline-block; }
+.score-mid   { background: rgba(234,179,8,0.12);  color: #fbbf24;  padding: 3px 12px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; display:inline-block; }
+.score-low   { background: rgba(239,68,68,0.12);  color: #f87171;  padding: 3px 12px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; display:inline-block; }
 
-/* ── Rank table rows ── */
-.rank-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 14px 0;
-    border-bottom: 1px solid #1e2433;
+/* ── Candidate card (deep view) ── */
+.cand-card {
+    background: #111827;
+    border: 1px solid #1e2433;
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
 }
-.rank-num {
-    min-width: 36px;
-    text-align: center;
-    font-size: 1rem;
+.cand-card:hover { border-color: #374151; }
+.cand-rank {
+    font-size: 1.2rem;
     font-weight: 800;
-    color: #64748b;
+    min-width: 42px;
+    text-align: center;
     padding-top: 2px;
 }
-.rank-1  .rank-num { color: #fbbf24; }
-.rank-2  .rank-num { color: #94a3b8; }
-.rank-3  .rank-num { color: #cd7c2f; }
-.rank-name { font-weight: 700; color: #e2e8f0; font-size: 0.95rem; }
-.rank-meta { font-size: 0.78rem; color: #64748b; margin-top: 2px; }
-.rank-reasoning {
-    font-size: 0.78rem;
-    color: #94a3b8;
-    margin-top: 6px;
-    line-height: 1.5;
-    font-style: italic;
-}
 .dark-horse-badge {
-    display: inline-block;
     background: rgba(234,179,8,0.15);
     border: 1px solid rgba(234,179,8,0.4);
     color: #fbbf24;
-    padding: 1px 8px;
-    border-radius: 4px;
-    font-size: 0.68rem;
-    font-weight: 700;
-    margin-left: 8px;
-    vertical-align: middle;
+    padding: 2px 8px; border-radius: 4px;
+    font-size: 0.68rem; font-weight: 700; margin-left: 8px;
 }
 .honeypot-badge {
-    display: inline-block;
     background: rgba(239,68,68,0.15);
     border: 1px solid rgba(239,68,68,0.4);
     color: #f87171;
-    padding: 1px 8px;
-    border-radius: 4px;
-    font-size: 0.68rem;
-    font-weight: 700;
-    margin-left: 8px;
-    vertical-align: middle;
+    padding: 2px 8px; border-radius: 4px;
+    font-size: 0.68rem; font-weight: 700; margin-left: 8px;
+}
+.interview-q {
+    background: #0f172a;
+    border-left: 3px solid #6366f1;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin: 6px 0;
+    font-size: 0.80rem;
+    color: #94a3b8;
+    font-style: italic;
+    line-height: 1.6;
+}
+.flag-item {
+    font-size: 0.78rem;
+    padding: 4px 0;
+    line-height: 1.5;
 }
 
-/* ── Upload zone ── */
-[data-testid="stFileUploader"] {
-    background: #1a1f2e !important;
-    border: 2px dashed #2d3748 !important;
-    border-radius: 12px !important;
+/* ── Tabs ── */
+.stTabs [data-baseweb="tab-list"] {
+    background: #111827;
+    border-radius: 12px;
+    padding: 4px;
+    gap: 2px;
+}
+.stTabs [data-baseweb="tab"] {
+    border-radius: 8px;
+    color: #4b5563;
+    font-weight: 600;
+}
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+    color: white !important;
 }
 
 /* ── Buttons ── */
@@ -1019,43 +707,22 @@ st.markdown("""
     transition: all 0.2s !important;
 }
 .stButton > button:hover {
-    transform: translateY(-1px) !important;
+    transform: translateY(-2px) !important;
     box-shadow: 0 8px 24px rgba(239,68,68,0.35) !important;
 }
-
-/* ── Download button ── */
 [data-testid="stDownloadButton"] > button {
     background: linear-gradient(135deg, #16a34a, #15803d) !important;
-    color: white !important;
-    border-radius: 10px !important;
-    border: none !important;
-    font-weight: 700 !important;
-    width: 100% !important;
+    color: white !important; border-radius: 10px !important;
+    border: none !important; font-weight: 700 !important; width: 100% !important;
 }
-
-/* ── Tabs ── */
-.stTabs [data-baseweb="tab-list"] {
-    background: #1a1f2e;
-    border-radius: 10px;
-    padding: 4px;
-    gap: 2px;
+[data-testid="stFileUploader"] {
+    background: #111827 !important;
+    border: 2px dashed #1e2433 !important;
+    border-radius: 12px !important;
 }
-.stTabs [data-baseweb="tab"] {
-    border-radius: 8px;
-    color: #64748b;
-    font-weight: 600;
-}
-.stTabs [aria-selected="true"] {
-    background: #ef4444 !important;
-    color: white !important;
-}
-
-/* ── Progress bar ── */
 [data-testid="stProgress"] > div > div {
     background: linear-gradient(90deg, #ef4444, #f97316) !important;
 }
-
-/* ── Info / warning boxes ── */
 [data-testid="stAlert"] {
     border-radius: 10px !important;
     border-left-width: 3px !important;
@@ -1063,84 +730,345 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ── Hero ──────────────────────────────────────────────────────
-st.markdown("""
-<div class="hero">
-  <div class="hero-title">🎯 AI Recruiter Copilot</div>
-  <div class="hero-subtitle">Senior AI Engineer · Founding Team @ Redrob AI · Hackathon Demo</div>
-  <div class="hero-pills">
-    <span class="pill">100K candidate pool</span>
-    <span class="pill-blue">Evidence-based scoring</span>
-    <span class="pill-green">CPU · No network · &lt;5 min</span>
-    <span class="pill">Dark horse detection</span>
-    <span class="pill-blue">Honeypot filtering</span>
-  </div>
-</div>
-""", unsafe_allow_html=True)
 
-# ── Layout ──────────────────────────────────────────────────
-left, right = st.columns([1, 2], gap="large")
-
-with left:
-    st.markdown('<div class="card-title">📁 Upload Candidates</div>', unsafe_allow_html=True)
-
+# ============================================================
+# SIDEBAR
+# ============================================================
+with st.sidebar:
     st.markdown("""
-    <div style="font-size:0.82rem; color:#64748b; margin-bottom:12px; line-height:1.6;">
-    Upload a <strong style="color:#94a3b8">.jsonl</strong> or
-    <strong style="color:#94a3b8">.json</strong> file from the hackathon bundle
-    (up to 100 candidates). Accepts both JSONL and JSON array formats.
+    <div style="padding:8px 0 20px">
+      <div style="font-size:1.1rem;font-weight:800;
+                  background:linear-gradient(90deg,#ef4444,#f97316);
+                  -webkit-background-clip:text;-webkit-text-fill-color:transparent">
+        🎯 AI Recruiter
+      </div>
+      <div style="font-size:0.72rem;color:#4b5563;margin-top:2px">Redrob Hackathon · v4</div>
     </div>
     """, unsafe_allow_html=True)
 
-    uploaded = st.file_uploader(
-        "Drop file here",
-        type=["jsonl", "json", "gz"],
-        label_visibility="collapsed"
-    )
-
-    use_sample = st.checkbox(
-        "🧪 Use built-in 5-candidate demo",
-        value=not bool(uploaded),
-        help="Includes 1 services candidate (penalized), 1 honeypot (caught), and 3 genuine ML engineers"
-    )
-
-    st.markdown("---")
-
-    # Scoring formula explainer
-    st.markdown('<div class="card-title">⚖️ Scoring Formula</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card-title">⚖️ Scoring Formula (v4)</div>', unsafe_allow_html=True)
     st.markdown("""
-    <div style="font-size:0.80rem; color:#94a3b8; line-height:1.9;">
+    <div style="font-size:0.78rem; color:#94a3b8; line-height:2.0;">
     <span style="color:#60a5fa">career</span> × 0.30<br>
     <span style="color:#4ade80">skills_trust</span> × 0.20<br>
     <span style="color:#f97316">retrieval_exp</span> × 0.30<br>
     <span style="color:#a78bfa">fit</span> × 0.20<br>
-    <span style="color:#64748b">─────────────────</span><br>
-    × availability_multiplier<br>
-    × services_penalty
+    <span style="color:#374151">──────────────</span><br>
+    × availability_mult<br>
+    × services_penalty <span style="color:#374151;font-size:0.70rem">(5-tier)</span><br>
+    × title_gate<br>
+    × must_have_gate <span style="color:#374151;font-size:0.70rem">(P2 NDCG@10)</span><br>
+    × suspicion_mult <span style="color:#374151;font-size:0.70rem">(P0-b soft)</span>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("---")
-
-    # Key rules
-    st.markdown('<div class="card-title">🛡️ Anti-Stuffer Rules</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card-title">🛡️ Penalties & Bonuses</div>', unsafe_allow_html=True)
     st.markdown("""
-    <div style="font-size:0.78rem; color:#94a3b8; line-height:1.9;">
-    ❌ Pure services career → <span style="color:#f87171">0.05×</span><br>
-    ❌ Expert skill, 0 months → <span style="color:#f87171">0.05 weight</span><br>
+    <div style="font-size:0.76rem; color:#94a3b8; line-height:1.95;">
+    ❌ Pure services → <span style="color:#f87171">0.05×</span><br>
+    ❌ Heavy services 70-79% → <span style="color:#f87171">0.45×</span><br>
+    ❌ Expert skill, 0 months → <span style="color:#f87171">0.05 wt</span><br>
+    ❌ ≥3 expert+0mo → <span style="color:#f87171">Honeypot</span><br>
+    ❌ ≥12 expert skills → <span style="color:#f87171">Honeypot</span><br>
+    ❌ Sarvam/Krutrim tenure → <span style="color:#f87171">Honeypot</span><br>
+    ❌ 0 skill groups → <span style="color:#f87171">0.25×</span> gate<br>
     ❌ Outside India → <span style="color:#f87171">0.20×</span><br>
     ❌ Inactive 180d+ → <span style="color:#f87171">0.40×</span><br>
-    ❌ Response rate &lt;10% → <span style="color:#f87171">0.50×</span><br>
-    ✅ GitHub score &gt;60 → <span style="color:#4ade80">1.08× bonus</span><br>
-    ✅ Notice ≤15 days → <span style="color:#4ade80">1.05× bonus</span>
+    ✅ GitHub &gt;60 → <span style="color:#4ade80">1.08×</span><br>
+    ✅ Notice ≤15d → <span style="color:#4ade80">1.05×</span>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("---")
-    run_btn = st.button("▶  Run Ranker", use_container_width=True)
+    if SAMPLE_CANDS:
+        st.markdown('<div class="card-title">📁 Try With Real Data</div>', unsafe_allow_html=True)
+        st.markdown("""
+        <div style="font-size:0.76rem;color:#64748b;margin-bottom:10px;line-height:1.6;">
+        Download sample candidates from the hackathon dataset, then upload them in the Live Ranker tab.
+        </div>
+        """, unsafe_allow_html=True)
+        st.download_button(
+            label="⬇  Download sample_candidates.json",
+            data=json.dumps(SAMPLE_CANDS, indent=2),
+            file_name="sample_candidates.json",
+            mime="application/json",
+            use_container_width=True,
+        )
 
-# ── Right panel ───────────────────────────────────────────────
-with right:
+    st.markdown("---")
+    st.markdown("""
+    <div style="font-size:0.72rem;color:#374151;line-height:1.8;">
+    <a href="https://github.com/pithva007/Ai-Recruiter"
+       style="color:#ef4444;text-decoration:none">github.com/pithva007/Ai-Recruiter</a><br>
+    Ranked 100K candidates · &lt;1s · CPU only · Zero network
+    </div>
+    """, unsafe_allow_html=True)
+
+
+# ============================================================
+# HERO
+# ============================================================
+st.markdown("""
+<div class="hero">
+  <div class="hero-title">🎯 AI Recruiter Copilot</div>
+  <div class="hero-subtitle">Senior AI Engineer · Founding Team @ Redrob AI · Hackathon 2025</div>
+  <div class="hero-pills">
+    <span class="pill">100K candidates ranked</span>
+    <span class="pill-blue">LLM-scored top 30</span>
+    <span class="pill-green">CPU · No network · &lt;1s</span>
+    <span class="pill-amber">Dark horse detection</span>
+    <span class="pill">7-signal honeypot filter</span>
+    <span class="pill-blue">v4 scoring engine</span>
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+# ============================================================
+# MAIN TABS
+# ============================================================
+tab_official, tab_deep, tab_live, tab_submission = st.tabs([
+    "🏆  Official Top 100",
+    "🔬  Deep Analysis (Top 30)",
+    "⚡  Live Ranker",
+    "📋  Submission CSV",
+])
+
+
+# ──────────────────────────────────────────────────────────────
+# TAB 1: OFFICIAL TOP 100 (from submission.csv)
+# ──────────────────────────────────────────────────────────────
+with tab_official:
+    if not SUBMISSION:
+        st.error("submission.csv not found. Make sure it's bundled in hf_space/.")
+    else:
+        scores_float = [float(r["score"]) for r in SUBMISSION]
+        honeypots_cnt = sum(1 for s in scores_float if s <= 0.02)
+
+        st.markdown(f"""
+        <div class="metric-row">
+          <div class="metric-box metric-green">
+            <div class="metric-val">{len(SUBMISSION)}</div>
+            <div class="metric-label">Ranked</div>
+          </div>
+          <div class="metric-box metric-blue">
+            <div class="metric-val">{max(scores_float):.4f}</div>
+            <div class="metric-label">Top Score</div>
+          </div>
+          <div class="metric-box metric-blue">
+            <div class="metric-val">{min(scores_float):.4f}</div>
+            <div class="metric-label">Rank 100 Score</div>
+          </div>
+          <div class="metric-box metric-amber">
+            <div class="metric-val">{honeypots_cnt}</div>
+            <div class="metric-label">Honeypots Caught</div>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Podium top 3
+        medals = ["🥇", "🥈", "🥉"]
+        top3_cols = st.columns(3)
+        for i, col in enumerate(top3_cols):
+            if i >= len(SUBMISSION):
+                break
+            r = SUBMISSION[i]
+            sc = float(r["score"])
+            sc_color = "#4ade80" if sc >= 0.70 else "#fbbf24" if sc >= 0.45 else "#f87171"
+            col.markdown(f"""
+            <div style="background:#111827;border:1px solid #1e2433;border-radius:14px;
+                        padding:20px;text-align:center;margin-bottom:12px">
+              <div style="font-size:2rem">{medals[i]}</div>
+              <div style="font-weight:800;color:#e2e8f0;font-size:0.95rem;margin:8px 0 4px">
+                {r['candidate_id']}</div>
+              <div style="font-size:1.5rem;font-weight:800;color:{sc_color};margin-top:10px">
+                {sc:.4f}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("---")
+        st.markdown(f'<p style="font-size:0.75rem;color:#4b5563">All {len(SUBMISSION)} ranked candidates · Produced by rank.py + reason.py on full 100K pool</p>', unsafe_allow_html=True)
+
+        for r in SUBMISSION:
+            sc = float(r["score"])
+            rank = int(r["rank"])
+            sc_color = "#4ade80" if sc >= 0.70 else "#fbbf24" if sc >= 0.45 else "#f87171"
+            sc_bg    = ("rgba(34,197,94,0.10)" if sc >= 0.70 else
+                        "rgba(234,179,8,0.10)" if sc >= 0.45 else
+                        "rgba(239,68,68,0.10)")
+            rank_color = "#fbbf24" if rank == 1 else "#94a3b8" if rank == 2 else "#cd7c2f" if rank == 3 else "#374151"
+            reasoning = r.get("reasoning", "")[:160]
+
+            c1, c2 = st.columns([1, 12])
+            with c1:
+                st.markdown(f'<div style="font-size:1.0rem;font-weight:800;color:{rank_color};padding-top:14px;text-align:center">#{rank}</div>', unsafe_allow_html=True)
+            with c2:
+                st.markdown(
+                    f'<div style="background:{sc_bg};color:{sc_color};padding:2px 10px;'
+                    f'border-radius:6px;font-weight:700;font-size:0.85rem;float:right">{sc:.4f}</div>'
+                    f'<span style="font-weight:700;color:#e2e8f0">{r["candidate_id"]}</span>',
+                    unsafe_allow_html=True,
+                )
+                st.markdown(
+                    f'<div style="font-size:0.78rem;color:#94a3b8;font-style:italic;'
+                    f'margin-top:2px;border-bottom:1px solid #1e2433;padding-bottom:8px">{reasoning}</div>',
+                    unsafe_allow_html=True,
+                )
+
+
+# ──────────────────────────────────────────────────────────────
+# TAB 2: DEEP ANALYSIS — Top 30 LLM-scored candidates
+# ──────────────────────────────────────────────────────────────
+with tab_deep:
+    if not RANKED_DEEP:
+        st.error("ranked_candidates.csv not found. Make sure it's bundled in hf_space/.")
+    else:
+        dark_horses = [r for r in RANKED_DEEP if r.get("dark_horse", "").lower() == "true"]
+        avg_score   = sum(float(r.get("composite_score", 0)) for r in RANKED_DEEP) / len(RANKED_DEEP)
+
+        st.markdown(f"""
+        <div class="metric-row">
+          <div class="metric-box metric-green">
+            <div class="metric-val">{len(RANKED_DEEP)}</div>
+            <div class="metric-label">LLM-Scored</div>
+          </div>
+          <div class="metric-box metric-blue">
+            <div class="metric-val">{avg_score:.1f}</div>
+            <div class="metric-label">Avg Score</div>
+          </div>
+          <div class="metric-box metric-amber">
+            <div class="metric-val">{len(dark_horses)}</div>
+            <div class="metric-label">Dark Horses</div>
+          </div>
+          <div class="metric-box metric-purple">
+            <div class="metric-val">4D</div>
+            <div class="metric-label">Scoring Dims</div>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Dark horse spotlight
+        if dark_horses:
+            st.markdown("#### ⭐ Dark Horse Spotlight")
+            for dh in dark_horses[:3]:
+                with st.expander(f"🌟 {dh.get('candidate_name', dh['candidate_id'])} — {dh.get('composite_score')} pts", expanded=False):
+                    st.markdown(f"**Why they're a dark horse:** {dh.get('dark_horse_reason', '—')}")
+                    if dh.get("transferable_skills_map"):
+                        st.markdown(f"**Transferable skills:** {dh.get('transferable_skills_map')}")
+            st.markdown("---")
+
+        # Full ranked list with all 4D scores
+        st.markdown("#### 🔬 Full Deep Analysis")
+        for r in RANKED_DEEP:
+            rank       = r.get("rank", "?")
+            cid        = r.get("candidate_id", "")
+            name       = r.get("candidate_name", cid)
+            comp_score = float(r.get("composite_score", 0))
+            fit        = float(r.get("fit_score", 0))
+            impact     = float(r.get("impact_score", 0))
+            potential  = float(r.get("potential_score", 0))
+            risk       = float(r.get("risk_score", 50))
+            conf       = r.get("confidence_level", "")
+            is_dh      = r.get("dark_horse", "").lower() == "true"
+            green_flags = r.get("green_flags", "")
+            yellow_flags = r.get("yellow_flags", "")
+            skill_gaps = r.get("skill_gaps", "")
+            iq1 = r.get("interview_q1", "")
+            iq2 = r.get("interview_q2", "")
+            iq3 = r.get("interview_q3", "")
+            rationale  = r.get("llm_rationale", "")
+
+            sc_color = "#4ade80" if comp_score >= 85 else "#fbbf24" if comp_score >= 70 else "#f87171"
+            rank_color = "#fbbf24" if str(rank) == "1" else "#94a3b8" if str(rank) == "2" else "#cd7c2f" if str(rank) == "3" else "#374151"
+            dh_badge   = '<span class="dark-horse-badge">⭐ DARK HORSE</span>' if is_dh else ""
+            conf_badge = f'<span style="font-size:0.68rem;color:#4b5563;margin-left:6px">{conf.upper()}</span>' if conf else ""
+
+            with st.expander(
+                f"#{rank}  {name}  ·  {comp_score:.0f}/100" + (" ⭐" if is_dh else ""),
+                expanded=False
+            ):
+                col_left, col_right = st.columns([3, 2])
+                with col_left:
+                    st.markdown(f"**{name}** {dh_badge} {conf_badge}", unsafe_allow_html=True)
+                    st.markdown(f"ID: `{cid}`")
+
+                    # 4D scores
+                    dims_cols = st.columns(4)
+                    for dcol, (label, val, color) in zip(dims_cols, [
+                        ("Fit", fit, "#60a5fa"),
+                        ("Impact", impact, "#4ade80"),
+                        ("Potential", potential, "#a78bfa"),
+                        ("Risk", risk, "#f87171"),
+                    ]):
+                        dcol.markdown(
+                            f'<div style="text-align:center;background:#0f172a;border-radius:8px;padding:10px">'
+                            f'<div style="font-size:1.3rem;font-weight:800;color:{color}">{val:.0f}</div>'
+                            f'<div style="font-size:0.65rem;color:#374151;text-transform:uppercase">{label}</div>'
+                            f'</div>',
+                            unsafe_allow_html=True,
+                        )
+
+                    if green_flags:
+                        st.markdown("**✅ Green Flags**")
+                        for flag in green_flags.split(" | "):
+                            if flag.strip():
+                                st.markdown(f'<div class="flag-item" style="color:#4ade80">✓ {flag.strip()}</div>', unsafe_allow_html=True)
+                    if yellow_flags:
+                        st.markdown("**⚠️ Yellow Flags**")
+                        for flag in yellow_flags.split(" | "):
+                            if flag.strip():
+                                st.markdown(f'<div class="flag-item" style="color:#fbbf24">⚠ {flag.strip()}</div>', unsafe_allow_html=True)
+                    if skill_gaps:
+                        st.markdown("**🔴 Skill Gaps**")
+                        st.markdown(f'<div class="flag-item" style="color:#f87171">{skill_gaps}</div>', unsafe_allow_html=True)
+
+                with col_right:
+                    if rationale:
+                        st.markdown("**🤖 LLM Rationale**")
+                        st.markdown(f'<div style="font-size:0.78rem;color:#94a3b8;line-height:1.7;font-style:italic">{rationale[:600]}</div>', unsafe_allow_html=True)
+
+                # Interview questions
+                if iq1 or iq2 or iq3:
+                    st.markdown("**🎤 Interview Questions**")
+                    for iq in [iq1, iq2, iq3]:
+                        if iq.strip():
+                            st.markdown(f'<div class="interview-q">{iq.strip()}</div>', unsafe_allow_html=True)
+
+
+# ──────────────────────────────────────────────────────────────
+# TAB 3: LIVE RANKER — upload & re-score any candidates
+# ──────────────────────────────────────────────────────────────
+with tab_live:
+    st.markdown("""
+    <div style="background:#111827;border:1px solid #1e2433;border-radius:14px;
+                padding:20px 24px;margin-bottom:20px">
+      <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;
+                  letter-spacing:0.10em;color:#4b5563;margin-bottom:8px">⚡ Live Ranker</div>
+      <div style="font-size:0.85rem;color:#94a3b8;line-height:1.7">
+        Upload any <strong style="color:#e2e8f0">.jsonl</strong> or
+        <strong style="color:#e2e8f0">.json</strong> file in the hackathon candidate schema
+        (up to 100 candidates). The full v4 scoring engine runs entirely in-browser — zero network,
+        zero GPU. Download the sample file from the sidebar to get started instantly.
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    up_col, btn_col = st.columns([3, 1])
+    with up_col:
+        uploaded = st.file_uploader(
+            "Drop your candidates file here",
+            type=["jsonl", "json", "gz"],
+            label_visibility="collapsed",
+        )
+        use_sample = st.checkbox(
+            "🧪 Use built-in sample candidates (5-candidate demo)",
+            value=not bool(uploaded),
+            help="Includes: 1 genuine top candidate, 1 pure-services (penalized), 1 honeypot (caught), 2 mid-tier",
+        )
+
+    with btn_col:
+        run_btn = st.button("▶  Run Ranker", use_container_width=True)
+
     if run_btn:
         candidates = []
         id_generated = False
@@ -1149,47 +1077,44 @@ with right:
             try:
                 content = read_uploaded_file(uploaded)
                 raw_candidates = parse_candidates_file(content)
-
                 if len(raw_candidates) > 100:
-                    st.warning(f"Loaded {len(raw_candidates)} candidates — using first 100 for demo.")
+                    st.warning(f"Loaded {len(raw_candidates):,} candidates — using first 100.")
                     raw_candidates = raw_candidates[:100]
-
                 for i, c in enumerate(raw_candidates):
                     real_id = c.get("candidate_id", "")
-                    generated = not re.match(r"^CAND_[0-9]{7}$", str(real_id))
-                    if generated:
+                    if not re.match(r"^CAND_[0-9]{7}$", str(real_id)):
                         c["candidate_id"] = get_candidate_id(c, i)
                         id_generated = True
                     candidates.append(c)
-
-            except ValueError as e:
-                st.error(f"Parse error: {e}")
             except Exception as e:
-                st.error(f"Unexpected error: {e}")
+                st.error(f"Parse error: {e}")
+        elif use_sample and SAMPLE_CANDS:
+            candidates = SAMPLE_CANDS[:10]
         else:
-            candidates = _get_builtin_candidates()
+            # Built-in 5-candidate demo
+            candidates = [
+                {"candidate_id": "CAND_9990001", "profile": {"anonymized_name": "Demo A — Top ML Engineer", "years_of_experience": 7.0, "current_title": "Senior ML Engineer", "current_company": "TechCorp", "location": "Pune", "country": "India"}, "career_history": [{"company": "TechCorp", "title": "Senior ML Engineer", "duration_months": 39, "is_current": True, "description": "Designed FAISS-based hybrid retrieval systems, improved NDCG@10 by 15% with cross-encoder reranking. Built embedding pipelines with sentence-transformers."}, {"company": "StartupX", "title": "ML Engineer", "duration_months": 32, "description": "Recommendation systems using dense retrieval and BM25 hybrid search."}], "skills": [{"name": "FAISS", "proficiency": "expert", "duration_months": 36, "endorsements": 20}, {"name": "Python", "proficiency": "expert", "duration_months": 72, "endorsements": 45}, {"name": "Embeddings", "proficiency": "expert", "duration_months": 30, "endorsements": 18}, {"name": "PyTorch", "proficiency": "advanced", "duration_months": 36, "endorsements": 30}], "redrob_signals": {"last_active_date": "2026-06-10", "open_to_work_flag": True, "recruiter_response_rate": 0.82, "notice_period_days": 15, "interview_completion_rate": 0.95, "github_activity_score": 75, "willing_to_relocate": False}},
+                {"candidate_id": "CAND_9990002", "profile": {"anonymized_name": "Demo B — Data Scientist", "years_of_experience": 6.0, "current_title": "Data Scientist", "current_company": "ProductCo", "location": "Bangalore", "country": "India"}, "career_history": [{"company": "ProductCo", "title": "Data Scientist", "duration_months": 36, "is_current": True, "description": "Built NLP models, A/B testing framework, search relevance improvements."}], "skills": [{"name": "Python", "proficiency": "advanced", "duration_months": 48, "endorsements": 25}, {"name": "NLP", "proficiency": "intermediate", "duration_months": 24, "endorsements": 12}], "redrob_signals": {"last_active_date": "2026-05-01", "open_to_work_flag": True, "recruiter_response_rate": 0.65, "notice_period_days": 30, "interview_completion_rate": 0.85, "github_activity_score": 45}},
+                {"candidate_id": "CAND_9990003", "profile": {"anonymized_name": "Demo C — Pure Services (Penalized)", "years_of_experience": 8.0, "current_title": "ML Engineer", "current_company": "TCS", "location": "Hyderabad", "country": "India"}, "career_history": [{"company": "TCS", "title": "ML Engineer", "duration_months": 48, "is_current": True, "description": "ML models for client projects."}, {"company": "Infosys", "title": "Data Engineer", "duration_months": 40, "description": "ETL pipelines."}, {"company": "Wipro", "title": "Developer", "duration_months": 11, "description": "Software maintenance."}], "skills": [{"name": "Python", "proficiency": "advanced", "duration_months": 60, "endorsements": 15}], "redrob_signals": {"last_active_date": "2026-05-15", "open_to_work_flag": True, "recruiter_response_rate": 0.40, "notice_period_days": 45, "github_activity_score": 25}},
+                {"candidate_id": "CAND_9990004", "profile": {"anonymized_name": "Demo D — Honeypot (Caught)", "years_of_experience": 12.0, "current_title": "AI Consultant", "current_company": "Freelance", "location": "Mumbai", "country": "India"}, "career_history": [{"company": "Freelance", "title": "AI Consultant", "duration_months": 3, "is_current": True, "description": ""}], "skills": [{"name": "Python", "proficiency": "expert", "duration_months": 0, "endorsements": 50}, {"name": "FAISS", "proficiency": "expert", "duration_months": 0, "endorsements": 30}, {"name": "PyTorch", "proficiency": "expert", "duration_months": 0, "endorsements": 40}], "redrob_signals": {"last_active_date": "2026-05-01", "open_to_work_flag": True, "recruiter_response_rate": 0.30, "notice_period_days": 90, "github_activity_score": -1}},
+                {"candidate_id": "CAND_9990005", "profile": {"anonymized_name": "Demo E — Dark Horse Data Engineer", "years_of_experience": 5.0, "current_title": "Data Engineer", "current_company": "MidSizeCo", "location": "Delhi", "country": "India"}, "career_history": [{"company": "MidSizeCo", "title": "Data Engineer", "duration_months": 29, "is_current": True, "description": "Feature engineering pipelines for ML, real-time Spark Streaming, productionized recommendation models, vector similarity search for product catalog."}, {"company": "SmallCo", "title": "Data Engineer", "duration_months": 18, "description": "Data pipelines and ETL workflows."}], "skills": [{"name": "Python", "proficiency": "advanced", "duration_months": 36, "endorsements": 20}, {"name": "Spark", "proficiency": "intermediate", "duration_months": 24, "endorsements": 12}], "redrob_signals": {"last_active_date": "2026-06-05", "open_to_work_flag": True, "recruiter_response_rate": 0.55, "notice_period_days": 30, "interview_completion_rate": 0.80, "github_activity_score": 35}},
+            ]
 
         if id_generated:
-            st.warning(
-                "⚠️ Some candidates had missing/non-standard IDs. "
-                "Demo IDs were generated. Real submission uses official CAND_XXXXXXX IDs."
-            )
+            st.warning("⚠️ Some candidates had non-standard IDs. Demo IDs were generated.")
 
         if candidates:
             prog = st.progress(0, text="Scoring candidates...")
-
-            scored_results = []
+            scored = []
             for i, c in enumerate(candidates):
-                prog.progress((i + 1) / len(candidates),
-                              text=f"Scoring {i+1}/{len(candidates)}...")
+                prog.progress((i + 1) / len(candidates), text=f"Scoring {i+1}/{len(candidates)}...")
                 score = score_candidate(c)
-                scored_results.append({"candidate": c, "candidate_id": c.get("candidate_id"), "score": score})
-
+                scored.append({"candidate": c, "candidate_id": c.get("candidate_id"), "score": score})
             prog.empty()
 
-            scored_results.sort(key=lambda x: (-x["score"], x["candidate_id"]))
+            scored.sort(key=lambda x: (-x["score"], x["candidate_id"]))
             results = []
-            for i, item in enumerate(scored_results[:100]):
+            for i, item in enumerate(scored[:100]):
                 rank = i + 1
                 reasoning = build_reasoning(item["candidate"], rank, item["score"])
                 results.append({
@@ -1197,288 +1122,184 @@ with right:
                     "rank": rank,
                     "score": item["score"],
                     "reasoning": reasoning,
-                    "candidate": item["candidate"]
+                    "candidate": item["candidate"],
                 })
 
-            st.session_state["results"] = results
-            st.session_state["ran"] = True
-        elif not (uploaded and not use_sample):
-            pass
-        else:
-            st.error("No valid candidates to rank.")
+            st.session_state["live_results"] = results
+            st.session_state["live_ran"] = True
 
-    if st.session_state.get("ran") and st.session_state.get("results"):
-        results = st.session_state["results"]
-        scores = [r["score"] for r in results]
+    if st.session_state.get("live_ran") and st.session_state.get("live_results"):
+        results = st.session_state["live_results"]
+        scores  = [r["score"] for r in results]
+        honeypots  = sum(1 for r in results if r["score"] <= 0.02)
+        dark_horses_cnt = sum(1 for r in results if r["rank"] > 3 and r["score"] >= 0.60)
 
-        honeypots = sum(1 for r in results if r["score"] <= 0.02)
-        dark_horses = sum(1 for r in results if r["rank"] > 5 and r["score"] >= 0.70)
-
-        # ── Metric row ──
         st.markdown(f"""
         <div class="metric-row">
-          <div class="metric-box metric-green">
-            <div class="metric-val">{len(results)}</div>
-            <div class="metric-label">Ranked</div>
-          </div>
-          <div class="metric-box metric-blue">
-            <div class="metric-val">{max(scores):.3f}</div>
-            <div class="metric-label">Top Score</div>
-          </div>
-          <div class="metric-box metric-amber">
-            <div class="metric-val">{honeypots}</div>
-            <div class="metric-label">Honeypots</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-val" style="color:#a78bfa">{dark_horses}</div>
-            <div class="metric-label">Dark Horses</div>
-          </div>
+          <div class="metric-box metric-green"><div class="metric-val">{len(results)}</div><div class="metric-label">Ranked</div></div>
+          <div class="metric-box metric-blue"><div class="metric-val">{max(scores):.4f}</div><div class="metric-label">Top Score</div></div>
+          <div class="metric-box metric-amber"><div class="metric-val">{honeypots}</div><div class="metric-label">Honeypots</div></div>
+          <div class="metric-box metric-purple"><div class="metric-val">{dark_horses_cnt}</div><div class="metric-label">Dark Horses</div></div>
         </div>
         """, unsafe_allow_html=True)
 
-        # ── Tabs ──
-        tab1, tab2, tab3 = st.tabs(["🏆  Rankings", "📋  Submission CSV", "🔍  Score Breakdown"])
-
-        with tab1:
-            # ── Sort results by rank ──
-            sorted_results = sorted(results, key=lambda r: r["rank"])
-            
-            # ── Top 3 podium ──
-            if len(sorted_results) >= 3:
-                medals = ["🥇", "🥈", "🥉"]
-                podium_cols = st.columns(3)
-                for i, col in enumerate(podium_cols):
-                    r = sorted_results[i]
-                    profile = r["candidate"].get("profile", {})
-                    name = profile.get("anonymized_name") or r["candidate_id"]
-                    title = profile.get("current_title") or "—"
-                    company = profile.get("current_company") or "—"
-                    yoe = profile.get("years_of_experience") or "?"
-                    score = r["score"]
-                    
-                    score_color = "#4ade80" if score >= 0.70 else "#fbbf24" if score >= 0.45 else "#f87171"
-                    
-                    col.markdown(f"""
-        <div style="
-            background:#1a1f2e;
-            border:1px solid #2d3748;
-            border-radius:12px;
-            padding:16px;
-            text-align:center;
-            margin-bottom:8px;
-        ">
-          <div style="font-size:1.8rem">{medals[i]}</div>
-          <div style="font-weight:800;color:#e2e8f0;font-size:0.95rem;margin:6px 0 2px">{name}</div>
-          <div style="font-size:0.75rem;color:#64748b">{title} @ {company}</div>
-          <div style="font-size:0.75rem;color:#64748b">{yoe}yr</div>
-          <div style="font-size:1.3rem;font-weight:800;color:{score_color};margin-top:8px">{score:.4f}</div>
-        </div>
-        """, unsafe_allow_html=True)
-            
-            st.markdown("---")
-            
-            # ── Full ranked list using native Streamlit ──
-            st.markdown(
-                '<p style="font-size:0.75rem;color:#64748b;margin-bottom:8px;">'
-                f'All {len(sorted_results)} candidates ranked · '
-                'Scroll to see full list</p>',
-                unsafe_allow_html=True
-            )
-            
-            for r in sorted_results:
-                profile = r["candidate"].get("profile", {})
-                signals = r["candidate"].get("redrob_signals", {})
-                
-                name = profile.get("anonymized_name") or r["candidate_id"]
-                title = profile.get("current_title") or "—"
-                company = profile.get("current_company") or "—"
-                yoe = profile.get("years_of_experience") or "?"
-                location = profile.get("location") or "—"
-                score = r["score"]
-                rank = r["rank"]
-                notice = signals.get("notice_period_days")
-                
-                # Determine badges
-                is_honeypot = score <= 0.02
-                is_dark_horse = rank > 5 and score >= 0.70
-                
-                # Score color
-                if score >= 0.70:
-                    score_color = "#4ade80"
-                    score_bg = "rgba(34,197,94,0.12)"
-                elif score >= 0.45:
-                    score_color = "#fbbf24"
-                    score_bg = "rgba(234,179,8,0.12)"
-                else:
-                    score_color = "#f87171"
-                    score_bg = "rgba(239,68,68,0.12)"
-                
-                # Rank color
-                if rank == 1:
-                    rank_color = "#fbbf24"
-                elif rank == 2:
-                    rank_color = "#94a3b8"
-                elif rank == 3:
-                    rank_color = "#cd7c2f"
-                else:
-                    rank_color = "#475569"
-                
-                # Build badge text (safe — no HTML interpolation of user data)
-                badges = ""
-                if is_honeypot:
-                    badges = "🚫 HONEYPOT"
-                elif is_dark_horse:
-                    badges = "⭐ DARK HORSE"
-                
-                # Notice flag
-                notice_text = f" · {notice}d notice" if isinstance(notice, int) else ""
-                
-                # Reasoning — clean any problematic chars
-                reasoning = r.get("reasoning", "")
-                # Truncate to 150 chars for display
-                reasoning_preview = (reasoning[:150] + "…") if len(reasoning) > 150 else reasoning
-                
-                with st.container():
-                    row_col1, row_col2 = st.columns([1, 11])
-                    
-                    with row_col1:
-                        st.markdown(
-                            f'<div style="font-size:1.1rem;font-weight:800;color:{rank_color};'
-                            f'padding-top:14px;text-align:center">#{rank}</div>',
-                            unsafe_allow_html=True
-                        )
-                    
-                    with row_col2:
-                        # Name line
-                        name_line = f"**{name}**"
-                        if badges:
-                            name_line += f" `{badges}`"
-                        
-                        score_display = (
-                            f'<span style="background:{score_bg};color:{score_color};'
-                            f'padding:2px 10px;border-radius:6px;font-weight:700;'
-                            f'font-size:0.85rem;float:right">{score:.4f}</span>'
-                        )
-                        
-                        st.markdown(
-                            f'{score_display}<span style="font-weight:700;color:#e2e8f0">'
-                            f'{name}</span>'
-                            + (f' <span style="background:rgba(234,179,8,0.15);color:#fbbf24;'
-                               f'padding:1px 6px;border-radius:4px;font-size:0.7rem;font-weight:700">'
-                               f'{badges}</span>' if badges else ''),
-                            unsafe_allow_html=True
-                        )
-                        st.markdown(
-                            f'<div style="font-size:0.78rem;color:#64748b;margin-top:-8px">'
-                            f'{title} @ {company} · {yoe}yr · {location}{notice_text}</div>',
-                            unsafe_allow_html=True
-                        )
-                        st.markdown(
-                            f'<div style="font-size:0.78rem;color:#94a3b8;'
-                            f'font-style:italic;margin-bottom:8px;border-bottom:1px solid #1e2433;'
-                            f'padding-bottom:10px">{reasoning_preview}</div>',
-                            unsafe_allow_html=True
-                        )
-
-        with tab2:
-            csv_str = to_csv_string([
-                {k: v for k, v in r.items() if k != "candidate"}
-                for r in results
-            ])
-
-            st.markdown("""
-            <div style="font-size:0.82rem; color:#64748b; margin-bottom:12px;">
-            This CSV matches the official submission format exactly:
-            <code>candidate_id, rank, score, reasoning</code>
-            — monotonic scores, unique ranks 1-100, CAND_XXXXXXX IDs.
+        # Podium
+        medals = ["🥇", "🥈", "🥉"]
+        top3 = results[:min(3, len(results))]
+        t3cols = st.columns(3)
+        for i, col in enumerate(t3cols):
+            if i >= len(top3):
+                break
+            r = top3[i]
+            p = r["candidate"].get("profile", {})
+            name = p.get("anonymized_name") or r["candidate_id"]
+            title = p.get("current_title") or "—"
+            yoe = p.get("years_of_experience") or "?"
+            sc = r["score"]
+            sc_color = "#4ade80" if sc >= 0.70 else "#fbbf24" if sc >= 0.45 else "#f87171"
+            col.markdown(f"""
+            <div style="background:#111827;border:1px solid #1e2433;border-radius:14px;
+                        padding:20px;text-align:center;margin-bottom:12px">
+              <div style="font-size:1.8rem">{medals[i]}</div>
+              <div style="font-weight:800;color:#e2e8f0;font-size:0.92rem;margin:6px 0 2px">{name}</div>
+              <div style="font-size:0.73rem;color:#4b5563">{title} · {yoe}yr</div>
+              <div style="font-size:1.4rem;font-weight:800;color:{sc_color};margin-top:10px">{sc:.4f}</div>
             </div>
             """, unsafe_allow_html=True)
 
-            st.code(
-                "\n".join(csv_str.split("\n")[:6]),
-                language="csv"
-            )
+        st.markdown("---")
 
-            st.download_button(
-                label="⬇  Download submission.csv",
-                data=csv_str,
-                file_name="submission.csv",
-                mime="text/csv",
-                use_container_width=True
-            )
+        # Full list
+        for r in results:
+            profile  = r["candidate"].get("profile", {})
+            signals  = r["candidate"].get("redrob_signals", {})
+            name     = profile.get("anonymized_name") or r["candidate_id"]
+            title    = profile.get("current_title") or "—"
+            company  = profile.get("current_company") or "—"
+            yoe      = profile.get("years_of_experience") or "?"
+            location = profile.get("location") or "—"
+            sc       = r["score"]
+            rank     = r["rank"]
+            notice   = signals.get("notice_period_days")
 
-        with tab3:
-            import pandas as pd
-            breakdown_data = []
-            for r in results[:20]:
-                profile = r["candidate"].get("profile", {})
-                signals = r["candidate"].get("redrob_signals", {})
-                career = r["candidate"].get("career_history", [])
-                skills_list = r["candidate"].get("skills", [])
+            is_hp    = sc <= 0.02
+            is_dh    = rank > 3 and sc >= 0.60
+            sc_color = "#4ade80" if sc >= 0.70 else "#fbbf24" if sc >= 0.45 else "#f87171"
+            sc_bg    = "rgba(34,197,94,0.10)" if sc >= 0.70 else "rgba(234,179,8,0.10)" if sc >= 0.45 else "rgba(239,68,68,0.10)"
+            rank_color = "#fbbf24" if rank == 1 else "#94a3b8" if rank == 2 else "#cd7c2f" if rank == 3 else "#374151"
+            badge = ("🚫 HONEYPOT" if is_hp else "⭐ DARK HORSE" if is_dh else "")
+            notice_txt = f" · {notice}d notice" if isinstance(notice, int) else ""
+            reasoning_preview = (r.get("reasoning", "")[:160] + "…") if len(r.get("reasoning", "")) > 160 else r.get("reasoning", "")
 
-                import html as html_lib
-                name = html_lib.escape(
-                    profile.get("anonymized_name") or r["candidate_id"]
+            c1, c2 = st.columns([1, 12])
+            with c1:
+                st.markdown(f'<div style="font-size:1.0rem;font-weight:800;color:{rank_color};padding-top:14px;text-align:center">#{rank}</div>', unsafe_allow_html=True)
+            with c2:
+                badge_html = (f' <span style="background:rgba(239,68,68,0.15);color:#f87171;padding:1px 6px;'
+                              f'border-radius:4px;font-size:0.7rem;font-weight:700">{badge}</span>'
+                              if badge else "")
+                st.markdown(
+                    f'<div style="background:{sc_bg};color:{sc_color};padding:2px 10px;'
+                    f'border-radius:6px;font-weight:700;font-size:0.85rem;float:right">{sc:.4f}</div>'
+                    f'<span style="font-weight:700;color:#e2e8f0">{name}</span>{badge_html}',
+                    unsafe_allow_html=True,
                 )
-                yoe = profile.get("years_of_experience") or 0
-                notice = signals.get("notice_period_days") or "?"
-                last_active = signals.get("last_active_date") or "?"
+                st.markdown(
+                    f'<div style="font-size:0.75rem;color:#4b5563;margin-top:-6px">'
+                    f'{title} @ {company} · {yoe}yr · {location}{notice_txt}</div>',
+                    unsafe_allow_html=True,
+                )
+                st.markdown(
+                    f'<div style="font-size:0.75rem;color:#94a3b8;font-style:italic;'
+                    f'border-bottom:1px solid #1e2433;padding-bottom:8px;margin-bottom:2px">'
+                    f'{reasoning_preview}</div>',
+                    unsafe_allow_html=True,
+                )
 
-                retrieval = detect_retrieval_experience(career)
-                skill_trust = compute_skill_trust_score(skills_list)
-                avail = compute_availability_multiplier(signals, profile)
-                svc = compute_services_penalty(career)
-                exp_mult = _experience_band_multiplier(yoe)
+        # Download
+        st.markdown("---")
+        csv_str = to_csv_string([{k: v for k, v in r.items() if k != "candidate"} for r in results])
+        st.download_button(
+            label="⬇  Download submission.csv",
+            data=csv_str,
+            file_name="submission.csv",
+            mime="text/csv",
+            use_container_width=True,
+        )
 
-                breakdown_data.append({
-                    "Rank": r["rank"],
-                    "Name": name[:20],
-                    "Final": f"{r['score']:.4f}",
-                    "Exp×": f"{exp_mult:.2f}",
-                    "Skill": f"{skill_trust:.2f}",
-                    "Retrieval": f"{retrieval:.2f}",
-                    "Avail×": f"{avail:.2f}",
-                    "Svc×": f"{svc:.2f}",
-                    "Notice": notice,
-                    "Last Active": str(last_active)[:10]
-                })
-
-            df = pd.DataFrame(breakdown_data)
-            st.dataframe(df, use_container_width=True, hide_index=True)
-            st.caption("Showing top 20 candidates. Each multiplier shown individually so you can see exactly why each candidate ranked where they did.")
-
-    elif not st.session_state.get("ran"):
+    elif not st.session_state.get("live_ran"):
         st.markdown("""
-        <div style="
-            background: #1a1f2e;
-            border: 1px dashed #2d3748;
-            border-radius: 16px;
-            padding: 60px 40px;
-            text-align: center;
-            margin-top: 20px;
-        ">
-          <div style="font-size:3rem; margin-bottom:16px;">🎯</div>
-          <div style="font-size:1.1rem; font-weight:700; color:#e2e8f0; margin-bottom:8px;">
-            Ready to rank
-          </div>
-          <div style="font-size:0.85rem; color:#64748b; max-width:340px; margin:0 auto;">
-            Upload a JSONL or JSON candidate file, or use the built-in 5-candidate
-            demo, then click <strong style="color:#ef4444">Run Ranker</strong>
+        <div style="background:#111827;border:1px dashed #1e2433;border-radius:16px;
+                    padding:60px 40px;text-align:center;margin-top:20px">
+          <div style="font-size:3rem;margin-bottom:16px">⚡</div>
+          <div style="font-size:1.1rem;font-weight:700;color:#e2e8f0;margin-bottom:8px">Ready to rank</div>
+          <div style="font-size:0.85rem;color:#4b5563;max-width:340px;margin:0 auto">
+            Upload a candidate file or use the built-in demo, then click
+            <strong style="color:#ef4444">Run Ranker</strong>
           </div>
         </div>
         """, unsafe_allow_html=True)
 
-# ── Footer ──────────────────────────────────────────────────
+
+# ──────────────────────────────────────────────────────────────
+# TAB 4: SUBMISSION CSV preview + download
+# ──────────────────────────────────────────────────────────────
+with tab_submission:
+    if not SUBMISSION:
+        st.error("submission.csv not found.")
+    else:
+        st.markdown("""
+        <div style="font-size:0.85rem;color:#64748b;margin-bottom:16px;line-height:1.7">
+        This is the official submission CSV produced by running <code>rank.py</code> +
+        <code>reason.py</code> on the full 100,000-candidate pool. It satisfies all hackathon
+        constraints: 100 rows, ranks 1–100 (unique), scores non-increasing,
+        <code>CAND_XXXXXXX</code> IDs, UTF-8 encoding.
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Preview first 10 rows
+        preview_lines = []
+        preview_lines.append("candidate_id,rank,score,reasoning")
+        for r in SUBMISSION[:10]:
+            reasoning_short = r.get("reasoning", "")[:80].replace(",", " ")
+            preview_lines.append(f"{r['candidate_id']},{r['rank']},{r['score']},{reasoning_short}…")
+        st.code("\n".join(preview_lines), language="csv")
+
+        # Full download
+        csv_full = "candidate_id,rank,score,reasoning\n"
+        for r in SUBMISSION:
+            esc_reasoning = '"' + r.get("reasoning", "").replace('"', '""') + '"'
+            csv_full += f"{r['candidate_id']},{r['rank']},{r['score']},{esc_reasoning}\n"
+
+        st.download_button(
+            label="⬇  Download Official submission.csv (100 rows)",
+            data=csv_full,
+            file_name="submission.csv",
+            mime="text/csv",
+            use_container_width=True,
+        )
+
+        # Stats
+        scores_f = [float(r["score"]) for r in SUBMISSION]
+        is_monotonic = all(scores_f[i] >= scores_f[i+1] for i in range(len(scores_f)-1))
+        st.markdown(f"""
+        <div style="font-size:0.78rem;color:#4b5563;margin-top:12px;line-height:2.0">
+        ✅ Rows: <strong style="color:#4ade80">{len(SUBMISSION)}</strong> &nbsp;
+        ✅ Monotonic scores: <strong style="color:#4ade80">{'Yes' if is_monotonic else 'No'}</strong> &nbsp;
+        ✅ Score range: <strong style="color:#60a5fa">{min(scores_f):.4f} – {max(scores_f):.4f}</strong>
+        </div>
+        """, unsafe_allow_html=True)
+
+
+# ── Footer ───────────────────────────────────────────────────
 st.markdown("---")
 st.markdown("""
-<div style="display:flex; justify-content:space-between; align-items:center;
-            font-size:0.75rem; color:#475569; flex-wrap:wrap; gap:8px;">
-  <span>🎯 AI Recruiter · Redrob Hackathon ·
+<div style="display:flex;justify-content:space-between;align-items:center;
+            font-size:0.72rem;color:#374151;flex-wrap:wrap;gap:8px">
+  <span>🎯 AI Recruiter · Redrob Hackathon 2025 ·
     <a href="https://github.com/pithva007/Ai-Recruiter"
-       style="color:#ef4444; text-decoration:none">
-      github.com/pithva007/Ai-Recruiter
-    </a>
+       style="color:#ef4444;text-decoration:none">github.com/pithva007/Ai-Recruiter</a>
   </span>
-  <span>career×0.30 + skills×0.20 + retrieval×0.30 + fit×0.20 → ×availability × services_penalty</span>
+  <span>v4: career×0.30 + skills×0.20 + retrieval×0.30 + fit×0.20 → ×avail × svc(5-tier) × title × must_have × suspicion</span>
 </div>
 """, unsafe_allow_html=True)

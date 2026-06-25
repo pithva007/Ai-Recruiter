@@ -1,0 +1,169 @@
+{
+  "role_title": "Senior AI Engineer",
+  "company": "Redrob AI",
+  "seniority_level": "senior",
+  "experience_range": {
+    "min_years": 5,
+    "max_years": 9,
+    "ideal_years": 6
+  },
+  "location": {
+    "primary_cities": [
+      "Pune",
+      "Noida",
+      "Hyderabad",
+      "Mumbai",
+      "Delhi NCR"
+    ],
+    "country": "India",
+    "work_mode": "hybrid"
+  },
+  "must_have_skills": [
+    {
+      "skill": "Embeddings-based retrieval systems",
+      "context": "Production experience with embeddings-based retrieval systems (sentence-transformers, OpenAI embeddings, BGE, E5, or similar) deployed to real users. Experience with embedding drift, index refresh, retrieval-quality regression in production.",
+      "importance": "must_have"
+    },
+    {
+      "skill": "Vector databases or hybrid search infrastructure",
+      "context": "Production experience with vector databases or hybrid search infrastructure (Pinecone, Weaviate, Qdrant, Milvus, OpenSearch, Elasticsearch, FAISS, or similar). Operational experience is key.",
+      "importance": "must_have"
+    },
+    {
+      "skill": "Python",
+      "context": "Strong Python skills with a focus on code quality.",
+      "importance": "must_have"
+    },
+    {
+      "skill": "Evaluation frameworks for ranking systems",
+      "context": "Hands-on experience designing evaluation frameworks for ranking systems (NDCG, MRR, MAP, offline-to-online correlation, A/B test interpretation).",
+      "importance": "must_have"
+    },
+    {
+      "skill": "MLOps",
+      "context": "Experience with deployment, monitoring, and evaluation of ML systems in production.",
+      "importance": "must_have"
+    },
+    {
+      "skill": "LLMs",
+      "context": "Experience with LLMs, including embeddings, retrieval, and ranking applications.",
+      "importance": "must_have"
+    },
+    {
+      "skill": "Product Engineering",
+      "context": "Scrappy product-engineering attitude, willing to ship working solutions quickly to gather user feedback.",
+      "importance": "must_have"
+    }
+  ],
+  "nice_to_have_skills": [
+    {
+      "skill": "LLM fine-tuning",
+      "context": "Experience with LLM fine-tuning techniques (LoRA, QLoRA, PEFT).",
+      "importance": "nice_to_have"
+    },
+    {
+      "skill": "Learning-to-rank models",
+      "context": "Experience with learning-to-rank models (XGBoost-based or neural).",
+      "importance": "nice_to_have"
+    },
+    {
+      "skill": "HR-tech or Recruiting tech",
+      "context": "Prior exposure to HR-tech, recruiting tech, or marketplace products.",
+      "importance": "nice_to_have"
+    },
+    {
+      "skill": "Distributed systems",
+      "context": "Background in distributed systems or large-scale inference optimization.",
+      "importance": "nice_to_have"
+    },
+    {
+      "skill": "Open-source contributions",
+      "context": "Open-source contributions in the AI/ML space.",
+      "importance": "nice_to_have"
+    },
+    {
+      "skill": "NLP/IR",
+      "context": "Significant NLP/IR exposure, especially for candidates whose primary expertise might be in other AI domains.",
+      "importance": "nice_to_have"
+    }
+  ],
+  "explicit_disqualifiers": [
+    {
+      "pattern": "Pure research environments (academic labs, research-only roles) without any production deployment",
+      "reason": "Lack of production deployment experience."
+    },
+    {
+      "pattern": "AI experience primarily from recent (under 12 months) projects using LangChain to call OpenAI, without substantial pre-LLM-era ML production experience",
+      "reason": "Focus on superficial LLM usage without foundational ML production experience."
+    },
+    {
+      "pattern": "Senior engineer who hasn't written production code in the last 18 months due to moving into 'architecture' or 'tech lead' roles",
+      "reason": "Role requires hands-on coding."
+    },
+    {
+      "pattern": "Career trajectory showing optimization for titles by switching companies every 1.5 years",
+      "reason": "Company seeks long-term commitment (3+ years)."
+    },
+    {
+      "pattern": "People who have only worked at consulting firms (TCS, Infosys, Wipro, Accenture, Cognizant, Capgemini, etc.) in their entire career",
+      "reason": "Preference for product company experience."
+    },
+    {
+      "pattern": "Primary expertise is computer vision, speech, or robotics without significant NLP/IR exposure",
+      "reason": "Requires strong NLP/IR fundamentals."
+    },
+    {
+      "pattern": "Work has been entirely on closed-source proprietary systems for 5+ years without external validation (papers, talks, open-source)",
+      "reason": "Need for external validation of thinking and capabilities."
+    }
+  ],
+  "services_company_names": [
+    "TCS",
+    "Infosys",
+    "Wipro",
+    "Accenture",
+    "Cognizant",
+    "Capgemini"
+  ],
+  "implicit_requirements": [
+    {
+      "requirement": "Willingness to work in a fast-paced, evolving startup environment.",
+      "reasoning": "The JD explicitly states the company changes every six months and the JD will change accordingly. It also mentions 'move fast and break things'."
+    },
+    {
+      "requirement": "Comfort with ambiguity and a less structured role.",
+      "reasoning": "The JD contrasts this role with well-scoped roles at large companies and emphasizes that the JD changes frequently."
+    },
+    {
+      "requirement": "Ability to balance deep technical work with product-focused shipping.",
+      "reasoning": "The JD highlights the need for someone 'simultaneously comfortable with two things that sound contradictory: Deep technical depth... and Scrappy product-engineering attitude'."
+    },
+    {
+      "requirement": "Strong communication and writing skills.",
+      "reasoning": "The JD states 'We work async-first and write a lot. If you find writing painful, you'll find this role painful.'"
+    },
+    {
+      "requirement": "Proactive and self-directed approach to problem-solving.",
+      "reasoning": "The role involves owning the intelligence layer and driving long-term architecture, implying a need for initiative."
+    },
+    {
+      "requirement": "Ability to mentor junior engineers.",
+      "reasoning": "The JD mentions mentoring the next round of hires as the team grows."
+    },
+    {
+      "requirement": "Understanding of system design principles beyond just ML models.",
+      "reasoning": "The JD warns against 'Framework enthusiasts' and emphasizes thinking about 'systems, not frameworks'."
+    }
+  ],
+  "culture_signals": [
+    "Async-first communication",
+    "Emphasis on writing",
+    "Open disagreement and quick decision-making",
+    "Fast-paced environment ('move fast and break things')",
+    "Preference for product-company experience over services",
+    "Value placed on practical production experience over pure research",
+    "Need for a 'scrappy product-engineering attitude'"
+  ],
+  "ideal_candidate_summary": "A Senior AI Engineer with 6-8 years of experience, including 4-5 years in applied ML/AI at product companies. They have successfully shipped end-to-end ranking, search, or recommendation systems to real users at scale. This candidate possesses deep technical knowledge in modern ML systems like embeddings, retrieval, ranking, and LLMs, coupled with a pragmatic, product-oriented approach to shipping working solutions quickly. They have strong opinions on retrieval, evaluation, and LLM integration, backed by practical experience. They are comfortable with ambiguity, async-first communication, and a fast-paced startup environment, and are looking for a long-term role (3+ years) in Pune or Noida.",
+  "jd_trap_warning": "The JD explicitly warns against a keyword-only matching approach. It states that a 'Tier 5 candidate may not use the words \"RAG\" or \"Pinecone\" in their profile, but if their career history shows they built a recommendation system at a product company, they're a fit.' Conversely, a candidate with perfect AI keywords but an irrelevant title is not a fit. The JD also highlights that availability and engagement (login activity, response rate) are critical signals, not just profile completeness. The 'trap' is to over-index on explicit skill keywords and ignore career history, context, and behavioral signals like candidate availability."
+}
