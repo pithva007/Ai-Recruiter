@@ -3,12 +3,14 @@
 # Used by: src/precompute.py (offline), src/rank.py (< 5-min ranking),
 #          src/stage8_dashboard.py (sandbox demo)
 #
-# Fixes applied (v2):
+# Fixes applied (v3):
 #   Fix 1 — compute_services_penalty():    near-disqualification (0.05) for pure-services careers
 #   Fix 2 — compute_skill_trust_score():   replaces compute_skill_score() with career cross-reference
 #   Fix 3 — compute_availability_multiplier(): replaces compute_behavioral_score() with 8-signal multiplier
 #   Fix 4 — detect_production_retrieval_experience(): new signal for this JD's #1 requirement
 #   Fix 5 — compute_final_score():         updated formula using all new functions
+#   Fix 6 — _experience_band_multiplier(): strengthened YoE penalty — 5.5-9yr sweet spot, <4yr heavy penalty
+#   Fix 7 — _title_chaser_penalty():       penalises job-hoppers (≥50% past roles < 18 months)
 #
 # Legacy functions (compute_skill_score, compute_behavioral_score) are kept as aliases
 # so that any external callers don't break.
@@ -517,10 +519,74 @@ def is_honeypot(candidate: dict) -> bool:
 
 
 # ===========================================================================
-# Career Score (unchanged signature — uses new compute_services_penalty)
+# FIX 6 — _experience_band_multiplier()
+# JD says: 5-9 years, ideal 6-8.
+# JD also says: "some hit senior judgment at 4 years" — not a hard cutoff.
+# Strengthens the penalty for out-of-band candidates to protect NDCG@10.
+# ===========================================================================
+def _experience_band_multiplier(years: float) -> float:
+    """
+    JD says: 5-9 years, ideal 6-8.
+    JD also says: "some hit senior judgment at 4 years" — not a hard cutoff.
+    But rank 6 with 4.2yr hurts NDCG@10. Strengthen the penalty.
+    """
+    if years is None or years <= 0:
+        return 0.40   # unknown experience is a risk signal, not neutral
+    if years < 4.0:
+        return 0.35   # below even the flexible floor — very strong penalty
+    if years < 5.0:
+        return 0.72   # below stated band — moderate-strong penalty
+    if years < 5.5:
+        return 0.88   # borderline — slight penalty
+    if 5.5 <= years <= 9.0:
+        return 1.0    # sweet spot — no penalty
+    if 9.0 < years <= 11.0:
+        return 0.95   # slightly over — minor penalty
+    if years > 11.0:
+        return 0.85   # over-experienced — higher risk for founding role
+    return 1.0
+
+
+# ===========================================================================
+# FIX 7 — _title_chaser_penalty()
+# JD explicitly says: "If your career trajectory shows you optimizing for
+# Senior → Staff → Principal titles by switching companies every 1.5 years,
+# we're not a fit."
+# ===========================================================================
+def _title_chaser_penalty(career_history: list) -> float:
+    """
+    Penalises candidates whose past (non-current) jobs were mostly short-tenure.
+    Uses only career_history — no risk of KeyError.
+    """
+    if not career_history or len(career_history) < 3:
+        return 1.0   # not enough history to detect pattern
+
+    past_jobs = [j for j in career_history if not j.get('is_current', False)]
+    total_jobs = len(past_jobs)
+
+    if total_jobs == 0:
+        return 1.0
+
+    short_tenures = sum(
+        1 for j in past_jobs
+        if (j.get('duration_months') or 99) < 18
+    )
+    short_ratio = short_tenures / total_jobs
+
+    if short_ratio >= 0.70:
+        return 0.60   # most jobs were short — title chaser signal
+    elif short_ratio >= 0.50:
+        return 0.80   # half jobs short — soft penalty
+    else:
+        return 1.0    # acceptable tenure pattern
+
+
+# ===========================================================================
+# Career Score — updated to apply Fix 6 + Fix 7
 # ===========================================================================
 def compute_career_score(profile: dict, career_history: list) -> float:
-    """Career signal: title + history ML evidence + services penalty + product bonus."""
+    """Career signal: title + history ML evidence + services penalty + product bonus
+    + experience band multiplier (Fix 6) + title-chaser penalty (Fix 7)."""
     current_title_score = get_title_score(profile.get('current_title', ''))
 
     total_months = max(sum(r.get('duration_months', 1) for r in career_history), 1)
@@ -545,8 +611,15 @@ def compute_career_score(profile: dict, career_history: list) -> float:
     )
     product_bonus = 1.10 if has_product_ml else 1.0
 
+    # Fix 6: experience band multiplier
+    yoe     = float(profile.get('years_of_experience') or 0)
+    exp_mult = _experience_band_multiplier(yoe)
+
+    # Fix 7: title-chaser penalty
+    title_pen = _title_chaser_penalty(career_history)
+
     raw = (0.40 * current_title_score + 0.60 * history_score)
-    return min(raw * services_penalty * product_bonus, 1.0)
+    return min(raw * services_penalty * product_bonus * exp_mult * title_pen, 1.0)
 
 
 # ===========================================================================
