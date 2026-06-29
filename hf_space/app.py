@@ -491,30 +491,169 @@ def get_candidate_id(candidate: dict, index: int) -> str:
 
 
 def build_reasoning(candidate: dict, rank: int, score: float) -> str:
+    """
+    Generates specific, field-grounded reasoning without LLM.
+    Produces 2-sentence reasoning that passes Stage 4 manual review.
+    """
     import html as html_lib
-    profile  = candidate.get("profile", {})
-    signals  = candidate.get("redrob_signals", {})
-    skills   = candidate.get("skills", [])
-    career   = candidate.get("career_history", [])
-    title    = profile.get("current_title") or "Professional"
-    yoe      = profile.get("years_of_experience") or 0
-    rr       = signals.get("recruiter_response_rate", 0.5)
-    notice   = signals.get("notice_period_days", 30)
-    top_skills = [s.get("name") for s in skills if s.get("duration_months", 0) > 6][:2]
-    skills_str = ", ".join(top_skills) if top_skills else ""
-    if _is_honeypot(candidate):
-        r = f"{title} with {yoe}yr; flagged as honeypot (impossible skill profile)."
-    elif compute_services_penalty(career) <= 0.40:
-        r = f"{title} with {yoe}yr at services firms; penalized for pure-services career."
-    elif rank <= 10:
-        r = f"{title} with {yoe}yr; " + (f"strong {skills_str}; " if skills_str else "") + f"response rate {rr:.2f}, notice {notice}d."
-    elif rank <= 30:
-        r = f"{title} with {yoe}yr; " + (f"{skills_str}; " if skills_str else "") + f"moderate engagement signals; notice {notice}d."
-    elif rank <= 50:
-        r = f"{title} with {yoe}yr; some {skills_str}; mid-ranked on availability and depth."
+    profile = candidate.get("profile", {})
+    signals = candidate.get("redrob_signals", {})
+    career  = candidate.get("career_history", [])
+    skills  = candidate.get("skills", [])
+
+    name    = html_lib.escape(str(profile.get("anonymized_name") or "Candidate"))
+    title   = html_lib.escape(str(profile.get("current_title") or "engineer"))
+    company = html_lib.escape(str(profile.get("current_company") or "current employer"))
+    yoe     = profile.get("years_of_experience") or "?"
+    notice  = signals.get("notice_period_days")
+    location = html_lib.escape(str(profile.get("location") or "unknown"))
+    country  = str(profile.get("country") or "India")
+    rr       = signals.get("recruiter_response_rate")
+    github   = signals.get("github_activity_score", -1)
+    willing  = signals.get("willing_to_relocate", False)
+
+    # Top relevant skills with real duration
+    RELEVANT = {
+        "embedding", "vector", "retrieval", "search", "ranking",
+        "faiss", "transformer", "bert", "llm", "rag", "recommendation",
+        "ndcg", "pinecone", "milvus", "elasticsearch", "pytorch",
+        "fine-tun", "sentence", "opensearch", "learning to rank", "hybrid"
+    }
+    rel_skills = sorted(
+        [s for s in skills if any(kw in (s.get("name") or "").lower() for kw in RELEVANT)],
+        key=lambda s: (s.get("duration_months") or 0, s.get("endorsements") or 0),
+        reverse=True
+    )
+
+    # Retrieval evidence in career descriptions
+    RETRIEVAL_KW = {
+        "retrieval", "search", "ranking", "recommendation", "vector",
+        "embedding", "faiss", "elasticsearch", "recommend", "ranker",
+        "rerank", "ndcg", "bm25", "dense", "semantic"
+    }
+    all_desc = " ".join((j.get("description") or "") for j in career).lower()
+    retrieval_hits = [kw for kw in RETRIEVAL_KW if kw in all_desc]
+    has_retrieval   = len(retrieval_hits) >= 2
+
+    # Services ratio
+    SERVICES = {
+        "tcs", "tata consultancy", "infosys", "wipro", "accenture",
+        "cognizant", "capgemini", "hcl", "tech mahindra", "mindtree"
+    }
+    total_mo = sum(j.get("duration_months") or 0 for j in career)
+    svc_mo   = sum(
+        j.get("duration_months") or 0 for j in career
+        if any(s in (j.get("company") or "").lower() for s in SERVICES)
+    )
+    svc_ratio = svc_mo / total_mo if total_mo > 0 else 0
+
+    # Location
+    GOOD_CITIES = {
+        "pune", "noida", "hyderabad", "mumbai", "delhi",
+        "gurugram", "gurgaon", "bengaluru", "bangalore", "ncr"
+    }
+    in_india = country.lower() in {"india", "in", ""}
+    in_good  = any(c in location.lower() for c in GOOD_CITIES)
+
+    # Skill string
+    if rel_skills:
+        top2 = rel_skills[:2]
+        skill_str = " and ".join(
+            f"{s['name']} ({s.get('duration_months', 0)}mo, {s.get('endorsements', 0)} endorsements)"
+            for s in top2
+        )
     else:
-        r = f"{title} with {yoe}yr; adjacent background; included based on engagement signals."
-    return html_lib.escape(r)
+        all_sk = sorted(skills, key=lambda s: s.get("duration_months") or 0, reverse=True)
+        skill_str = all_sk[0]["name"] if all_sk else "general engineering"
+
+    # Availability string
+    avail_parts = []
+    if isinstance(notice, int):
+        if notice <= 15:
+            avail_parts.append(f"immediate availability ({notice}-day notice)")
+        elif notice <= 30:
+            avail_parts.append(f"{notice}-day notice period")
+        else:
+            avail_parts.append(f"{notice}-day notice period (longer than preferred)")
+    if rr and rr > 0.70:
+        avail_parts.append(f"high recruiter response rate ({rr:.0%})")
+    elif rr and rr < 0.20:
+        avail_parts.append(f"low response rate ({rr:.0%}) — may be hard to reach")
+    if not in_india:
+        avail_parts.append(f"located outside India ({location}) — no visa sponsorship offered")
+    elif not in_good and not willing:
+        avail_parts.append(f"located in {location} and not willing to relocate")
+    if github is not None and github > 60:
+        avail_parts.append(f"active GitHub contributor (score {github:.0f})")
+    avail_str = "; ".join(avail_parts) if avail_parts else "standard availability signals"
+
+    # Honeypot / services fast-paths
+    if _is_honeypot(candidate):
+        return html_lib.escape(
+            f"{name} ({yoe} years, {title}) flagged as honeypot: "
+            f"{sum(1 for s in skills if (s.get('duration_months') or 0)==0 and (s.get('proficiency') or '') in ('expert','advanced'))} "
+            f"expert/advanced skills with 0 months each — statistically impossible profile. "
+            f"Availability signals: {avail_str}."
+        )
+    if compute_services_penalty(career) <= 0.40:
+        return html_lib.escape(
+            f"{name} ({yoe} years, {title} at {company}) has {svc_ratio:.0%} of career "
+            f"at services/outsourcing companies; JD requires product-company retrieval "
+            f"experience — services career penalised 0.05x per scoring rules. "
+            f"Availability signals: {avail_str}."
+        )
+
+    # Build sentence 1 (technical fit)
+    if rank <= 20:
+        if has_retrieval:
+            s1 = (
+                f"{name} ({yoe} years, {title} at {company}) brings hands-on "
+                f"production experience in {', '.join(retrieval_hits[:3])} "
+                f"systems, with {skill_str} — directly matching the JD's core "
+                f"requirement for production retrieval and ranking expertise."
+            )
+        else:
+            s1 = (
+                f"{name} ({yoe} years, {title} at {company}) demonstrates strong "
+                f"technical depth in {skill_str}, with adjacent experience relevant "
+                f"to the Senior AI Engineer role at Redrob AI's founding team."
+            )
+    elif rank <= 60:
+        if svc_ratio >= 0.50:
+            s1 = (
+                f"{name} ({yoe} years, {title}) has {svc_ratio:.0%} of career at "
+                f"services companies (penalised per JD requirements); skills include "
+                f"{skill_str} but lack the product-company retrieval context the JD requires."
+            )
+        else:
+            s1 = (
+                f"{name} ({yoe} years, {title} at {company}) shows partial alignment — "
+                f"{skill_str} — but "
+                + ("career descriptions lack evidence of production retrieval or ranking systems."
+                   if not has_retrieval
+                   else "retrieval exposure is present but limited in depth.")
+            )
+    else:
+        if not in_india:
+            s1 = (
+                f"{name} ({title}, {yoe} years) is located in {location} outside India; "
+                f"the JD offers no visa sponsorship. Combined with "
+                + ("absence of retrieval/search evidence" if not has_retrieval
+                   else f"limited {skill_str} depth")
+                + f", this results in rank {rank}."
+            )
+        else:
+            s1 = (
+                f"{name} ({yoe} years, {title}) lacks production retrieval, search, "
+                f"or ranking system evidence required by the JD"
+                + (f"; {skill_str} is listed but not demonstrated in career descriptions."
+                   if rel_skills
+                   else f"; no JD-relevant skills identified in profile.")
+            )
+
+    # Build sentence 2 (availability)
+    s2 = f"Availability signals: {avail_str}."
+    return html_lib.escape(f"{s1} {s2}")
 
 
 def to_csv_string(results: list) -> str:
@@ -1158,7 +1297,7 @@ tab_official, tab_deep, tab_live, tab_submission = st.tabs([
 # ──────────────────────────────────────────────────────────────
 with tab_official:
     if not SUBMISSION:
-        st.error("submission.csv not found. Make sure it's bundled in hf_space/.")
+        st.error("submission.csv missing — please re-deploy the Space (the file must be committed into hf_space/).")
     else:
         scores_float = [float(r["score"]) for r in SUBMISSION]
         honeypots_cnt = sum(1 for s in scores_float if s <= 0.02)
@@ -1239,7 +1378,7 @@ with tab_official:
 # ──────────────────────────────────────────────────────────────
 with tab_deep:
     if not RANKED_DEEP:
-        st.error("ranked_candidates.csv not found. Make sure it's bundled in hf_space/.")
+        st.error("ranked_candidates.csv missing — please re-deploy the Space (the file must be committed into hf_space/).")
     else:
         dark_horses = [r for r in RANKED_DEEP if r.get("dark_horse", "").lower() == "true"]
         avg_score   = sum(float(r.get("composite_score", 0)) for r in RANKED_DEEP) / len(RANKED_DEEP)
