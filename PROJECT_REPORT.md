@@ -39,6 +39,47 @@ Getting the **top 10 right is worth 5× more** than getting the bottom 90 right.
 
 The system has 9 stages organized into 4 phases:
 
+```mermaid
+flowchart TD
+    subgraph PhaseA["⚙️ Phase A — Offline Pre-computation (no time limit, LLM ✅)"]
+        A1["📄 job_description.docx"]
+        A2["🤖 Stage 1: JD Analysis\nsrc/stage1_jd_analysis.py\nLLM: gemini-flash-lite-latest\n1 call"]
+        A3["📦 jd_features.json\n8 KB"]
+        A4["🗄️ candidates.jsonl\n100K candidates · 465 MB"]
+        A5["⚡ Stage 2: Precompute\nsrc/precompute.py\nNO LLM · NO network\n~15 seconds"]
+        A6["💾 features.pkl\n17.5 MB · 100K scores"]
+        A1 --> A2 --> A3
+        A4 --> A5
+        A3 --> A5
+        A5 --> A6
+    end
+
+    subgraph PhaseB["🏎️ Phase B — Ranking  ★ < 5 min · CPU · ZERO network ★"]
+        B1["⚡ Stage 3: Rank\nsrc/rank.py\nNO LLM · NO network\nFast: 0.34s · Slow: 14.7s"]
+        B2["📋 ranked_top100_raw.csv\n100 rows · no reasoning"]
+        A6 --> B1 --> B2
+    end
+
+    subgraph PhaseC["🧠 Phase C — Post-Ranking Enrichment (LLM ✅ offline)"]
+        C1["📝 Stage 4: Reason\nsrc/reason.py\nLLM: 100 calls · ~12 min"]
+        C2["✅ submission.csv\n← SUBMIT THIS\n100 rows · validated"]
+        C3["🔍 Stage 5: Evidence Extraction\nsrc/stage3_evidence_extraction.py\nLLM: 100 calls\n100 JSON files"]
+        C4["🕸️ Stage 6: Graph Builder\nsrc/stage4_graph_builder.py\nNO LLM · networkx\n868 nodes · 3,297 edges"]
+        C5["🔎 Stage 7: Hybrid Retrieval\nsrc/stage5_hybrid_retrieval.py\nFAISS + GraphRAG\nsentence-transformers"]
+        C6["🎯 Stage 8: LLM Scoring Engine\nsrc/stage6_scoring_engine.py\nLLM: 60 calls · top 30"]
+        C7["🏆 Stage 9: Explainable Ranking\nsrc/stage7_ranking.py\nLLM rationale + dark horse\n30 candidates"]
+        B2 --> C1 --> C2
+        B2 --> C3 --> C4 --> C5 --> C6 --> C7
+    end
+
+    subgraph PhaseD["🖥️ Phase D — Dashboard"]
+        D1["📊 Stage 10: Streamlit Dashboard\nstreamlit run app.py\nWeighted sliders · Radar charts\nDark horse panel · Bias audit"]
+        D2["📄 PDF Report\nutils/report_generator.py\n17 pages · reportlab"]
+        C7 --> D1
+        C7 --> D2
+    end
+```
+
 ```
 Phase A — Offline Pre-computation (no time limit, LLM permitted)
   Stage 1:  JD Analysis          → data/processed/jd_features.json
@@ -67,6 +108,50 @@ Phases C and D enrich the top candidates for human review but are not scored.
 ## 3. Core Scoring Engine (utils/feature_engineering.py)
 
 All scoring is **deterministic — zero LLM, zero network, zero randomness**.
+
+### 3.0 Scoring Formula — Mermaid
+
+```mermaid
+flowchart LR
+    subgraph Inputs["📥 Candidate Fields"]
+        I1["profile.current_title\ncareer_history[].title\ncareer_history[].description\ncareer_history[].company"]
+        I2["skills[].name\nskills[].proficiency\nskills[].duration_months\nskills[].endorsements\nredrob_signals.skill_assessment_scores"]
+        I3["career_history[].description\n(retrieval/ranking/search keywords)\ncareer_history[].company\ncareer_history[].duration_months"]
+        I4["profile.years_of_experience\neducation[].tier"]
+        I5["redrob_signals:\nlast_active_date · open_to_work\nrecruiter_response_rate\nnotice_period_days\ninterview_completion_rate\nlocation · github_activity_score\nverified_email · verified_phone"]
+        I6["career_history[].company\n(services ratio check)"]
+    end
+
+    subgraph Scores["🧮 Component Scores"]
+        S1["career_score\n× 0.30"]
+        S2["skill_trust_score\n× 0.20"]
+        S3["retrieval_score\n× 0.30"]
+        S4["fit_score\n× 0.20"]
+    end
+
+    subgraph Multipliers["⚡ Multipliers"]
+        M1["availability_multiplier\n8 signals · range 0.01–1.15"]
+        M2["services_penalty\n0.05 / 0.40 / 0.75 / 1.0"]
+    end
+
+    FINAL["🎯 final_score\n0.0 – 1.0"]
+
+    I1 --> S1
+    I2 --> S2
+    I3 --> S3
+    I4 --> S4
+    I5 --> M1
+    I6 --> M2
+
+    S1 --> BASE["base = S1×0.30\n+ S2×0.20\n+ S3×0.30\n+ S4×0.20"]
+    S2 --> BASE
+    S3 --> BASE
+    S4 --> BASE
+
+    BASE --> FINAL
+    M1 --> FINAL
+    M2 --> FINAL
+```
 
 ### 3.1 Final Score Formula
 
@@ -267,7 +352,28 @@ to prevent accidental network calls at module load time.
 
 ## 5. LLM Usage (Gemini API)
 
-LLM is used in **exactly two places**, both offline and post-ranking:
+LLM is used in **exactly two places for the submission**, both offline and post-ranking.  
+The enrichment pipeline uses LLM in 4 additional optional stages.
+
+```mermaid
+flowchart TD
+    subgraph Submission["✅ Submission-Critical LLM Calls"]
+        L1["🤖 Stage 1 — JD Analysis\ngemini-flash-lite-latest · temp=0.0\n1 call · input: JD docx\noutput: jd_features.json"]
+        L2["📝 Stage 4 — Reasoning\ngemini-flash-lite-latest · temp=0.0\n100 calls · 7s inter-call wait\noutput: reasoning column in submission.csv"]
+    end
+
+    subgraph Enrichment["🔬 Enrichment Pipeline LLM Calls (optional, not scored)"]
+        L3["🔍 Stage 5 — Evidence Extraction\n100 calls · top-100 candidates\noutput: evidence items per candidate\nquantified weight: 1.5× unquantified"]
+        L4["🎯 Stage 8 — Deep Scoring\n60 calls · top-30 candidates\n4 scores: fit/impact/potential/risk\noutput: composite LLM score"]
+        L5["⭐ Stage 9 — Rationale + Dark Horse\n≤60 calls · top-30 + dark horse check\noutput: 100-word rationale + transferable_skills_map"]
+    end
+
+    NO["🚫 Phase B Ranking\nrank.py\nZERO LLM calls\nZERO network calls\nPure deterministic scoring"]
+
+    style NO fill:#3d1f1f,stroke:#ef4444,color:#fca5a5
+    style Submission fill:#1a2f1a,stroke:#4ade80,color:#e2e8f0
+    style Enrichment fill:#1a1f2e,stroke:#60a5fa,color:#e2e8f0
+```
 
 ### 5.1 Stage 1 — JD Analysis (runs ONCE)
 
@@ -339,6 +445,46 @@ Output:      dark_horse flag + transferable_skills_map in ranked_candidates.csv
 
 These stages enrich the top 100 candidates for human review.  
 They do NOT affect the submission CSV.
+
+```mermaid
+flowchart LR
+    RAW["candidates.jsonl\n100K candidates"]
+    TOP100["ranked_top100_raw.csv\nTop 100 from rank.py"]
+
+    subgraph Stage5["Stage 5 — Evidence Extraction"]
+        EV["LLM extracts evidence items\nper candidate\n• technical\n• impact (quantified)\n• leadership\n• learning\n• behavioral\n100 JSON files"]
+    end
+
+    subgraph Stage6["Stage 6 — GraphRAG"]
+        GR["networkx Knowledge Graph\n868 nodes · 3,297 edges\nCANDIDATE / SKILL / TOOL\nDOMAIN / IMPACT_KEYWORD\nJD_REQUIREMENT nodes\nknowledge_graph.gexf"]
+    end
+
+    subgraph Stage7["Stage 7 — Hybrid Retrieval"]
+        FAISS["FAISS IndexFlatIP\nall-mpnet-base-v2\n768-dim · L2-normalised"]
+        GRAPH["find_graph_matches()\nJD entity overlap scoring"]
+        HYBRID["hybrid_score =\nFAISS×0.6 + graph×0.4"]
+        FAISS --> HYBRID
+        GRAPH --> HYBRID
+    end
+
+    subgraph Stage8["Stage 8 — LLM Scoring"]
+        SCORE["LLM scores top-30\nfit / impact / potential / risk\ncomposite formula:\nfit×0.35 + impact×0.30\n+ potential×0.20\n+ (100-risk)×0.15\n30 JSON score files"]
+    end
+
+    subgraph Stage9["Stage 9 — Explainable Ranking"]
+        RANK9["Sort by composite\nLLM rationale ≤100 words\nDark horse detection\nhybrid_rank>15\nimpact/potential≥75\nfit≥50\n12 dark horses found"]
+        OUT9["ranked_candidates.csv\n30 candidates · 19 columns\nranking_summary.json\nshortlist_report.pdf"]
+        RANK9 --> OUT9
+    end
+
+    RAW --> Stage5
+    TOP100 --> Stage5
+    Stage5 --> Stage6
+    Stage5 --> Stage7
+    Stage6 --> Stage7
+    Stage7 --> Stage8
+    Stage8 --> Stage9
+```
 
 ### Stage 5 — Evidence Extraction
 
@@ -490,6 +636,43 @@ Each candidate has 6 top-level sections:
 ---
 
 ## 10. Hackathon Traps & How We Beat Them
+
+```mermaid
+flowchart TD
+    CAND["Candidate from 100K pool"]
+
+    HP{"Is Honeypot?\n• 5+ expert skills, 0 months\n• 9yr exp, 0 career months"}
+    CAND --> HP
+    HP -->|Yes| ZERO["score = 0.0\n❌ Excluded from top 100"]
+    HP -->|No| SVC
+
+    SVC{"Services ratio?"}
+    SVC -->|"≥80% + no escape\nPure TCS/Infosys..."| NEAR["services_penalty = 0.05\n⚠️ Near-disqualified"]
+    SVC -->|"≥80% + has escape"| MED1["services_penalty = 0.40"]
+    SVC -->|"50–79%"| MED2["services_penalty = 0.75"]
+    SVC -->|"<50%"| FULL["services_penalty = 1.0"]
+
+    NEAR --> SCORE
+    MED1 --> SCORE
+    MED2 --> SCORE
+    FULL --> SCORE
+
+    SCORE["Compute base score\ncareer×0.30 + skill×0.20\n+ retrieval×0.30 + fit×0.20"]
+
+    AVAIL{"Availability check\n8 signals"}
+    SCORE --> AVAIL
+    AVAIL -->|"Inactive 180d+\nrr<10%\noutside India"| LOW["multiplier ~0.01–0.10\n❌ Drops out of top 100"]
+    AVAIL -->|"Active, responsive\nnear notice, India"| HIGH["multiplier ~1.0–1.15\n✅ Retains full score"]
+
+    LOW --> FINAL["final = base × avail × services_pen"]
+    HIGH --> FINAL
+
+    SKILL{"Keyword stuffer?\nduration_months == 0"}
+    FINAL --> SKILL
+    SKILL -->|"Expert/Advanced\n0 months usage"| WEAK["skill_weight = 0.05\n🔴 Near-zero contribution"]
+    SKILL -->|"Any proficiency\n0 months"| WEAK2["skill_weight = 0.10\n🟡 Minimal contribution"]
+    SKILL -->|"Has duration > 0"| REAL["skill_weight = 0.40+\n✅ Full trust score"]
+```
 
 ### Trap 1: Keyword stuffers
 
